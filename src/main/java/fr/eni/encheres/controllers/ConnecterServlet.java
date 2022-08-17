@@ -64,17 +64,15 @@ public class ConnecterServlet extends HttpServlet {
 		Utilisateur user =null;
 		try {
 			user = mng.selectById(email, password);
-			
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		} catch (BLLException e) {
-			e.printStackTrace();
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+			request.setAttribute("error", e);
+			for (Exception exception : e.getBLLExceptions()) {
+				System.out.println(exception.getMessage());
+			}
 		}
 		
-		if(user == null) {
-			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
-			request.setAttribute("error", "mot de passe ou email incorrect");
-		} else {
-			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-		}
 		rd.forward(request, response);
 		
 	}
