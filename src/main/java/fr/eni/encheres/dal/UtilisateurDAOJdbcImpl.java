@@ -49,7 +49,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		            
 					//Validation de l'ajout en base si aucune erreur n'a été rencontrée
 					cnx.commit();
-				}		
+				} else {
+					throw new SQLException();
+				}
 			}catch (SQLException e) {
 				//Si jamais une erreur est catchée lors de l'execution, retour arrière pour récupérer une base propre
 				cnx.rollback();
