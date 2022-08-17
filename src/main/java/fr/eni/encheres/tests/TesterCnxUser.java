@@ -41,14 +41,13 @@ public class TesterCnxUser extends HttpServlet {
 			ConnectionProvider.getConnection();
 			Utilisateur test1 = userDAO.selectById("gbluth@campus.fr", "Pa$$w0rd");
 			if(test1 == null) {
-				throw new DALException("Erreur de connexion");
+				throw new DALException();
 			}
 			else {
 				message = "Connexion utilisateur test1 réussie.";
 			}
-		} catch (DALException | SQLException e) {
-			message += e.getMessage();
-			e.printStackTrace();
+		} catch (DALException | SQLException  e) {
+			message = "Erreur de connexion";
 		}
 		response.getWriter().append("Test de connexion : " + message);
 	}
@@ -60,5 +59,4 @@ public class TesterCnxUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }

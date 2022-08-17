@@ -26,38 +26,39 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(1, email);
 				pstmt.setString(2, mdp);
 				ResultSet res = pstmt.executeQuery();
-				res.next();
-				String pseudo = res.getString("pseudo");
-				String nom = res.getString("nom");
-				String prenom = res.getString("prenom");
-				String mail = res.getString("email");
-				String telephone = res.getString("telephone");
-				String rue = res.getString("rue");
-				String codePostal = res.getString("code_postal");
-				String ville = res.getString("ville");
-				int credit = res.getInt("credit");
-				int admin = res.getInt("administrateur");
-				boolean administrateur;
-				if (admin == 0) {
-					administrateur = false;
-				}
-				else {
-					administrateur = true;
-				}
-		        personneSelectionnee = new Utilisateur(pseudo, nom, prenom, mail, telephone, rue, codePostal, ville, credit, administrateur);
-	            
-				//Validation de l'ajout en base si aucune erreur n'a été rencontrée
-				cnx.commit();
-						
+				
+				if(res.next()) {
+					String pseudo = res.getString("pseudo");
+					String nom = res.getString("nom");
+					String prenom = res.getString("prenom");
+					String mail = res.getString("email");
+					String telephone = res.getString("telephone");
+					String rue = res.getString("rue");
+					String codePostal = res.getString("code_postal");
+					String ville = res.getString("ville");
+					int credit = res.getInt("credit");
+					int admin = res.getInt("administrateur");
+					boolean administrateur;
+					if (admin == 0) {
+						administrateur = false;
+					}
+					else {
+						administrateur = true;
+					}
+			        personneSelectionnee = new Utilisateur(pseudo, nom, prenom, mail, telephone, rue, codePostal, ville, credit, administrateur);
+		            
+					//Validation de l'ajout en base si aucune erreur n'a été rencontrée
+					cnx.commit();
+				}		
 			}catch (SQLException e) {
 				//Si jamais une erreur est catchée lors de l'execution, retour arrière pour récupérer une base propre
 				cnx.rollback();
+				throw e;
 			}
 								
 		}catch (SQLException e) {
 			DALException ex = new DALException("Erreur dans la DAL : Utilisateur ou mot de passe incorrect." + e.getMessage());
 			throw ex;
-					
 		}
 		return personneSelectionnee;
 	}

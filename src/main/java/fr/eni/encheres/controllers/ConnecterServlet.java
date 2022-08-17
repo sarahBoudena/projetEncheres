@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.Utilisateur;
+
 /**
  * Servlet implementation class ConnecterServlet
  */
@@ -39,36 +43,40 @@ public class ConnecterServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //		récupération des données du formulaire
 		
-		String userName = request.getParameter("username")!=null ?request.getParameter("username"):null ;
+		String email = request.getParameter("email")!=null ?request.getParameter("email"):null ;
 		String password = request.getParameter("password")!=null ? (String)request.getParameter("password"):null ;
 		
-		
 		//		gestion de la case se souvenir par cookie : 
-//		Cookie cookie = new Cookie("identite", userName);
-//		if (request.getParameter("memoriser")!=null) {
-//			//création du Cookie
-//
-//			cookie.setHttpOnly(true);
-//			cookie.setMaxAge(-1); 
-//			response.addCookie(cookie);
-//		} else {
-//			//sinon forcer la destruction du cookie côté client
-//
-//			cookie.setMaxAge(0);
-//			response.addCookie(cookie);
-//		}
-		
-		Cookie cookie = new Cookie("identite", userName);
+		Cookie cookie = new Cookie("identite", email);
 		if (request.getParameter("memoriser")!=null) {
 			cookie.setHttpOnly(true);
-			cookie.setMaxAge(-1);
-			cookie.setComment("nom utilisateur");
+			cookie.setMaxAge(-1); 
 			response.addCookie(cookie);
 		} else {
+			//sinon forcer la destruction du cookie côté client
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		
+		utilisateurManager mng = utilisateurManager.getInstance();
+		RequestDispatcher rd;
+		Utilisateur user =null;
+		try {
+			user = mng.selectById(email, password);
+			
+		} catch (BLLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+		if(user == null) {
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+			request.setAttribute("error", "mot de passe ou email incorrect");
+		} else {
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		}
+		
 		rd.forward(request, response);
 		
 	}

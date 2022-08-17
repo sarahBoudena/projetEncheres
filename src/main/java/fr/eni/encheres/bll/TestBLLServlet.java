@@ -30,16 +30,17 @@ public class TestBLLServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message="";
 		utilisateurManager user = utilisateurManager.getInstance();
-		Utilisateur utilisateur = user.selectById("lbluth@campus.fr","Pa$$w0rd");
+		Utilisateur utilisateur = null;
+		
 	try {
+		utilisateur = user.selectById("lbluth@campus.fr","Pa$$w0rd");
 		if(utilisateur == null) {
 			throw new BLLException("Erreur de connexion, Email ou mot de passe invalide.");
 		} else {
-			message ="Connexion réussie";
+			message ="Connexion reussie";
 		}
 	} catch (BLLException e) {
-		message += e.getMessage();
-		e.printStackTrace();
+		message = "Erreur de connexion";
 	}
 	response.getWriter().append("Test de connexion : " + message)
 						.append(" - " + utilisateur.getPseudo()+ " - " + utilisateur.getEmail());

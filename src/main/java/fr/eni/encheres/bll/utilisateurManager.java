@@ -25,12 +25,13 @@ public class utilisateurManager {
 			return Utilisateur;
 	}
 	
-	public Utilisateur selectById(String email, String mdp) {
+	public Utilisateur selectById(String email, String mdp) throws BLLException{
 		Utilisateur user = null;
 		try {
 			user = daoUser.selectById(email, mdp);
 		} catch (DALException e) {
 			e.printStackTrace();
+			throw new BLLException();
 		}
 		return user;
 	}

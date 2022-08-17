@@ -16,7 +16,7 @@
 	<form method="post" action="<%=request.getContextPath()%>/accueil/login">
 		<div class="form-group"> 
 	        <label>identifiant : </label> 
-	       <input type="text" name="username" value ="${cookie.identite.value != null ? cookie.identite.value : ''}"/>
+	       <input type="text" name="email" value ="${cookie.identite.value != null ? cookie.identite.value : ''}"/>
         </div>
         <div class="form-group"> 
 	        <label>mot de passe : </label> 
@@ -26,6 +26,8 @@
 			<input type="checkbox" name="memoriser" ${cookie.identite.value != null ? "checked" : ""} >
 			<label for="memoriser">Se souvenir de moi</label>
 	</form>
-
+	
+	<h2> ${error != null ? error : ""} </h2>
+	
 </body>
 </html>
