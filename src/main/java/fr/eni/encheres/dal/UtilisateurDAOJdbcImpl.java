@@ -13,6 +13,9 @@ import fr.eni.encheres.bo.Utilisateur;
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private static final String SELECTBYID = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
+	private static final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String UPDATE = "";
+	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
 	@Override
 	public Utilisateur selectById(String email, String mdp) throws DALException {
