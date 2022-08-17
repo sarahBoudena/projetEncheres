@@ -44,7 +44,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				else {
 					administrateur = true;
 				}
-			
 		        personneSelectionnee = new Utilisateur(pseudo, nom, prenom, mail, telephone, rue, codePostal, ville, credit, administrateur);
 	            
 				//Validation de l'ajout en base si aucune erreur n'a été rencontrée
