@@ -42,6 +42,14 @@ public class TestBLLServlet extends HttpServlet {
 	} catch (BLLException e) {
 		message = "Erreur de connexion";
 	}
+	try {
+		user.delete(utilisateur.getNoUtilisateur());
+		message= "suppression ok";
+	}  catch (BLLException e) {
+		message = "Erreur de connexion";
+	}
+	
+	
 	response.getWriter().append("Test de connexion : " + message)
 						.append(" - " + utilisateur.getPseudo()+ " - " + utilisateur.getEmail());
 

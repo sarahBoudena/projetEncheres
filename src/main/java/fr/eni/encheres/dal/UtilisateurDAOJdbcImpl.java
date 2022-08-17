@@ -83,8 +83,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	@Override
 	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
-		
+		try(Connection cnx = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = cnx.prepareStatement(DELETE)){
+			
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			
+		}catch (SQLException e){
+			DALException ex = new DALException("Erreur dans la DAL : Suppression impossible." + e.getMessage());
+			throw ex;
+		}
 	}
 
 	
