@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ConnecterServlet
  */
-@WebServlet("/accueil/login")
+@WebServlet("/enchere/login")
 public class ConnecterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,8 @@ public class ConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		RequestDispatcher rd;
+		rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
 		rd.forward(request, response);
 	}
 

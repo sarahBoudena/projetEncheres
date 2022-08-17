@@ -8,7 +8,7 @@
 </head>
 <body>
 	
-	<a href="<%=request.getContextPath()%>/accueil/login">se connecter</a>
+	<a href="<%=request.getContextPath()%>/enchere/login">se connecter</a>
 
 </body>
 </html>

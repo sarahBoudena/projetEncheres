@@ -13,7 +13,7 @@
 <body>
 	<h1>ENI-Enchères</h1>
 
-	<form method="post" action="<%=request.getContextPath()%>/accueil/login">
+	<form method="post" action="<%=request.getContextPath()%>/enchere/login">
 		<div class="form-group"> 
 	        <label>identifiant : </label> 
 	       <input type="text" name="email" value ="${cookie.identite.value != null ? cookie.identite.value : ''}"/>

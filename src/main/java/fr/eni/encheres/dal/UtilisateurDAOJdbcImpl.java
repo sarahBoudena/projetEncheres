@@ -26,7 +26,6 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(1, email);
 				pstmt.setString(2, mdp);
 				ResultSet res = pstmt.executeQuery();
-				
 				if(res.next()) {
 					String pseudo = res.getString("pseudo");
 					String nom = res.getString("nom");
