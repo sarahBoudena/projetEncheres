@@ -1,5 +1,7 @@
 package fr.eni.encheres.bll;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import fr.eni.encheres.bo.Utilisateur;
@@ -13,10 +15,12 @@ public class utilisateurManager {
 	
 	private UtilisateurDAO daoUser;
 	public static utilisateurManager Utilisateur;
+	private List<Utilisateur> listeUser;
 	
 	
 	private utilisateurManager () {
 		daoUser = DAOFactory.getUtilisateurDAO() ;
+		listeUser = new ArrayList<Utilisateur>();
 	}
 	
 	public static utilisateurManager getInstance() {
@@ -38,11 +42,34 @@ public class utilisateurManager {
 		return user;
 	}
 	
+	public void insert (Utilisateur user) throws BLLException{
+		
+	}
+	
+	public void update (Utilisateur user) throws BLLException{
+		
+	}
+	
+	public void delete (int id) throws BLLException{
+		
+	}
+	
+	public List<Utilisateur> getListeUser() throws BLLException{
+		
+		return listeUser;
+	}
+	
+	public Utilisateur selectById(int id) throws BLLException{
+		Utilisateur user = null;
+		
+		return user;
+	}
+
 	private void VerifUtilisateur(Utilisateur user) throws BLLException {
 		
 		if(user.getNoUtilisateur() <= 0 || user.getPseudo() == null || user.getNom() == null || user.getPrenom() == null || user.getEmail() == null 
 			|| user.getTelephone() == null || user.getRue() == null || user.getCodePostal() == null || user.getVille() == null) {
-			Exception e = new Exception("Tous les chanps doivent être complétés");
+			Exception e = new Exception("Tous les chanps doivent ï¿½tre complï¿½tï¿½s");
 			bllException.addException(e);
 			throw bllException;
 		}	

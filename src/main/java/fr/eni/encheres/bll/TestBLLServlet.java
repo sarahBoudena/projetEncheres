@@ -35,7 +35,7 @@ public class TestBLLServlet extends HttpServlet {
 	try {
 		utilisateur = user.selectById("lbluth@campus.fr","Pa$$w0rd");
 		if(utilisateur == null) {
-			throw new BLLException("Erreur de connexion, Email ou mot de passe invalide.");
+			throw new BLLException();
 		} else {
 			message ="Connexion reussie";
 		}
