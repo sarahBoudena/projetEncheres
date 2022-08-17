@@ -66,9 +66,7 @@ public class ConnecterServlet extends HttpServlet {
 			user = mng.selectById(email, password);
 			
 		} catch (BLLException e) {
-			
 			e.printStackTrace();
-			
 		}
 		
 		if(user == null) {
@@ -77,7 +75,6 @@ public class ConnecterServlet extends HttpServlet {
 		} else {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		}
-		
 		rd.forward(request, response);
 		
 	}

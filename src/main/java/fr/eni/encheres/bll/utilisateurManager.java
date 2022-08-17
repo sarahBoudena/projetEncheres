@@ -9,6 +9,7 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 import fr.eni.encheres.bll.BLLException;
 
 public class utilisateurManager {
+	private BLLException bllException = new BLLException();
 	
 	private UtilisateurDAO daoUser;
 	public static utilisateurManager Utilisateur;
@@ -30,34 +31,33 @@ public class utilisateurManager {
 		try {
 			user = daoUser.selectById(email, mdp);
 		} catch (DALException e) {
-			e.printStackTrace();
-			throw new BLLException();
+			Exception ex = new Exception(e.getMessage());
+			bllException.addException(ex);
+			throw bllException;
 		}
 		return user;
 	}
 	
 	private void VerifUtilisateur(Utilisateur user) throws BLLException {
-		boolean res = true;
 		
 		if(user.getNoUtilisateur() <= 0 || user.getPseudo() == null || user.getNom() == null || user.getPrenom() == null || user.getEmail() == null 
 			|| user.getTelephone() == null || user.getRue() == null || user.getCodePostal() == null || user.getVille() == null) {
-			res = false;
+			Exception e = new Exception("Tous les chanps doivent être complété");
+			bllException.addException(e);
+			throw bllException;
 		}	
-		if (res == false) {
-			throw new BLLException("Personne non valide");
-		}
+		
 	}
 	
-	private boolean verifMail(Utilisateur user) throws BLLException{
-		boolean res = true;
+	private void verifMail(Utilisateur user) throws BLLException{
 		String Regex = "^(.+)@(.+)$";
 		Pattern pattern = Pattern.compile(Regex);
 		Matcher matcher = pattern.matcher(user.getEmail());
 		if((matcher.matches()== false)) {
-			res = false;
-			throw new BLLException("Adresse mail non valide");
+			Exception e = new Exception("Adresse mail non valide");
+			bllException.addException(e);
+			throw bllException;
 		}
-		return res;
 	}
 	
 	

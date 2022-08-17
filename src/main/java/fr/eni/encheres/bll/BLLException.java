@@ -1,27 +1,21 @@
 package fr.eni.encheres.bll;
 
-public class BLLException extends Exception{
+import java.util.ArrayList;
+import java.util.List;
 
-		//Constructeurs
-		public BLLException() {
-			super();
-		}
-		
-		public BLLException(String message) {
-			super(message);
-		}
-		
-		public BLLException(String message, Throwable exception) {
-			super(message, exception);
-		
-		}
-		//Méthodes
-		@Override
-		public String getMessage() {
-			StringBuffer sb = new StringBuffer("Couche BLL - ");
-			sb.append(super.getMessage());
-			
-			return sb.toString() ;
-			
-		}
+public class BLLException extends Exception{
+	private List<Exception> bllExceptionsListe = new ArrayList<Exception>();
+	
+	
+	public boolean isEmpty() {
+		return bllExceptionsListe.size() > 0 ? false : true ;
+	}
+	
+	public List<Exception> getBLLExceptions(){
+		return bllExceptionsListe;
+	}
+	
+	public void addException (Exception e) {
+		bllExceptionsListe.add(e);
+	}
 }
