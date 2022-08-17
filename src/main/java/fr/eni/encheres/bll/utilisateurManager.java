@@ -42,7 +42,7 @@ public class utilisateurManager {
 		
 		if(user.getNoUtilisateur() <= 0 || user.getPseudo() == null || user.getNom() == null || user.getPrenom() == null || user.getEmail() == null 
 			|| user.getTelephone() == null || user.getRue() == null || user.getCodePostal() == null || user.getVille() == null) {
-			Exception e = new Exception("Tous les chanps doivent être complété");
+			Exception e = new Exception("Tous les chanps doivent être complétés");
 			bllException.addException(e);
 			throw bllException;
 		}	
