@@ -18,7 +18,7 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 /**
  * Servlet implementation class TesterInsertDAL
  */
-@WebServlet("/TesterInsertDAL")
+@WebServlet("/TesterUpdateDAL")
 public class TesterUpdateDAL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -41,7 +41,7 @@ public class TesterUpdateDAL extends HttpServlet {
 			Utilisateur userTest = new Utilisateur("JDD", "DUPOND", "Jean-David", "jdd@campus.fr", "0987654321", "rue de la liberte", "44130", "Bouvron", "Pa$$w0rd", 2, true);
 			userTest.setNoUtilisateur(5);
 			userDAO.update(userTest);
-			message = "L'utilisateur a bien été modifié.";
+			message = "L'utilisateur a bien ï¿½tï¿½ modifiï¿½.";
 		}catch(SQLException | DALException e) {
 			message = "Erreur lors de l'insertion de l'utilisateur.";
 		}
