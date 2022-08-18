@@ -11,7 +11,7 @@
 <body>
 	<header>
 	    <!-- fragment JSP navigation -->
-	    <jsp:include page="/WEB-INF/fragment/nav.jsp"></jsp:include>
+	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	</header>
 	    <!--main bloc-->
 <main>
