@@ -17,7 +17,7 @@ public class DALException extends Exception {
 		super(message, exception);
 	}
 	
-	//Méthode getMessage
+//	Méthode getMessage
 //		@Override
 //		public String getMessage() {
 //			StringBuffer sb = new StringBuffer("Couche DAL - ");

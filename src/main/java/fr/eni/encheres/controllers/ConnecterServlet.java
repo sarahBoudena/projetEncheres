@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.utilisateurManager;
@@ -34,7 +35,13 @@ public class ConnecterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		String deco = request.getParameter("deco");
+		if (deco.equals("true") ){
+			request.getSession().invalidate();
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		}else {
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		}
 		rd.forward(request, response);
 	}
 
@@ -46,7 +53,7 @@ public class ConnecterServlet extends HttpServlet {
 		
 		String email = request.getParameter("email")!=null ?request.getParameter("email"):null ;
 		String password = request.getParameter("password")!=null ? (String)request.getParameter("password"):null ;
-		
+				
 		//		gestion de la case se souvenir par cookie : 
 		Cookie cookie = new Cookie("identite", email);
 		if (request.getParameter("memoriser")!=null) {
@@ -64,6 +71,8 @@ public class ConnecterServlet extends HttpServlet {
 		Utilisateur user =null;
 		try {
 			user = mng.selectById(email, password);
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
