@@ -22,7 +22,8 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
                         <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
-                        <a class="dropdown-item" href="#" alt="Me déconnecter">Me déconnecter</a>
+                        <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon Profil</a>
+                        <a class="dropdown-item" href="#" alt="Me déconnecter">Me déconnecter</a> 
                         <a class="dropdown-item" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
                         <a class="dropdown-item" href="login.html" alt="Se connecter à ENI-Encheres">Me connecter</a>
                     </div>
@@ -33,6 +34,9 @@
                 </li> 
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="#" alt="Vendre un article">Vendre un article</a>
+                </li>
+                 <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon profil</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
