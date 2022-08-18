@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.utilisateurManager;
@@ -32,7 +33,7 @@ public class SupprimerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/supprimer");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
 		rd.forward(request, response);
 	}
 
@@ -41,15 +42,20 @@ public class SupprimerServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		utilisateurManager mng = utilisateurManager.getInstance();
-//		Utilisateur user =null;
-//		try {
-//			mng.delete(user.getNoUtilisateur());
-//			
-//		} catch(BLLException e) {
-//			
-//		}
+		utilisateurManager mng = utilisateurManager.getInstance();
+		HttpSession session = request.getSession();
+		int id = (int)session.getAttribute("noUtilisateur");
+		RequestDispatcher rd;
 		
+		try {
+			mng.delete(id);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		} catch(BLLException e) {
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
+			request.setAttribute("erreur", e);
+		}
+		
+			rd.forward(request, response);
 		
 	}
 
