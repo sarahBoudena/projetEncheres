@@ -42,8 +42,15 @@ public class utilisateurManager {
 		return user;
 	}
 	
-	public void insert (Utilisateur user) throws BLLException{
-		
+	public void insert (String pseudo, String nom, String prenom, String email, String tel, String rue, String cp, String ville, String mdp) throws BLLException{
+		try {
+			VerifUtilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp);
+			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp, 0, false);
+			daoUser.insert(user);
+		} catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
 	}
 	
 	public void update (Utilisateur user) throws BLLException{
@@ -73,27 +80,75 @@ public class utilisateurManager {
 		return user;
 	}
 
-	private void VerifUtilisateur(Utilisateur user) throws BLLException {
-		
-		if(user.getNoUtilisateur() <= 0 || user.getPseudo() == null || user.getNom() == null || user.getPrenom() == null || user.getEmail() == null 
-			|| user.getTelephone() == null || user.getRue() == null || user.getCodePostal() == null || user.getVille() == null) {
-			Exception e = new Exception("Tous les chanps doivent �tre compl�t�s");
+	private void VerifUtilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue, String cp, String ville, String mdp) throws BLLException {
+		//Vérif champs pseudo complété
+		if (pseudo == null || pseudo.isEmpty() || pseudo.isBlank()) {
+			Exception e = new Exception("Le pseudo est obligatoire.");
 			bllException.addException(e);
-			throw bllException;
-		}	
+		}
 		
-	}
-	
-	private void verifMail(Utilisateur user) throws BLLException{
+		//Vérif champs nom complété
+		if(nom == null || nom.isEmpty() || nom.isBlank()) {
+			Exception e = new Exception("Le nom est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs prénom complété
+		if(prenom == null || prenom.isEmpty() || prenom.isBlank()) {
+			Exception e = new Exception("Le prénom est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs email complété
+		if (email == null || email.isEmpty() || email.isBlank()) {
+			Exception e = new Exception("L'email est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif format email valide
 		String Regex = "^(.+)@(.+)$";
 		Pattern pattern = Pattern.compile(Regex);
-		Matcher matcher = pattern.matcher(user.getEmail());
+		Matcher matcher = pattern.matcher(email);
 		if((matcher.matches()== false)) {
-			Exception e = new Exception("Adresse mail non valide");
+			Exception e = new Exception("Adresse mail non valide.");
 			bllException.addException(e);
+		}
+		
+		//Vérif champs téléphone complété
+		if(tel == null || tel.isEmpty() || tel.isBlank()) {
+			Exception e = new Exception("Le téléphone est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs rue complété
+		if(rue == null || rue.isEmpty() || rue.isBlank()) {
+			Exception e = new Exception("La rue est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs code postal complété
+		if(cp == null || cp.isEmpty() || cp.isBlank()) {
+			Exception e = new Exception("Le code postal est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs ville complété
+		if(ville == null || ville.isEmpty() || ville.isBlank()) {
+			Exception e = new Exception("La ville est obligatoire.");
+			bllException.addException(e);
+		}
+		
+		//Vérif champs mdp complété
+		if(mdp == null || mdp.isEmpty() || mdp.isBlank()) {
+			Exception e = new Exception("Le mot de passe est obligatoire.");
+			bllException.addException(e);
+		}
+				
+		//Si la liste des exceptions n'est pas vide, lever la BLLException
+		if (bllException.getBLLExceptions().size() > 0) {
 			throw bllException;
 		}
 	}
-	
+
 	
 }
