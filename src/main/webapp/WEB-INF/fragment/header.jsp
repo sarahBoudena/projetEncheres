@@ -17,7 +17,7 @@
 	        <img class="small-icon" src="images/user.svg">
 	        <span class="align-middle text-muted">XXXXX xxx, 0 crédit(s)</span>
 	    </a>
-	
+		
 	    <ul class="navbar-nav ml-auto">
 	        <!-- Dropdown for small screen -->
 	        <li class="nav-item dropdown d-lg-none">
@@ -25,6 +25,14 @@
 	                <img class="small-icon w-25" src="<%=request.getContextPath()%>/medias/img/menu.png" alt="Menu ENI-Encheres">
 	            </a>
 	            <div class="dropdown-menu">
+	               
+					<c:if test="${!empty user}">	<!-- boutons à afficher si utilisateur connecté -->
+				    
+				    </c:if>
+				    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
+				    
+				    </c:if>
+				    	               
 	                <a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
 	                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
 	                <c:if test="${user eq 'user'}">	
