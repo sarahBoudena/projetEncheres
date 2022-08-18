@@ -49,7 +49,7 @@ public class ConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		récupération des données du formulaire
+//		rï¿½cupï¿½ration des donnï¿½es du formulaire
 		
 		String email = request.getParameter("email")!=null ?request.getParameter("email"):null ;
 		String password = request.getParameter("password")!=null ? (String)request.getParameter("password"):null ;
@@ -61,7 +61,7 @@ public class ConnecterServlet extends HttpServlet {
 			cookie.setMaxAge(-1); 
 			response.addCookie(cookie);
 		} else {
-			//sinon forcer la destruction du cookie côté client
+			//sinon forcer la destruction du cookie cï¿½tï¿½ client
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
@@ -74,6 +74,7 @@ public class ConnecterServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
 			request.setAttribute("error", e);
