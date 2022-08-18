@@ -25,42 +25,42 @@
 	                <img class="small-icon w-25" src="<%=request.getContextPath()%>/medias/img/menu.png" alt="Menu ENI-Encheres">
 	            </a>
 	            <div class="dropdown-menu">
-	               
 					<c:if test="${!empty user}">	<!-- boutons à afficher si utilisateur connecté -->
-				    
-				    </c:if>
+					    <a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
+		                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
+					    <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
+		                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon Profil</a>
+	                </c:if>
 				    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
-				    
-				    </c:if>
-				    	               
-	                <a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
-	                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
-	                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
-	                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon Profil</a>
-	                <a class="dropdown-item" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
-	               <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
+					    <a class="dropdown-item" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
+		               	<a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
+				    </c:if>            
 	            </div>
 	        </li>   
 	        <!-- Links for medium screen-->
-	        <li class="nav-item d-none d-lg-block">
-	            <a class="nav-link" href="#" alt="Administrer le site">Administrer</a>
-	        </li> 
-	        <li class="nav-item d-none d-lg-block">
-	            <a class="nav-link" href="#" alt="Vendre un article">Vendre un article</a>
-	        </li>
-            <li class="nav-item d-none d-lg-block">
-               <a class="nav-link" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon profil</a>
-            </li>
-	        <li class="nav-item d-none d-lg-block">
-	            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
-	        </li>
-	        <li class="nav-item d-none d-lg-block">
-	            <a class="nav-link" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
-	        </li>
-	        <li class="nav-item d-none d-lg-block">
-	            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
-	        </li>
-	    </ul>
+	        <c:if test="${!empty user}">	<!-- boutons à afficher si utilisateur connecté -->
+			    <li class="nav-item d-none d-lg-block">
+		            <a class="nav-link" href="#" alt="Administrer le site">Administrer</a>
+		        </li> 
+		        <li class="nav-item d-none d-lg-block">
+		            <a class="nav-link" href="#" alt="Vendre un article">Vendre un article</a>
+		        </li>
+	            <li class="nav-item d-none d-lg-block">
+	               <a class="nav-link" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon profil</a>
+	            </li>
+		        <li class="nav-item d-none d-lg-block">
+		            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
+		        </li>
+            </c:if>
+		    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
+		     	<li class="nav-item d-none d-lg-block">
+	            	<a class="nav-link" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
+		        </li>
+		        <li class="nav-item d-none d-lg-block">
+		            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
+		        </li>
+		    </c:if>   
+        </ul>
 	</nav>
 </header>	   
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
