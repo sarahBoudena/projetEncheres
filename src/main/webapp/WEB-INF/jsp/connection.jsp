@@ -9,27 +9,14 @@
 <head>
 <!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<!-- Personnal CSS-->
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
     
 <meta charset="UTF-8">
 <title>Connection</title>
 </head>
 <body>
 	<div class="container-fluid">
-		 <header>
-            <nav class="pr-5 navbar navbar-expand-sm bg-dark navbar-dark align-top justify-content-between">
-                <!-- Brand/logo -->
-                <a class="navbar-brand" href="index.html">
-                    <img class="small-icon" src="images/trocenchere.svg" alt="Accueil ENI-Encheres">
-                    <strong>ENI-Encheres</strong>
-                </a>
-                <a class="navbar-brand" href="#" alt="Gérer mon profil" title="Gérer mon profil">
-                    <img class="small-icon" src="images/user.svg">
-                    <span class="align-middle text-muted">XXXXX xxx, 0 crédit(s)</span>
-                </a>
-            </nav>
-        </header>
+		 <!-- fragment JSP header -->
+	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 		
 		<h1>ENI-Enchères</h1>
 		<c:if test="${error != null}">
@@ -58,5 +45,7 @@
 				<label for="memoriser">Se souvenir de moi</label>
 		</form>
 	</div>
+	<!-- fragment JSP footer -->
+   <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>      
 </body>
 </html>
