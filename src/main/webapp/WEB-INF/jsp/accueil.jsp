@@ -176,16 +176,8 @@
 	            </div>
 	     </div>
 	    </main>
-	
-	    
 	</div>
 	
-	<c:if test="${!empty user}">	
-    	<h1>CONNECTE</h1>
-    </c:if>
-    <c:if test="${empty user}">
-    	<h1>NON CONNECTE</h1>
-    </c:if>
 	<!-- fragment JSP footer -->
    <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>      
 </body>
