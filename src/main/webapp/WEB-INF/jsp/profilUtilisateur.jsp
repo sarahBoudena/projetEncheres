@@ -27,8 +27,8 @@
 				<label for="mdpactuel">Mot de passe actuel :</label>
 				<label for="newmdp">Nouveau Mot de passe :</label>
 				<label>Crédit :</label>
-			</div class="input-form">
-				<div class="input">
+			</div>
+			<div class="input-form">
 				<input type="text">
 				<input type="text">
 				<input type="tel">

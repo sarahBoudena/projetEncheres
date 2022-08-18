@@ -44,7 +44,8 @@ public class SupprimerServlet extends HttpServlet {
 		
 		utilisateurManager mng = utilisateurManager.getInstance();
 		HttpSession session = request.getSession();
-		int id = (int)session.getAttribute("noUtilisateur");
+		Utilisateur user =(Utilisateur) session.getAttribute("user");
+		int id = user.getNoUtilisateur();
 		RequestDispatcher rd;
 		
 		try {

@@ -31,9 +31,8 @@ public class TestBLLServlet extends HttpServlet {
 		String message="";
 		utilisateurManager user = utilisateurManager.getInstance();
 		Utilisateur utilisateur = null;
-		
 	try {
-		utilisateur = user.selectById("lbluth@campus.fr","Pa$$w0rd");
+		utilisateur = user.selectById("fbluth@campus.fr","Pa$$w0rd");
 		if(utilisateur == null) {
 			throw new BLLException();
 		} else {
@@ -46,12 +45,9 @@ public class TestBLLServlet extends HttpServlet {
 		user.delete(utilisateur.getNoUtilisateur());
 		message= "suppression ok";
 	}  catch (BLLException e) {
-		message = "Erreur de connexion";
+		message = "Erreur de suppression";
 	}
-	
-	
-	response.getWriter().append("Test de connexion : " + message)
-						.append(" - " + utilisateur.getPseudo()+ " - " + utilisateur.getEmail());
+	response.getWriter().append("Test de suppression : " + message);
 
 	}
 }
