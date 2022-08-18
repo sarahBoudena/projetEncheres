@@ -19,8 +19,8 @@
 		</c:forEach>	
 	</c:if>
 	
-	<form action="<%=request.getContextPath()%>/enchere/delete" method="post">
-		<button type="submit">Oui</button>
+<form action="<%=request.getContextPath()%>/enchere/delete"
+		method="post">		<button type="submit">Oui</button>
 	</form>
 	
 	<a href="<%=request.getContextPath()%>/enchere/accueil"><button>Non</button></a>
