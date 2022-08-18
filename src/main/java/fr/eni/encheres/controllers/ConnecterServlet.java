@@ -35,7 +35,13 @@ public class ConnecterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		String deco = request.getParameter("deco");
+		if (deco.equals("true") ){
+			request.getSession().invalidate();
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		}else {
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+		}
 		rd.forward(request, response);
 	}
 
