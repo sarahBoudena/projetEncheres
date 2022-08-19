@@ -33,7 +33,7 @@
 	                </c:if>
 				    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
 				    
-				    </c:if>
+				   
 				    	               
 	                <a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
 	                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
@@ -41,7 +41,7 @@
 	                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon Profil</a>
 	                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
 	               <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
-					    <a class="dropdown-item" href="register.html" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
+					    <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
 		               	<a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
 				    </c:if>            
 	            </div>
