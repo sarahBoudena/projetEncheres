@@ -4,9 +4,9 @@ import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateur;
 
-public interface UtilisateurDAO {
+public interface UtilisateurDAO extends ObjetDao <Utilisateur>{
 	
-	public Utilisateur selectById(String email, String mdp) throws DALException;
+	public Utilisateur selectByLogin(String email, String mdp) throws DALException;
 	
 	public void insert(Utilisateur user) throws DALException;
 	
