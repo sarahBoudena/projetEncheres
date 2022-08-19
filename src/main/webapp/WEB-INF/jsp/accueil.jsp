@@ -178,7 +178,7 @@
 	    </main>
 	</div>
 	
-	<!-- fragment JSP footer -->
+		<!-- fragment JSP footer -->
    <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>      
 </body>
 </html>

@@ -18,7 +18,7 @@ public class Utilisateur {
         this.noUtilisateur = noUtilisateur;
         this.pseudo = pseudo;
         this.nom = nom;
-        this.prenom = prenom;
+        this.prenom = prenom; 
         this.email = email;
         this.telephone = telephone;
         this.rue = rue;

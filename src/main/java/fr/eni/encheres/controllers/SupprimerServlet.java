@@ -57,7 +57,7 @@ public class SupprimerServlet extends HttpServlet {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
 			request.setAttribute("erreur", e);
 		}	
-			rd.forward(request, response);
+		rd.forward(request, response);
 	}
 
 }

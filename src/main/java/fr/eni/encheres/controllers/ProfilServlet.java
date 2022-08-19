@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bo.Utilisateur;
+
 /**
  * Servlet implementation class ProfilServlet
  */
@@ -28,7 +30,6 @@ public class ProfilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/profilUtilisateur.jsp");
 		rd.forward(request, response);

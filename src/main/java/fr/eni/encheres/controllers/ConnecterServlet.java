@@ -78,9 +78,9 @@ public class ConnecterServlet extends HttpServlet {
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
 			request.setAttribute("error", e);
-			for (Exception exception : e.getBLLExceptions()) {
-				System.out.println(exception.getMessage());
-			}
+//			for (Exception exception : e.getBLLExceptions()) {
+//				System.out.println(exception.getMessage());
+//			}
 		}
 		
 		rd.forward(request, response);

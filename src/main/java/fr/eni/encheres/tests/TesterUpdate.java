@@ -65,7 +65,6 @@ public class TesterUpdate extends HttpServlet {
 			userTestNew.setNoUtilisateur(5);
 			
 			listeMessageUpdate = mng.update(userTestOld,userTestNew);
-			
 			for (String string : listeMessageUpdate) {
 				listeMessage += (string + "\n" );  
 				System.out.println(string);
