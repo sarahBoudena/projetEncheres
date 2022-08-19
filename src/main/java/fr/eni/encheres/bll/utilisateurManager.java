@@ -42,10 +42,9 @@ public class utilisateurManager {
 		return user;
 	}
 	
-	public void insert (String pseudo, String nom, String prenom, String email, String tel, String rue, String cp, String ville, String mdp) throws BLLException{
+	public void insert (Utilisateur user) throws BLLException{
 		try {
-			VerifUtilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp);
-			Utilisateur user = new Utilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp, 0, false);
+			VerifUtilisateur(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getTelephone(), user.getRue(), user.getCodePostal(), user.getVille(), user.getMotDePasse());
 			daoUser.insert(user);
 		} catch (DALException e) {
 			bllException.addException(e);
