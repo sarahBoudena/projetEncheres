@@ -34,7 +34,7 @@ public class utilisateurManager {
 	public Utilisateur selectById(String email, String mdp) throws BLLException{
 		Utilisateur user = null;
 		try {
-			user = daoUser.selectById(email, mdp);
+			user = daoUser.selectByLogin(email, mdp);
 		} catch (DALException e) {
 			Exception ex = new Exception(e.getMessage());
 			bllException.addException(ex);
@@ -160,33 +160,33 @@ public class utilisateurManager {
 	}
 
 	private void verifModifAddMessage(Utilisateur oldUser, Utilisateur newUser) {
-//		affiche un message par modification détectée
+//		affiche un message par modification dï¿½tectï¿½e
 		if (!oldUser.getPseudo().equals(newUser.getPseudo())) {
-			listeMessageUpdate.add("votre pseudo a été modifié");
+			listeMessageUpdate.add("votre pseudo a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getNom().equals(newUser.getNom())) {
-			listeMessageUpdate.add("votre nom a été modifié");
+			listeMessageUpdate.add("votre nom a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getPrenom().equals(newUser.getPrenom())) {
-			listeMessageUpdate.add("votre prénom a été modifié");
+			listeMessageUpdate.add("votre prï¿½nom a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getEmail().equals(newUser.getEmail())) {
-			listeMessageUpdate.add("votre email a été modifié");
+			listeMessageUpdate.add("votre email a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getTelephone().equals(newUser.getTelephone())) {
-			listeMessageUpdate.add("votre téléphone a été modifié");
+			listeMessageUpdate.add("votre tï¿½lï¿½phone a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getRue().equals(newUser.getRue())) {
-			listeMessageUpdate.add("la rue a été modifiée");
+			listeMessageUpdate.add("la rue a ï¿½tï¿½ modifiï¿½e");
 		}
 		if (!oldUser.getCodePostal().equals(newUser.getCodePostal())) {
-			listeMessageUpdate.add("le code postal a été modifié");
+			listeMessageUpdate.add("le code postal a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getVille().equals(newUser.getVille())) {
-			listeMessageUpdate.add("la ville a été modifié");
+			listeMessageUpdate.add("la ville a ï¿½tï¿½ modifiï¿½");
 		}
 		if (!oldUser.getMotDePasse().equals(newUser.getMotDePasse())) {
-			listeMessageUpdate.add("le mot de passe a été modifié");
+			listeMessageUpdate.add("le mot de passe a ï¿½tï¿½ modifiï¿½");
 		}
 	}
 	
