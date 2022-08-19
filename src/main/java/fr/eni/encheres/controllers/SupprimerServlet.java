@@ -51,6 +51,7 @@ public class SupprimerServlet extends HttpServlet {
 		
 		try {
 			mng.delete(id);
+			request.getSession().invalidate();
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		} catch(BLLException e) {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
