@@ -38,11 +38,12 @@ public class TesterUpdateDAL extends HttpServlet {
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
 		try {
 			ConnectionProvider.getConnection();
-			Utilisateur userTest = new Utilisateur("JDD", "DUPOND", "Jean-David", "jdd@campus.fr", "0987654321", "rue de la liberte", "44130", "Bouvron", "Pa$$w0rd", 2, true);
+			Utilisateur userTest = new Utilisateur("JDD", "DUPOND", "Jean-David", "sbluth@campus.fr", "0987654321", "rue de la liberte", "44130", "Bouvron", "Pa$$w0rd", 2, true);
 			userTest.setNoUtilisateur(5);
 			userDAO.update(userTest);
-			message = "L'utilisateur a bien �t� modifi�.";
+			message = "L'utilisateur a bien ete modifie.";
 		}catch(SQLException | DALException e) {
+			e.printStackTrace();
 			message = "Erreur lors de l'insertion de l'utilisateur.";
 		}
 		response.getWriter().append("Test d'insertion dans la BDD : " + message);
