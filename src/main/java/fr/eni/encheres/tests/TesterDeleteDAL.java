@@ -1,6 +1,7 @@
 package fr.eni.encheres.tests;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,15 +35,17 @@ public class TesterDeleteDAL extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message="";
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
-		Utilisateur user = null;
+		
 		try {	
-			user = userDAO.selectById("fbluth@campus.fr", "Pa$$w0rd");
-			userDAO.delete(user.getNoUtilisateur());
+			userDAO.delete(12);
 			message = "L'utilisateur a bien été supprimé.";
 		}catch(DALException e) {
 			message = "Erreur lors de la suppression de l'utilisateur.";
+		
 		}
 		response.getWriter().append("Test de suppression dans la BDD : " + message);
+							
+							
 	
 	}
 
