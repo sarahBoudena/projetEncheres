@@ -2,14 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>    pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Enchères - Inscription</title>
+<title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<h1>Mon profil</h1>
 	<form action="/enchere/inscription" method="post">
 		<div class="Container">
@@ -34,6 +36,8 @@
 	<a href="/enchere/accueil">
 		<button>Annuler</button>
 	</a>
+=======
+>>>>>>> branch 'main' of https://github.com/theblack5word/premier_project_enchere.git
 
 </body>
 </html>

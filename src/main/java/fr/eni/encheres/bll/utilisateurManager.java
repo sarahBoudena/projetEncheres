@@ -57,8 +57,7 @@ public class utilisateurManager {
 	}
 	
 	public void delete (int id) throws BLLException{
-		try {
-			
+		try {		
 			daoUser.delete(id);
 			
 		}catch(DALException e) {

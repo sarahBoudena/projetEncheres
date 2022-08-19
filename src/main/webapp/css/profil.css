@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+body{
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    width: 50%;
+}
+
+.label-form{
+    display: flex;
+    flex-direction: column;
+    text-align:right;
+}
+
+div .label-form label{
+    margin-top: 20px;
+    margin-right: 5px;
+    margin-left: 20px;
+    width: 150px;
+}
+
+div .input-form input{
+    margin-top: 18px;
+}
+
+div .input-form select{
+    margin-top: 20px;
+}

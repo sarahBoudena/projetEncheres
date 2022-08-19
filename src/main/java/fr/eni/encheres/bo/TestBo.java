@@ -9,6 +9,12 @@ public class TestBo {
 
 		System.out.println(Jose.toString());
 		System.out.println(Jose2.toString());
+		
+		
+		int id = Jose.getNoUtilisateur();
+		System.out.println(id);
 	}
+	
+	
 
 }

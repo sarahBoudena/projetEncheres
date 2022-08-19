@@ -14,10 +14,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	private static final String SELECTBYID = "SELECT * FROM UTILISATEURS WHERE email=? AND mot_de_passe=?";
 	private static final String INSERT = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String UPDATE = "UPDATE UTILISATEURS SET \r\n"
-			+ "					pseudo = ?, nom = ? , prenom = ?, email = ?, telephone = ?, rue = ? ,"
-			+ "					code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?\r\n"
-			+ "					WHERE no_utilisateur = ?;";
+	private static final String UPDATE = "";
 	private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 
 	@Override
@@ -121,26 +118,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	
 	@Override
 	public void update(Utilisateur user) throws DALException {
-		try(Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(DELETE)){
-				
-				pstmt.setString(1, user.getPseudo());
-				pstmt.setString(2, user.getNom());
-				pstmt.setString(3, user.getPrenom());
-				pstmt.setString(4, user.getEmail());
-				pstmt.setString(5, user.getTelephone());
-				pstmt.setString(6, user.getRue());
-				pstmt.setString(7, user.getCodePostal());
-				pstmt.setString(8, user.getVille());
-				pstmt.setString(9, user.getMotDePasse());
-				pstmt.setInt(10, user.getCredit());
-				pstmt.setInt(11, user.getNoUtilisateur());	
-				pstmt.executeUpdate();
-				
-			}catch (SQLException e){
-				DALException ex = new DALException("Erreur dans la DAL : mise à jour impossible." + e.getMessage());
-				throw ex;
-			}
+		// TODO Auto-generated method stub
 		
 	}
 
