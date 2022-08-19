@@ -114,8 +114,7 @@ public class utilisateurManager {
 		
 		//Vérif champs téléphone complété
 		if(tel == null || tel.isEmpty() || tel.isBlank()) {
-			Exception e = new Exception("Le téléphone est obligatoire.");
-			bllException.addException(e);
+			tel = "";
 		}
 		
 		//Vérif champs rue complété

@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class SinscrireServlet
@@ -38,7 +40,42 @@ public class SinscrireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		utilisateurManager mng = utilisateurManager.getInstance();
+		//Récupération des données du formulaire
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String cp = request.getParameter("codepostal");
+		String ville = request.getParameter("ville");
+		String mdp1 = request.getParameter("mdp1");
+		String mdp2 = request.getParameter("mdp2");
+		String message = "";
+		Utilisateur user = null;
+		RequestDispatcher rd;
+		
+		
+		try {
+			//Vérification du mdp + création de l'objet Utilisateur
+			if (mdp1.equals(mdp2)) {
+				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp1, 100, false);
+				//Utilisation du manager		
+				utilisateurManager mng = utilisateurManager.getInstance();
+				mng.insert(user);
+				rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+				rd.forward(request, response);
+			}else {
+				message = "Le mot de passe est différent.";
+				request.setAttribute("erreur", message);
+				doGet(request, response);
+			}	
+		}catch (BLLException e) {
+			for (Exception bllex : e.getBLLExceptions()) {
+				System.out.println(bllex.getMessage());
+			}
+			request.setAttribute("erreur", e);
+			}
 	}
 
 }
