@@ -34,6 +34,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.setString(2, mdp);
 				ResultSet res = pstmt.executeQuery();
 				if(res.next()) {
+					int id = res.getInt("no_utilisateur");
 					String pseudo = res.getString("pseudo");
 					String nom = res.getString("nom");
 					String prenom = res.getString("prenom");
@@ -53,8 +54,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 						administrateur = true;
 					}
 			        personneSelectionnee = new Utilisateur(pseudo, nom, prenom, mail, telephone, rue, codePostal, ville, password, credit, administrateur);
-		            
+		            personneSelectionnee.setNoUtilisateur(id);
 					//Validation de l'ajout en base si aucune erreur n'a été rencontrée
+	
 					cnx.commit();
 				} else {
 					throw new SQLException();
@@ -122,6 +124,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public void update(Utilisateur user) throws DALException {
 		try(Connection cnx = ConnectionProvider.getConnection();
+<<<<<<< HEAD
 				PreparedStatement pstmt = cnx.prepareStatement(UPDATE)){
 				
 				pstmt.setString(1, user.getPseudo());
@@ -139,6 +142,25 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				
 			}catch (SQLException e){
 				DALException ex = new DALException("Erreur dans la DAL : mise � jour impossible." + e.getMessage());
+=======
+				PreparedStatement pstmt = cnx.prepareStatement(DELETE)){
+				
+				pstmt.setString(1, user.getPseudo());
+				pstmt.setString(2, user.getNom());
+				pstmt.setString(3, user.getPrenom());
+				pstmt.setString(4, user.getEmail());
+				pstmt.setString(5, user.getTelephone());
+				pstmt.setString(6, user.getRue());
+				pstmt.setString(7, user.getCodePostal());
+				pstmt.setString(8, user.getVille());
+				pstmt.setString(9, user.getMotDePasse());
+				pstmt.setInt(10, user.getCredit());
+				pstmt.setInt(11, user.getNoUtilisateur());	
+				pstmt.executeUpdate();
+				
+			}catch (SQLException e){
+				DALException ex = new DALException("Erreur dans la DAL : mise � jour impossible." + e.getMessage());
+>>>>>>> branch 'main' of https://github.com/theblack5word/premier_project_enchere.git
 				throw ex;
 			}
 		

@@ -39,17 +39,21 @@ public class TesterCnxUser extends HttpServlet {
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
 		try {
 			ConnectionProvider.getConnection();
-			Utilisateur test1 = userDAO.selectById("gbluth@campus.fr", "Pa$$w0rd");
+			Utilisateur test1 = userDAO.selectById("tbluth@campus.fr", "Pa$$w0rd");
+			System.out.println(test1.getNoUtilisateur());
+			
 			if(test1 == null) {
 				throw new DALException();
 			}
 			else {
 				message = "Connexion utilisateur test1 réussie.";
 			}
+		
 		} catch (DALException | SQLException  e) {
 			message = "Erreur de connexion";
 		}
 		response.getWriter().append("Test de connexion : " + message);
+							
 	}
 
 	/**
