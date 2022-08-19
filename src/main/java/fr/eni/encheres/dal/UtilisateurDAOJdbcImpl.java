@@ -124,7 +124,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public void update(Utilisateur user) throws DALException {
 		try(Connection cnx = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = cnx.prepareStatement(DELETE)){
+
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE)){
 				
 				pstmt.setString(1, user.getPseudo());
 				pstmt.setString(2, user.getNom());
@@ -140,7 +141,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				pstmt.executeUpdate();
 				
 			}catch (SQLException e){
-				DALException ex = new DALException("Erreur dans la DAL : mise � jour impossible." + e.getMessage());
+				DALException ex = new DALException("Erreur dans la DAL : mise a jour impossible." + e.getMessage());
+
 				throw ex;
 			}
 		
