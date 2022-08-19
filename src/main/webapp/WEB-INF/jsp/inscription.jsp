@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
+ <link rel="stylesheet" href="./css/inscription.css">   
 <title>Enchères - Inscription</title>
 </head>
 <body>
@@ -16,42 +16,64 @@
 	<h1>Mon profil</h1>
 	<form action="/enchere/inscription" method="post">
 		<div class="Container">
-			<div class="label-form">
-			<label>Pseudo :</label>
-			<input type="text" name="pseudo" id="pseudo" placeholder="pseudo">
+			<div class="form-group">
+				<label>Pseudo :</label>
+				<input type="text" name="pseudo" id="pseudo" placeholder="pseudo" required="required">
+<!-- 			</div>
 			
-			<label>Nom :</label>
-			<input type="text" name="nom" id="name" placeholder="NOM">
+			<div class="form-group"> -->
+				<label>Nom :</label>
+				<input type="text" name="nom" id="name" placeholder="NOM" required="required">
+			</div>
 			
-			<label>Prénom :</label>
-			<input type="text" name="prenom" id="firstname" placeholder="Prénom">
+			<div class="form-group">
+				<label>Prénom :</label>
+				<input type="text" name="prenom" id="firstname" placeholder="Prénom" required="required">
+<!-- 			</div>
 			
-			<label>Email :</label>
-			<input type="email" name="email" id="email" placeholder="exemple@email.fr">
+			<div class="form-group"> -->
+				<label>Email :</label>
+				<input type="email" name="email" id="email" placeholder="exemple@email.fr" required="required">
+			</div>
 			
-			<label>Téléphone :</label>
-			<input type="text" name="telephone" id="tel" placeholder="0123456789">
+			<div class="form-group">
+				<label>Téléphone :</label>
+				<input type="text" name="telephone" id="tel" placeholder="0123456789">
+<!-- 			</div>
 			
-			<label>Rue :</label>
-			<input type="text" name="rue" id="rue" placeholder="rue de la Paix">
+			<div class="form-group"> -->
+				<label>Rue :</label>
+				<input type="text" name="rue" id="rue" placeholder="rue de la Paix" required="required">
+			</div>
 			
-			<label>Code postal :</label>
-			<input type="text" name="codepostal" id="cp" placeholder="44000">
+			<div class="form-group">
+				<label>Code postal :</label>
+				<input type="text" name="codepostal" id="cp" placeholder="44000" required="required">
+<!-- 			</div>
 			
-			<label>Ville :</label>
-			<input type="text" name="ville" id="ville" placeholder="Nantes">
+			<div class="form-group"> -->
+				<label>Ville :</label>
+				<input type="text" name="ville" id="ville" placeholder="Nantes" required="required">
+			</div>
 			
-			<label>Mot de passe :</label>
-			<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe">
+			<div class="form-group">
+				<label>Mot de passe :</label>
+				<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" required="required">
+<!-- 			</div>
 			
-			<label>Confimation :</label>
-			<input type="password" name="mdp2" id="password2" placeholder="Entrez de nouveau votre mot de passe">
+			<div class="form-group"> -->
+				<label>Confimation :</label>
+				<input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" required="required">
+			</div>
+			
 			<button type="submit">Créer</button>
-		</form>
+		</div>	
+	</form>
 	
 	<a href="/enchere/accueil">
 		<button>Annuler</button>
 	</a>
+
 
 </body>
 </html>
