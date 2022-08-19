@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class TesterInsertBLL
@@ -53,12 +54,14 @@ public class TesterInsertBLL extends HttpServlet {
 		String ville1 = "Blain";
 		String mdp1 = null;	
 		
+		Utilisateur jose = new Utilisateur(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp, 0, false);
+		
 		try {
 //			mng.insert(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp);
 ////			mng.selectById("josetheking@campus.fr", "JojoLeBoss");
 //			message = "Osez José !";
 			
-			mng.insert(pseudo1, nom1, prenom1, email1, tel1, rue1, cp1, ville1, mdp1);
+			mng.insert(jose);
 			
 		}catch(BLLException e) {
 			message += "\nErreur lors de l'insertion de l'utilisateur.";
@@ -67,6 +70,7 @@ public class TesterInsertBLL extends HttpServlet {
 				System.out.println(bllex.getMessage());
 			}
 		}
+		System.out.println(jose.getNoUtilisateur());
 		response.getWriter().append("Test d'insertion BLL : " + message);
 	}
 
