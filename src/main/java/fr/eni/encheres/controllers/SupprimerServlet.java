@@ -47,6 +47,7 @@ public class SupprimerServlet extends HttpServlet {
 		Utilisateur user =(Utilisateur) session.getAttribute("user");
 		int id = user.getNoUtilisateur();
 		RequestDispatcher rd;
+		System.out.println(user.toString());
 		
 		try {
 			mng.delete(id);
@@ -54,10 +55,8 @@ public class SupprimerServlet extends HttpServlet {
 		} catch(BLLException e) {
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
 			request.setAttribute("erreur", e);
-		}
-		
+		}	
 			rd.forward(request, response);
-		
 	}
 
 }
