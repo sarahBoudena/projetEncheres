@@ -142,7 +142,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				
 			}catch (SQLException e){
 				DALException ex = new DALException("Erreur dans la DAL : mise a jour impossible." + e.getMessage());
-
+				e.printStackTrace();
 				throw ex;
 			}
 		

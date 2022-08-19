@@ -16,11 +16,12 @@ public class utilisateurManager {
 	private UtilisateurDAO daoUser;
 	public static utilisateurManager Utilisateur;
 	private List<Utilisateur> listeUser;
-	
+	private List<String> listeMessageUpdate;
 	
 	private utilisateurManager () {
 		daoUser = DAOFactory.getUtilisateurDAO() ;
 		listeUser = new ArrayList<Utilisateur>();
+		listeMessageUpdate = new ArrayList<String>();
 	}
 	
 	public static utilisateurManager getInstance() {
@@ -44,7 +45,7 @@ public class utilisateurManager {
 	
 	public void insert (Utilisateur user) throws BLLException{
 		try {
-			VerifUtilisateur(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getTelephone(), user.getRue(), user.getCodePostal(), user.getVille(), user.getMotDePasse());
+			verifUtilisateur(user.getPseudo(), user.getNom(), user.getPrenom(), user.getEmail(), user.getTelephone(), user.getRue(), user.getCodePostal(), user.getVille(), user.getMotDePasse());
 			daoUser.insert(user);
 		} catch (DALException e) {
 			bllException.addException(e);
@@ -52,8 +53,18 @@ public class utilisateurManager {
 		}
 	}
 	
-	public void update (Utilisateur user) throws BLLException{
-		
+	public List<String> update (Utilisateur oldUser, Utilisateur newUser) throws BLLException{
+		try {
+			System.out.println("je suis dans bll update");
+			verifModifAddMessage(oldUser, newUser);
+			if (listeMessageUpdate.size()>0) {
+				daoUser.update(newUser);
+			}
+		}catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+		return listeMessageUpdate;
 	}
 	
 	public void delete (int id) throws BLLException{
@@ -78,7 +89,7 @@ public class utilisateurManager {
 		return user;
 	}
 
-	private void VerifUtilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue, String cp, String ville, String mdp) throws BLLException {
+	private void verifUtilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue, String cp, String ville, String mdp) throws BLLException {
 		//VÃ©rif champs pseudo complÃ©tÃ©
 		if (pseudo == null || pseudo.isEmpty() || pseudo.isBlank()) {
 			Exception e = new Exception("Le pseudo est obligatoire.");
@@ -147,5 +158,35 @@ public class utilisateurManager {
 		}
 	}
 
+	private void verifModifAddMessage(Utilisateur oldUser, Utilisateur newUser) {
+//		affiche un message par modification détectée
+		if (!oldUser.getPseudo().equals(newUser.getPseudo())) {
+			listeMessageUpdate.add("votre pseudo a été modifié");
+		}
+		if (!oldUser.getNom().equals(newUser.getNom())) {
+			listeMessageUpdate.add("votre nom a été modifié");
+		}
+		if (!oldUser.getPrenom().equals(newUser.getPrenom())) {
+			listeMessageUpdate.add("votre prénom a été modifié");
+		}
+		if (!oldUser.getEmail().equals(newUser.getEmail())) {
+			listeMessageUpdate.add("votre email a été modifié");
+		}
+		if (!oldUser.getTelephone().equals(newUser.getTelephone())) {
+			listeMessageUpdate.add("votre téléphone a été modifié");
+		}
+		if (!oldUser.getRue().equals(newUser.getRue())) {
+			listeMessageUpdate.add("la rue a été modifiée");
+		}
+		if (!oldUser.getCodePostal().equals(newUser.getCodePostal())) {
+			listeMessageUpdate.add("le code postal a été modifié");
+		}
+		if (!oldUser.getVille().equals(newUser.getVille())) {
+			listeMessageUpdate.add("la ville a été modifié");
+		}
+		if (!oldUser.getMotDePasse().equals(newUser.getMotDePasse())) {
+			listeMessageUpdate.add("le mot de passe a été modifié");
+		}
+	}
 	
 }

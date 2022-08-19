@@ -8,7 +8,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="../css/supprimerProfil.css"> 
+
 
 <title>Supprimer mon compte</title>
 </head>
@@ -27,12 +29,13 @@
 				<li>${element.getMessage()}</li>
 		</c:forEach>	
 	</c:if>
-	
-<form action="<%=request.getContextPath()%>/enchere/delete"
-		method="post"><button type="submit">Oui</button>
-	</form>
-	
-	<a href="<%=request.getContextPath()%>/enchere/accueil"><button>Non</button></a>
+	<div class="bouttons">
+		<form action="<%=request.getContextPath()%>/enchere/delete"method="post">
+		<button type="submit">Oui</button>
+		</form>
+		<a href="<%=request.getContextPath()%>/enchere/accueil"><button>Non</button></a>
+	</div>
+
 </main>
 </body>
 </html>
