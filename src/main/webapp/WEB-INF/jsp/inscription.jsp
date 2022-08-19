@@ -14,7 +14,19 @@
 	<!--Header-->
 	<jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	<h1>Mon profil</h1>
-	<form action="/enchere/inscription" method="post">
+		
+		<!-- Erreurs -->
+		<c:if test="${erreur != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+			       <li>${erreur}</li>
+				</ul>
+		    </div>
+		</c:if>
+	<form action="<%=request.getContextPath()%>/enchere/inscription" method="post">
 		<div class="Container">
 			<div class="form-group">
 				<label>Pseudo :</label>
@@ -74,6 +86,7 @@
 		<button>Annuler</button>
 	</a>
 
-
+	<!-- fragment JSP footer -->
+   <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>    
 </body>
 </html>
