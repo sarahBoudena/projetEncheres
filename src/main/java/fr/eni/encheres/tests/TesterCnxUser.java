@@ -40,6 +40,7 @@ public class TesterCnxUser extends HttpServlet {
 		try {
 			ConnectionProvider.getConnection();
 			Utilisateur test1 = userDAO.selectById("gbluth@campus.fr", "Pa$$w0rd");
+			System.out.println(test1.getNoUtilisateur());
 			if(test1 == null) {
 				throw new DALException();
 			}
