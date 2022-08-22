@@ -36,20 +36,20 @@
 		</c:if>
 		<c:if test="${simpleError != null}">
 			<div class="d-flex alert-danger">
-			    <div class="col-3 p-2">
+			    <div class="col-2 p-2">
 			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
 			    </div>
-			    <ul class="col-9 list-unstyled p-2">
+			    <ul class="col-10 list-unstyled p-2">
 		       		<li>${simpleError.getMessage()}</li>
 			    </ul>
 		    </div>
 		</c:if>
 		<c:if test="${listeModification != null}">
 			<div class="d-flex alert-success">
-			    <div class="col-3 p-2">
+			    <div class="col-2 p-2">
 			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/gagnant.png" alt ="icone reussite" >
 			    </div>
-			    <ul class="col-9 list-unstyled p-2">
+			    <ul class="col-10 list-unstyled p-2">
 			       <c:forEach var="element" items="${listeModification}">
 			       		<li>${element}</li>
 			       </c:forEach>
