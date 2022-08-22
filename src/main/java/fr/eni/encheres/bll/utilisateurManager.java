@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
 
 public class utilisateurManager {
-	private BLLException bllException = new BLLException();
+	private BLLException bllException;
 	
 	private UtilisateurDAO daoUser;
 	public static utilisateurManager Utilisateur;
@@ -19,15 +22,20 @@ public class utilisateurManager {
 	
 	private utilisateurManager () {
 		daoUser = DAOFactory.getUtilisateurDAO() ;
+	}
+	
+	private void initialiserBll() {
 		listeUser = new ArrayList<Utilisateur>();
 		listeMessageUpdate = new ArrayList<String>();
+		bllException = new BLLException();
 	}
 	
 	public static utilisateurManager getInstance() {
 		if (Utilisateur == null) {
 			Utilisateur = new utilisateurManager();
 		}
-			return Utilisateur;
+		Utilisateur.initialiserBll();
+		return Utilisateur;
 	}
 	
 	public Utilisateur selectById(String email, String mdp) throws BLLException{
@@ -54,7 +62,6 @@ public class utilisateurManager {
 	
 	public List<String> update (Utilisateur oldUser, Utilisateur newUser) throws BLLException{
 		try {
-			System.out.println("je suis dans bll update");
 			verifModifAddMessage(oldUser, newUser);
 			if (listeMessageUpdate.size()>0) {
 				daoUser.update(newUser);
@@ -69,7 +76,6 @@ public class utilisateurManager {
 	public void delete (int id) throws BLLException{
 		try {		
 			daoUser.delete(id);
-			
 		}catch(DALException e) {
 			Exception ex = new Exception(e.getMessage());
 			bllException.addException(ex);
@@ -158,33 +164,33 @@ public class utilisateurManager {
 	}
 
 	private void verifModifAddMessage(Utilisateur oldUser, Utilisateur newUser) {
-//		affiche un message par modification d�tect�e
+//		affiche un message par modification détectée
 		if (!oldUser.getPseudo().equals(newUser.getPseudo())) {
-			listeMessageUpdate.add("votre pseudo a �t� modifi�");
+			listeMessageUpdate.add("votre pseudo a été modifié");
 		}
 		if (!oldUser.getNom().equals(newUser.getNom())) {
-			listeMessageUpdate.add("votre nom a �t� modifi�");
+			listeMessageUpdate.add("votre nom a été modifié");
 		}
 		if (!oldUser.getPrenom().equals(newUser.getPrenom())) {
-			listeMessageUpdate.add("votre pr�nom a �t� modifi�");
+			listeMessageUpdate.add("votre prénom a été modifié");
 		}
 		if (!oldUser.getEmail().equals(newUser.getEmail())) {
-			listeMessageUpdate.add("votre email a �t� modifi�");
+			listeMessageUpdate.add("votre email a été modifié");
 		}
 		if (!oldUser.getTelephone().equals(newUser.getTelephone())) {
-			listeMessageUpdate.add("votre t�l�phone a �t� modifi�");
+			listeMessageUpdate.add("votre téléphone a été modifié");
 		}
 		if (!oldUser.getRue().equals(newUser.getRue())) {
-			listeMessageUpdate.add("la rue a �t� modifi�e");
+			listeMessageUpdate.add("la rue a été modifiée");
 		}
 		if (!oldUser.getCodePostal().equals(newUser.getCodePostal())) {
-			listeMessageUpdate.add("le code postal a �t� modifi�");
+			listeMessageUpdate.add("le code postal a été modifié");
 		}
 		if (!oldUser.getVille().equals(newUser.getVille())) {
-			listeMessageUpdate.add("la ville a �t� modifi�");
+			listeMessageUpdate.add("la ville a été modifié");
 		}
 		if (!oldUser.getMotDePasse().equals(newUser.getMotDePasse())) {
-			listeMessageUpdate.add("le mot de passe a �t� modifi�");
+			listeMessageUpdate.add("le mot de passe a été modifié");
 		}
 	}
 	

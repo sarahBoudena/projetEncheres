@@ -34,6 +34,16 @@
 			    </ul>
 		    </div>
 		</c:if>
+		<c:if test="${simpleError != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+		       		<li>${simpleError.getMessage()}</li>
+			    </ul>
+		    </div>
+		</c:if>
 		<c:if test="${listeModification != null}">
 			<div class="d-flex alert-success">
 			    <div class="col-3 p-2">
@@ -55,47 +65,47 @@
 				
 				<div class="form-group"> -->
 					<label>Nom :</label>
-					<input type="text" name="nom" id="name" value ="${sessionScope.user.nom}" required="required">
+					<input type="text" name="nom" id="name" value ="${empty requestScope.nom ? sessionScope.user.nom : requestScope.nom }" required="required">
 				</div>
 				
 				<div class="form-group">
 					<label>Prénom :</label>
-					<input type="text" name="prenom" id="firstname" value ="${sessionScope.user.prenom}" required="required">
+					<input type="text" name="prenom" id="firstname" value ="${empty requestScope.prenom ? sessionScope.user.prenom : requestScope.prenom}" required="required">
 	<!-- 			</div>
 				
 				<div class="form-group"> -->
 					<label>Email :</label>
-					<input type="email" name="email" id="email" value ="${sessionScope.user.email}" required="required">
+					<input type="email" name="email" id="email" value ="${empty requestScope.email ? sessionScope.user.email : requestScope.email}" required="required">
 				</div>
 				
 				<div class="form-group">
 					<label>Téléphone :</label>
-					<input type="text" name="telephone" id="tel" value ="${sessionScope.user.telephone}">
+					<input type="text" name="telephone" id="tel" value ="${empty requestScope.telephone ? sessionScope.user.telephone : requestScope.telephone}">
 	<!-- 			</div>
 				
 				<div class="form-group"> -->
 					<label>Rue :</label>
-					<input type="text" name="rue" id="rue" value ="${sessionScope.user.rue}" required="required">
+					<input type="text" name="rue" id="rue" value ="${empty requestScope.rue ? sessionScope.user.rue : requestScope.rue}" required="required">
 				</div>
 				
 				<div class="form-group">
 					<label>Code postal :</label>
-					<input type="text" name="codePostal" id="cp" value ="${sessionScope.user.codePostal}" required="required">
+					<input type="text" name="codePostal" id="cp" value ="${empty requestScope.codePostal ? sessionScope.user.codePostal : requestScope.codePostal}" required="required">
 	<!-- 			</div>
 				
 				<div class="form-group"> -->
 					<label>Ville :</label>
-					<input type="text" name="ville" id="ville" value ="${sessionScope.user.ville}" required="required">
+					<input type="text" name="ville" id="ville" value ="${empty requestScope.ville ? sessionScope.user.ville : requestScope.ville}" required="required">
 				</div>
 				
 				<div class="form-group">
 					<label>Mot de passe :</label>
-					<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" >
+					<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" autocomplete="off" >
 	<!-- 			</div>
 				
 				<div class="form-group"> -->
 					<label>Confimation :</label>
-					<input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" >
+					<input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" autocomplete="off">
 				</div>
 				
 				<button type="submit">Enregistrer</button>
