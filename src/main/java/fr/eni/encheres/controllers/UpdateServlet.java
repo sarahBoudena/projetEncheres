@@ -87,7 +87,7 @@ public class UpdateServlet extends HttpServlet {
 	    
 	    String motDePasse = "";
 	    try {
-		    if(request.getParameter("mdp2")!=null && !request.getParameter("mdp2").equals("")) {
+		    if(request.getParameter("mdp2")!=null && request.getParameter("mdp2").isBlank() && request.getParameter("mdp2").isEmpty()) {
 		    	if(request.getParameter("mdp1").equals(request.getParameter("mdp2"))) {
 		    	motDePasse = request.getParameter("mdp1");
 			    } else {
