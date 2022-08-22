@@ -44,10 +44,9 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		int miseAPrix = 100;
 		int noUser = 3;
 		int noCat = 4;
-		String EtatVente = "CR";
 		String img = null;
 		
-		ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, EtatVente, img);
+		ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
 		
 		try {
 		article.insert(ballon);

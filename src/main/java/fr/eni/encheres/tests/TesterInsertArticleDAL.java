@@ -3,6 +3,7 @@ package fr.eni.encheres.tests;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,7 +42,7 @@ public class TesterInsertArticleDAL extends HttpServlet {
 		ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 		try {
 			ConnectionProvider.getConnection();
-			ArticleVendu articleTest = new ArticleVendu("Article", "Ceci est un nouvel article", LocalDate.now(), LocalDate.now(), 100, 2, 3, "EC", null);
+			ArticleVendu articleTest = new ArticleVendu("Article", "Ceci est un nouvel article", LocalDate.now(), LocalTime.now(), LocalDate.now(), LocalTime.now(), 100, 2, 3, null);
 			articleDAO.insert(articleTest);
 			message = "L'article a bien été inséré.";
 		}catch(SQLException | DALException e) {

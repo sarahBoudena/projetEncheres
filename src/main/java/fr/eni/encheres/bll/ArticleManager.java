@@ -39,6 +39,7 @@ public class ArticleManager {
 	
 	public void insert(ArticleVendu article) throws BLLException{
 		try {
+		VerifArticle(article.getNom(), article.getDescription(), article.getDateDebutEncheres(), article.getDateFinEncheres(), article.getMiseAprix(), article.getNoUtilisateur(), article.getNoCategorie(), article.getEtatVente(), article.getImage());
 		articleDAO.insert(article);
 	} catch(DALException e) {
 		bllException.addException(e);
@@ -47,7 +48,8 @@ public class ArticleManager {
 	}
 	
 	
-	private void VerifArticle(String nom, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, int noUtilisateur, int noCategorie, String etatVente, String image) {
+	private void VerifArticle(String nom, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix,
+								int noUtilisateur, int noCategorie, String etatVente, String image) {
 		LocalDate dateDuJour = LocalDate.now();
 		
 		
@@ -74,7 +76,18 @@ public class ArticleManager {
 			Exception e = new Exception("Veuillez choisir une date valide.");
 			bllException.addException(e);
 		}
+		if(noUtilisateur <= 0) {
+			Exception e = new Exception("Merci de vous connecter.");
+			bllException.addException(e);
+		}
+		if(noCategorie <= 0) {
+			Exception e = new Exception("Merci de choisir une catégorie.");
+			bllException.addException(e);
+		}
+		if (etatVente == null || etatVente.isEmpty() || etatVente.isBlank()) {
+			Exception e = new Exception("L'état de l'article est obligatoire.");
+			bllException.addException(e);
+		}
 		
-			
 	}
 }
