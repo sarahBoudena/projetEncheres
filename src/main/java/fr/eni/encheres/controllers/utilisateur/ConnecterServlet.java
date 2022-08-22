@@ -1,4 +1,4 @@
-package fr.eni.encheres.controllers;
+package fr.eni.encheres.controllers.utilisateur;
 
 import java.io.IOException;
 
@@ -78,9 +78,6 @@ public class ConnecterServlet extends HttpServlet {
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/connection.jsp");
 			request.setAttribute("error", e);
-//			for (Exception exception : e.getBLLExceptions()) {
-//				System.out.println(exception.getMessage());
-//			}
 		}
 		
 		rd.forward(request, response);
