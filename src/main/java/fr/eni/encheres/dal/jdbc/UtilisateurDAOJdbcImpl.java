@@ -139,7 +139,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 pstmt.setInt(11, user.getNoUtilisateur());  
                 pstmt.executeUpdate();
             }catch (SQLException e){
-                DALException ex = new DALException("Erreur dans la DAL : mise a jour impossible." + e.getMessage());
+            	String message = null;
+            	if (e.getMessage().contains("utilisateurs_pseudo_uq")){
+            		message = "Le pseudo est déjà utilisé.";
+            	}
+            	if (e.getMessage().contains("utilisateurs_email_uq")){
+            		message = "L'email est déjà utilisé.";
+            	}
+            	
+                DALException ex = new DALException("Erreur lors de la mise à jour du profil : " + message);
+                e.printStackTrace();
                 throw ex;
             }
     }
