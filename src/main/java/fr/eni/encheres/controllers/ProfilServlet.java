@@ -14,7 +14,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ProfilServlet
  */
-@WebServlet("/enchere/profil")
+@WebServlet("/utilisateur/profil")
 public class ProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class ProfilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/profilUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/profilUtilisateur.jsp");
 		rd.forward(request, response);
 	}
 

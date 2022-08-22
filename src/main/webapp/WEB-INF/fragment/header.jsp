@@ -8,7 +8,7 @@
 <header>
 		<nav class="pr-5 navbar navbar-expand-sm bg-dark navbar-dark align-top justify-content-between">
 	    <!-- Brand/logo -->
-	    <a class="navbar-brand" href="<%=request.getContextPath()%>/enchere/accueil">
+	    <a class="navbar-brand" href="<%=request.getContextPath()%>/accueil">
 	        <img class="small-icon w-25" src="<%=request.getContextPath()%>/medias/img/logo-eni.png" alt="Accueil ENI-Encheres">
 	        <strong>ENI-Encheres</strong>
 	    </a>
@@ -30,12 +30,12 @@
 					    	<a class="dropdown-item" href="#" alt="Administrer le site">Administrer</a> 
 		                </c:if>
 		                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
-					    <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
-		                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon Profil</a>
+					    <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
+		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/profil" alt="Profil utilisateur">Mon Profil</a>
 	                </c:if>
 				    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
-		                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
-		                <a class="dropdown-item" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
+		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
+		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
 				    </c:if>            
 	            </div>
 	        </li>   
@@ -50,18 +50,18 @@
 		            <a class="nav-link" href="#" alt="Vendre un article">Vendre un article</a>
 		        </li>
 	            <li class="nav-item d-none d-lg-block">
-	               <a class="nav-link" href="<%=request.getContextPath()%>/enchere/profil" alt="Profil utilisateur">Mon profil</a>
+	               <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/profil" alt="Profil utilisateur">Mon profil</a>
 	            </li>
 		        <li class="nav-item d-none d-lg-block">
-		            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
+		            <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
 		        </li>
 	        </c:if>
 	        <c:if test="${empty user}">	
 		        <li class="nav-item d-none d-lg-block">
-		            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
+		            <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
 		        </li>
 		        <li class="nav-item d-none d-lg-block">
-		            <a class="nav-link" href="<%=request.getContextPath()%>/enchere/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
+		            <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/login?deco=false" alt="Se connecter à ENI-Encheres">Me connecter</a>
 	        	</li>	
 	        </c:if>      
 	    </ul>

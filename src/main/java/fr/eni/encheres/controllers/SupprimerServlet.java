@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class SupprimerServlet
  */
-@WebServlet("/enchere/delete")
+@WebServlet("/utilisateur/delete")
 public class SupprimerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class SupprimerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/supressionUtilisateur.jsp");
 		rd.forward(request, response);
 	}
 
@@ -54,7 +54,7 @@ public class SupprimerServlet extends HttpServlet {
 			request.getSession().invalidate();
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		} catch(BLLException e) {
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/supressionUtilisateur.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/supressionUtilisateur.jsp");
 			request.setAttribute("erreur", e);
 		}	
 		rd.forward(request, response);

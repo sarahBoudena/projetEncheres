@@ -82,7 +82,7 @@ public class UpdateServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("simpleError", e);
 		}
-	    rd =request.getRequestDispatcher("/WEB-INF/jsp/profilUtilisateur.jsp");
+	    rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/profilUtilisateur.jsp");
 	    rd.forward(request, response);
 	}
 	

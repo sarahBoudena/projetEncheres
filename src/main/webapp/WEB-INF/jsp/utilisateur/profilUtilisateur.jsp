@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
- <link rel="stylesheet" href="../css/inscription.css">  
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/inscription.css">  
 
 
 <title>Profil Utilisateur</title>
@@ -111,8 +111,9 @@
 				<button type="submit">Enregistrer</button>
 			</div>	
 		</form>
-		<a href="<%=request.getContextPath()%>/enchere/delete"><button>Supprimer le profil</button></a>
+		<a href="<%=request.getContextPath()%>/utilisateur/delete"><button>Supprimer le profil</button></a>
 	</main>
-	
+	<!-- fragment JSP footer -->
+  	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>	
 </body>
 </html>

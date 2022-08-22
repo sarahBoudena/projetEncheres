@@ -16,7 +16,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class SinscrireServlet
  */
-@WebServlet("/enchere/inscription")
+@WebServlet("/utilisateur/inscription")
 public class SinscrireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class SinscrireServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/inscription.jsp");
         rd.forward(request, response);
 	}
 
@@ -85,7 +85,6 @@ public class SinscrireServlet extends HttpServlet {
 				System.out.println(bllex.getMessage());
 				doGet(request, response);
 			}
-	
 		}
 	}
 
