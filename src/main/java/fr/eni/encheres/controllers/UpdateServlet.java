@@ -50,6 +50,7 @@ public class UpdateServlet extends HttpServlet {
 		String rue = null;
 		String codePostal = null;
 		String ville = null;
+		String message = null;
 		
 		if(request.getParameter("pseudo")!=null) {
 		pseudo = request.getParameter("pseudo");
@@ -85,29 +86,25 @@ public class UpdateServlet extends HttpServlet {
 		}
 	    
 	    String motDePasse = "";
-	    
-	    if(request.getParameter("mdp2")!=null) {
-	    	if(request.getParameter("mdp1").equals(request.getParameter("mdp2"))) {
-	    	motDePasse = request.getParameter("mdp1");
-		    } else {
-		    	response.getWriter().append("Les saisies de mots de passe sont différentes");
-		    }
-	    } else {
-	    	motDePasse = oldUser.getMotDePasse();
-	    }
-	    
-	    
-	    
-	    newUser = new Utilisateur(oldUser.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, oldUser.getCredit(), oldUser.isAdministrateur());
-	    newUser.setMotDePasse(motDePasse);
-	    
 	    try {
+		    if(request.getParameter("mdp2")!=null && !request.getParameter("mdp2").equals("")) {
+		    	if(request.getParameter("mdp1").equals(request.getParameter("mdp2"))) {
+		    	motDePasse = request.getParameter("mdp1");
+			    } else {
+					throw new Exception("Les mots de passe sont diffÃ©rents.");
+			    }
+		    } else {
+		    	motDePasse = oldUser.getMotDePasse();
+		    }
+		    newUser = new Utilisateur(oldUser.getNoUtilisateur(), pseudo, nom, prenom, email, telephone, rue, codePostal, ville, oldUser.getCredit(), oldUser.isAdministrateur());
+		    newUser.setMotDePasse(motDePasse);
 	    	listeModificationOk = manager.update(oldUser, newUser);
 	    	request.setAttribute("listeModification", listeModificationOk);
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
+		} catch (Exception e) {
+			request.setAttribute("simpleError", e);
 		}
-	    
 	    rd =request.getRequestDispatcher("/WEB-INF/jsp/profilUtilisateur.jsp");
 	    rd.forward(request, response);
 	    
