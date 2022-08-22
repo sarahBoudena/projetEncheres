@@ -1,18 +1,16 @@
 package fr.eni.encheres.bo;
 
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Date;
+
 
 public class ArticleVendu {
 
 	private int noArticle;
 	private String nom;
 	private String description;
-	private LocalDate dateDebutEncheres;
-	private LocalTime heureDebutEncheres;
-	private LocalDate dateFinEncheres;
-	private LocalTime heureFinEncheres;
+	private Date dateDebutEncheres;
+	private Date dateFinEncheres;
 	private int miseAprix;
 	private int prixVente;
 	private String etatVente;
@@ -21,15 +19,13 @@ public class ArticleVendu {
 	private String image;
 	
 	
-	public ArticleVendu(int noArticle, String nom, String description, LocalDate dateDebutEncheres, LocalTime heureDebutEncheres, LocalDate dateFinEncheres,
-			LocalTime heureFinEncheres, int miseAprix, int noUtilisateur, int noCategorie, String image) {
+	public ArticleVendu(int noArticle, String nom, String description, Date dateDebutEncheres, Date dateFinEncheres,
+			int miseAprix, int noUtilisateur, int noCategorie, String image) {
 		this.noArticle = noArticle;
 		this.nom = nom;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
-		this.heureDebutEncheres = heureDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.heureFinEncheres = heureFinEncheres;
 		this.miseAprix = miseAprix;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
@@ -39,14 +35,12 @@ public class ArticleVendu {
 		
 	}
 	
-	public ArticleVendu(String nom, String description, LocalDate dateDebutEncheres, LocalTime heureDebutEncheres, LocalDate dateFinEncheres,
-			LocalTime heureFinEncheres, int miseAprix, int noUtilisateur, int noCategorie, String image) {
+	public ArticleVendu(String nom, String description, Date dateDebutEncheres,  Date dateFinEncheres,
+			int miseAprix, int noUtilisateur, int noCategorie, String image) {
 		this.nom = nom;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
-		this.heureDebutEncheres = heureDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.heureFinEncheres = heureFinEncheres;
 		this.miseAprix = miseAprix;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
@@ -79,38 +73,22 @@ public class ArticleVendu {
 		this.description = description;
 	}
 
-	public LocalDate getDateDebutEncheres() {
+	public Date getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres(LocalDate dateDebutEncheres) {
+	public void setDateDebutEncheres (Date dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 	
-	public LocalTime getHeureDebutEncheres() {
-		return heureDebutEncheres;
-	}
 
-	public void setHeureDebutEncheres(LocalTime heureDebutEncheres) {
-		this.heureDebutEncheres = heureDebutEncheres;
-	}
-
-	public LocalDate getDateFinEncheres() {
+	public Date getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
-	public void setDateFinEncheres(LocalDate dateFinEncheres) {
+	public void setDateFinEncheres(Date dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
-
-	public LocalTime getHeureFinEncheres() {
-		return heureFinEncheres;
-	}
-
-	public void setHeureFinEncheres(LocalTime heureFinEncheres) {
-		this.heureFinEncheres = heureFinEncheres;
-	}
-
 	public int getMiseAprix() {
 		return miseAprix;
 	}

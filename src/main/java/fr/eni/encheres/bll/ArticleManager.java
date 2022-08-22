@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +49,9 @@ public class ArticleManager {
 	}
 	
 	
-	private void VerifArticle(String nom, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix,
+	private void VerifArticle(String nom, String description, Date dateDebut, Date dateFin, int miseAPrix,
 								int noUtilisateur, int noCategorie, String etatVente, String image) {
-		LocalDate dateDuJour = LocalDate.now();
+		Date dateDuJour = Date.valueOf(LocalDate.now());
 		
 		
 	// Vérif nom de l'article

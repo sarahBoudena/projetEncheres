@@ -34,8 +34,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				 //Alimentation du prepared statement
 				pstmt.setString(1, article.getNom());
 				pstmt.setString(2, article.getDescription());
-				pstmt.setDate(3, java.sql.Date.valueOf(article.getDateDebutEncheres()));
-				pstmt.setDate(4, java.sql.Date.valueOf(article.getDateFinEncheres()));
+				pstmt.setDate(3, article.getDateDebutEncheres());
+				pstmt.setDate(4, article.getDateFinEncheres());
 				pstmt.setInt(5, article.getMiseAprix());
 				pstmt.setInt(6, article.getNoUtilisateur());
 				pstmt.setInt(7,article.getNoCategorie());
