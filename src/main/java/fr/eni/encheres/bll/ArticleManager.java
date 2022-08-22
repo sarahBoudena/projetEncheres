@@ -50,6 +50,7 @@ public class ArticleManager {
 	private void VerifArticle(String nom, String description, LocalDate dateDebut, LocalDate dateFin, int miseAPrix, int noUtilisateur, int noCategorie, String etatVente, String image) {
 		LocalDate dateDuJour = LocalDate.now();
 		
+		
 	// Vérif nom de l'article
 		if (nom == null || nom.isEmpty() || nom.isBlank()) {
 			Exception e = new Exception("Le nom de l'article est obligatoire.");
@@ -60,10 +61,20 @@ public class ArticleManager {
 			Exception e = new Exception("Veuillez décrire votre article.");
 			bllException.addException(e);
 		}
-//	// Verif Date de début de la vente
-//		if (dateDebut == null || dateDebut < dateDuJour) {
-//			Exception e = new Exception("Veuillez décrire votre article.");
-//			bllException.addException(e);
-//		}
+	// Verif Date de début de la vente/		
+		if (dateDebut == null || dateDebut.compareTo(dateDuJour)<0) {
+			Exception e = new Exception("Veuillez choisir une date valide.");
+			bllException.addException(e);
+		}
+		if(dateFin == null || dateFin.compareTo(dateDebut)<0) {
+			Exception e = new Exception("Veuillez choisir une date valide.");
+			bllException.addException(e);
+			}
+		if(miseAPrix < 0) {
+			Exception e = new Exception("Veuillez choisir une date valide.");
+			bllException.addException(e);
+		}
+		
+			
 	}
 }
