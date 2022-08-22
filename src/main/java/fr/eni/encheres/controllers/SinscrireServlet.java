@@ -79,7 +79,7 @@ public class SinscrireServlet extends HttpServlet {
 				rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 				rd.forward(request, response);
 			}else {
-				message = "Le mot de passe est différent.";
+				message = "Les deux mots de passe sont différents.";
 				request.setAttribute("erreur", message);
 				doGet(request, response);
 			}	
