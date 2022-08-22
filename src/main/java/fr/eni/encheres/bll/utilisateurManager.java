@@ -101,6 +101,13 @@ public class utilisateurManager {
 			bllException.addException(e);
 		}
 		
+		//Vérif pseudo caractères alphanumériques
+		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
+		if (!email.matches("^[a-zA-Z0-9]*$") || email.isBlank() || email.isEmpty()) {
+			Exception e = new Exception("Le pseudo ne peut contenir que des caractères alphanumériques.");
+			bllException.addException(e);
+		}
+		
 		//Vérif champs nom complété
 		if(nom == null || nom.isEmpty() || nom.isBlank()) {
 			Exception e = new Exception("Le nom est obligatoire.");
