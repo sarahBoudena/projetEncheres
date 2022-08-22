@@ -18,7 +18,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ConnecterServlet
  */
-@WebServlet("/enchere/login")
+@WebServlet("/utilisateur/login")
 public class ConnecterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,7 +40,7 @@ public class ConnecterServlet extends HttpServlet {
 			request.getSession().invalidate();
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		}else {
-			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/connection.jsp");
 		}
 		rd.forward(request, response);
 	}
@@ -76,7 +76,7 @@ public class ConnecterServlet extends HttpServlet {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 
 		} catch (BLLException e) {
-			rd =request.getRequestDispatcher("/WEB-INF/jsp/connection.jsp");
+			rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/connection.jsp");
 			request.setAttribute("error", e);
 //			for (Exception exception : e.getBLLExceptions()) {
 //				System.out.println(exception.getMessage());
