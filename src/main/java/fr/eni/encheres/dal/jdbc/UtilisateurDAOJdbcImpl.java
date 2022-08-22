@@ -109,7 +109,16 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 throw e;
             }       
         } catch (SQLException e) {
-            DALException ex = new DALException("Erreur dans la DAL : Erreur lors de la création de l'utilisateur." + e.getMessage());
+        	String message = null;
+        	if (e.getMessage().contains("utilisateurs_pseudo_uq")){
+        		message = "Le pseudo est déjà utilisé.";
+        	}
+        	if (e.getMessage().contains("utilisateurs_email_uq")){
+        		message = "L'email est déjà utilisé.";
+        	}
+        	
+            DALException ex = new DALException("Erreur lors de la création de l'utilisateur : " + message);
+            e.printStackTrace();
             throw ex;
         }
     }
