@@ -40,6 +40,10 @@ public class SinscrireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//Réinitialisation des erreurs
+		request.setAttribute("error", null);
+		request.setAttribute("erreur", null);		
+				
 		//Récupération des données du formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -80,12 +84,9 @@ public class SinscrireServlet extends HttpServlet {
 				doGet(request, response);
 			}	
 		}catch (BLLException e) {
-			for (Exception bllex : e.getBLLExceptions()) {
-				request.setAttribute("error", e);
-				System.out.println(bllex.getMessage());
-				doGet(request, response);
-			}
-	
+			request.setAttribute("error", e);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
+		    rd.forward(request, response);
 		}
 	}
 
