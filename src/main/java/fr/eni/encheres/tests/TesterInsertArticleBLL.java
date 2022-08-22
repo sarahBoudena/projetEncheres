@@ -51,10 +51,10 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		
 		try {
 		article.insert(ballon);
-		message = "Insertion réussie";
+		message = "Insertion article réussie";
 		
-		}catch(BLLException | DALException e) {
-			message += "\nErreur lors de l'insertion de l'utilisateur.";
+		}catch(BLLException e) {
+			message += "\nErreur lors de l'insertion de l'article.";
 			
 			for (Exception bllex : ((BLLException) e).getBLLExceptions()) {
 				System.out.println(bllex.getMessage());
