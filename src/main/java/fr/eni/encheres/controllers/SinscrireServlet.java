@@ -85,7 +85,7 @@ public class SinscrireServlet extends HttpServlet {
 			}	
 		}catch (BLLException e) {
 			request.setAttribute("error", e);
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/inscription.jsp");
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/inscription.jsp");
 		    rd.forward(request, response);
 		}
 	}
