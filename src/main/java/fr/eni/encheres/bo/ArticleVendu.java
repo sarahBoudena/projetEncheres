@@ -13,32 +13,39 @@ public class ArticleVendu {
 	private int miseAprix;
 	private int prixVente;
 	private String etatVente;
-	Utilisateur noUtilisateur;
+	int noUtilisateur;
+	int noCategorie;
+	private String image;
 	
 	
 	public ArticleVendu(int noArticle, String nom, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-				int miseAprix, int prixVente, String etatVente, Utilisateur noUtilisateur) {
+				int miseAprix, int noUtilisateur, int noCategorie, String etatVente, String image) {
 		this.noArticle = noArticle;
 		this.nom = nom;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAprix = miseAprix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.etatVente = etatVente;
+		this.image = image;
+		
+		
 	}
 	
 	public ArticleVendu(String nom, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-						int miseAprix, int prixVente, String etatVente, Utilisateur noUtilisateur) {
+						int miseAprix, int noUtilisateur, int noCategorie, String etatVente, String image) {
 		this.nom = nom;
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAprix = miseAprix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.etatVente = etatVente;
+		this.image = image;
+		
 	}
 
 	public int getNoArticle() {
@@ -105,13 +112,38 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 
-	public Utilisateur getNoUtilisateur() {
+	public int getNoUtilisateur() {
 		return noUtilisateur;
 	}
 
-	public void setNoUtilisateur(Utilisateur noUtilisateur) {
+	public void setNoUtilisateur(int noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
+
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	@Override
+	public String toString() {
+		return "ArticleVendu [noArticle=" + noArticle + ", nom=" + nom + ", description=" + description
+				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAprix="
+				+ miseAprix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
+				+ noUtilisateur + ", noCategorie=" + noCategorie + ", image=" + image + "]";
+	}
+
 	
 	
 }

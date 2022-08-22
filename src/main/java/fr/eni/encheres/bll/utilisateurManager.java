@@ -11,7 +11,6 @@ import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
-import fr.eni.encheres.bll.BLLException;
 
 public class utilisateurManager {
 	private BLLException bllException;
