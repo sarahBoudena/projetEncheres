@@ -55,6 +55,15 @@ public class SinscrireServlet extends HttpServlet {
 		Utilisateur user = null;
 		RequestDispatcher rd;
 		
+		//Stockage en paramètre des données saisies
+		request.setAttribute("pseudo", pseudo);
+		request.setAttribute("nom", nom);
+		request.setAttribute("prenom", prenom);
+		request.setAttribute("email", email);
+		request.setAttribute("tel", telephone);
+		request.setAttribute("rue", rue);
+		request.setAttribute("cp", cp);
+		request.setAttribute("ville", ville);
 		
 		try {
 			//Vérification du mdp + création de l'objet Utilisateur
@@ -72,10 +81,12 @@ public class SinscrireServlet extends HttpServlet {
 			}	
 		}catch (BLLException e) {
 			for (Exception bllex : e.getBLLExceptions()) {
+				request.setAttribute("error", e);
 				System.out.println(bllex.getMessage());
+				doGet(request, response);
 			}
-			request.setAttribute("erreur", e);
-			}
+	
+		}
 	}
 
 }
