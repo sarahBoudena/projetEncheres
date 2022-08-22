@@ -1,4 +1,4 @@
-package fr.eni.encheres.controllers;
+package fr.eni.encheres.controllers.utilisateur;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,7 +50,12 @@ public class UpdateServlet extends HttpServlet {
 		ville = null;
 		super.init();
 	}
-	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/updateProfil.jsp");
+		rd.forward(request, response);
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
 		utilisateurManager manager = utilisateurManager.getInstance();
@@ -82,7 +87,7 @@ public class UpdateServlet extends HttpServlet {
 		} catch (Exception e) {
 			request.setAttribute("simpleError", e);
 		}
-	    rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/profilUtilisateur.jsp");
+	    rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/updateProfil.jsp");
 	    rd.forward(request, response);
 	}
 	

@@ -31,7 +31,7 @@
 		                </c:if>
 		                <a class="dropdown-item" href="#" alt="Vendre un article">Vendre un article</a>
 					    <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
-		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/profil" alt="Profil utilisateur">Mon Profil</a>
+		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=true" alt="Profil utilisateur">Mon Profil</a>
 	                </c:if>
 				    <c:if test="${empty user}">		<!-- boutons à afficher si aucun utilisateur connecté-->
 		                <a class="dropdown-item" href="<%=request.getContextPath()%>/utilisateur/inscription" alt="S'inscrire à ENI-Encheres">M'inscrire</a>
@@ -50,7 +50,7 @@
 		            <a class="nav-link" href="#" alt="Vendre un article">Vendre un article</a>
 		        </li>
 	            <li class="nav-item d-none d-lg-block">
-	               <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/profil" alt="Profil utilisateur">Mon profil</a>
+	               <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=true" alt="Profil utilisateur">Mon profil</a>
 	            </li>
 		        <li class="nav-item d-none d-lg-block">
 		            <a class="nav-link" href="<%=request.getContextPath()%>/utilisateur/login?deco=true" alt="Me déconnecter">Me déconnecter</a>
