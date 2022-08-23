@@ -39,8 +39,9 @@ public class TesterCnxUser extends HttpServlet {
 		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
 		try {
 			ConnectionProvider.getConnection();
-			Utilisateur test1 = userDAO.selectByLogin("tbluth@campus.fr", "Pa$$w0rd");
-			System.out.println(test1.getNoUtilisateur());
+//			Utilisateur test1 = userDAO.selectByLogin("tbluth@campus.fr", "Pa$$w0rd");
+			Utilisateur test1 = userDAO.selectById(3);
+			System.out.println(test1.toString());
 			
 			if(test1 == null) {
 				throw new DALException();

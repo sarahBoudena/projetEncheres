@@ -91,6 +91,13 @@ public class utilisateurManager {
 	
 	public Utilisateur selectById(int id) throws BLLException{
 		Utilisateur user = null;
+		try {
+			user = daoUser.selectById(id);
+		} catch (DALException e) {
+			Exception ex = new Exception(e.getMessage());
+			bllException.addException(ex);
+			throw bllException;
+		}
 		return user;
 	}
 
