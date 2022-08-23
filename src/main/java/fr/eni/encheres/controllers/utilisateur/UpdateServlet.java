@@ -81,7 +81,9 @@ public class UpdateServlet extends HttpServlet {
 		    newUser.setMotDePasse(motDePasse);
 	    	listeModificationOk = manager.update(oldUser, newUser);
 	    	session.setAttribute("user", newUser);
-	    	request.setAttribute("listeModification", listeModificationOk);
+	    	if (listeModificationOk.size()!=0) {
+	    		request.setAttribute("listeModification", listeModificationOk);
+	    	}
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
 		} catch (Exception e) {
