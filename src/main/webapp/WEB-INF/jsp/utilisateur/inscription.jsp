@@ -48,9 +48,7 @@
 				<div class="form-group">
 					<label>Pseudo :</label>
 					<input type="text" name="pseudo" id="pseudo" placeholder="pseudo" value="${requestScope.pseudo}" required="required">
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
+	
 					<label>Nom :</label>
 					<input type="text" name="nom" id="name" placeholder="NOM" value="${requestScope.nom}" required="required">
 				</div>
@@ -58,9 +56,7 @@
 				<div class="form-group">
 					<label>Prénom :</label>
 					<input type="text" name="prenom" id="firstname" placeholder="Prénom" value="${requestScope.prenom}" required="required">
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
+	
 					<label>Email :</label>
 					<input type="email" name="email" id="email" placeholder="exemple@email.fr" value="${requestScope.email}" required="required">
 				</div>
@@ -68,9 +64,7 @@
 				<div class="form-group">
 					<label>Téléphone :</label>
 					<input type="text" name="telephone" id="tel" placeholder="0123456789" value="${requestScope.tel}" >
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
+	
 					<label>Rue :</label>
 					<input type="text" name="rue" id="rue" placeholder="rue de la Paix" value="${requestScope.rue}" required="required">
 				</div>
@@ -78,9 +72,7 @@
 				<div class="form-group">
 					<label>Code postal :</label>
 					<input type="text" name="codepostal" id="cp" placeholder="44000" value="${requestScope.cp}" required="required">
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
+	
 					<label>Ville :</label>
 					<input type="text" name="ville" id="ville" placeholder="Nantes" value="${requestScope.ville}" required="required">
 				</div>
@@ -88,9 +80,7 @@
 				<div class="form-group">
 					<label>Mot de passe :</label>
 					<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" required="required">
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
+	
 					<label>Confimation :</label>
 					<input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" required="required">
 				</div>
