@@ -31,7 +31,7 @@
 				    </ul>
 			    </div>
 			</c:if>
-			<form method="post" action="<%=request.getContextPath()%>/utilisateur/login">
+			<form method="post" action="<%=request.getContextPath()%>/login">
 				<div class="form-group"> 
 			        <label>identifiant : </label> 
 			       <input type="text" name="email" value ="${cookie.identite.value != null ? cookie.identite.value : ''}"/>

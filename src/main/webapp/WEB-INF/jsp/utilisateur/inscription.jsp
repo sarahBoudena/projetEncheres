@@ -43,7 +43,7 @@
 		</c:if>
 	
 		<!-- Formulaire -->
-		<form action="<%=request.getContextPath()%>/utilisateur/inscription" method="post">
+		<form action="<%=request.getContextPath()%>/inscription" method="post">
 			<div class="Container">
 				<div class="form-group">
 					<label>Pseudo :</label>
