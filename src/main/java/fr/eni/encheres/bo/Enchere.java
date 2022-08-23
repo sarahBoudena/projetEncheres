@@ -20,5 +20,37 @@ public class Enchere {
 		this.montantEnchere = montantEnchere;
 	}
 
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public int getIdArticle() {
+		return idArticle;
+	}
+
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
+
+	public Date getDateEnchere() {
+		return dateEnchere;
+	}
+
+	public void setDateEnchere(Date dateEnchere) {
+		this.dateEnchere = dateEnchere;
+	}
+
+	public int getMontantEnchere() {
+		return montantEnchere;
+	}
+
+	public void setMontantEnchere(int montantEnchere) {
+		this.montantEnchere = montantEnchere;
+	}
+
 	
 }
