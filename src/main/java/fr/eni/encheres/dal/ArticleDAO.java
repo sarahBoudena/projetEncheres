@@ -18,4 +18,5 @@ public ArticleVendu selectByLogin(String login, String mdp) throws DALException;
 	
 	public ArticleVendu selectById(int id) throws DALException;
 	
+	public void launchProc ()throws DALException;
 }

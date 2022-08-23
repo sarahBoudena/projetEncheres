@@ -63,8 +63,6 @@ public class VendreArticle extends HttpServlet {
 		String rue = user.getRue();
 		String codePostal = user.getCodePostal();
 		String ville = user.getVille();
-		
-		
 		ArticleVendu article =null;
 		String message="";
 		RequestDispatcher rd = null;
@@ -92,30 +90,21 @@ public class VendreArticle extends HttpServlet {
 		request.setAttribute("rue", rue);
 		request.setAttribute("codePostal", codePostal);
 		request.setAttribute("ville", ville);
-		
-			
 		try {
 			ArticleManager mng = ArticleManager.getInstance();
 			int miseAPrix = Integer.parseInt(PrixInitial);
 			
 			int noCat = 0;
-			if (categorie.equals("Informatique")) {
-				noCat=1;
-			}	
-			if (categorie.equals("Ameublement")) {
-				noCat=2;
-			} 
-			if (categorie.equals("Vêtement")) {
-				noCat=3;
-			}
-			if (categorie.equals("Sport & Loisir")){
-				noCat=4;
-			}
 			
+			switch(categorie){
+		       case "Informatique": noCat=1; break;
+		       case "Ameublement": noCat=2; break;
+		       case "Vêtement": noCat=3; break;
+		       case "Sport & Loisir": noCat=4; break;
+			}		
 			article = new ArticleVendu(nom,description,dateDebutComplet,dateFinComplet,miseAPrix,NoUtilisateur,noCat,null);
 			mng.insert(article);
 			message = "Création de l'article réussie";
-			
 			
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
