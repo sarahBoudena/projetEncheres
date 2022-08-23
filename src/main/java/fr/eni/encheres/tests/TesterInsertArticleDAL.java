@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.servlet.ServletException;
@@ -43,7 +44,7 @@ public class TesterInsertArticleDAL extends HttpServlet {
 		ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 		try {
 			ConnectionProvider.getConnection();
-			ArticleVendu articleTest = new ArticleVendu("Article", "Ceci est un nouvel article", Date.valueOf(LocalDate.now()),  Date.valueOf(LocalDate.now()), 100, 2, 3, null);
+			ArticleVendu articleTest = new ArticleVendu("Article", "Ceci est un nouvel article", LocalDateTime.now(), LocalDateTime.now(), 100, 2, 3, null);
 			articleDAO.insert(articleTest);
 			message = "L'article a bien été inséré.";
 		}catch(SQLException | DALException e) {

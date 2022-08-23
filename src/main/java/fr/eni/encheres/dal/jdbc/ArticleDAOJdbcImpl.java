@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
@@ -34,8 +37,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				 //Alimentation du prepared statement
 				pstmt.setString(1, article.getNom());
 				pstmt.setString(2, article.getDescription());
-				pstmt.setDate(3, article.getDateDebutEncheres());
-				pstmt.setDate(4, article.getDateFinEncheres());
+				pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDateDebutEncheres()));
+				pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getDateFinEncheres()));
 				pstmt.setInt(5, article.getMiseAprix());
 				pstmt.setInt(6, article.getNoUtilisateur());
 				pstmt.setInt(7,article.getNoCategorie());

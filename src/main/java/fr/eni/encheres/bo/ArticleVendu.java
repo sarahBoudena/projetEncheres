@@ -2,6 +2,8 @@ package fr.eni.encheres.bo;
 
 
 import java.sql.Date;
+import java.time.LocalDateTime;
+
 
 
 public class ArticleVendu {
@@ -9,8 +11,8 @@ public class ArticleVendu {
 	private int noArticle;
 	private String nom;
 	private String description;
-	private Date dateDebutEncheres;
-	private Date dateFinEncheres;
+	private LocalDateTime dateDebutEncheres;
+	private LocalDateTime dateFinEncheres;
 	private int miseAprix;
 	private int prixVente;
 	private String etatVente;
@@ -19,7 +21,7 @@ public class ArticleVendu {
 	private String image;
 	
 	
-	public ArticleVendu(int noArticle, String nom, String description, Date dateDebutEncheres, Date dateFinEncheres,
+	public ArticleVendu(int noArticle, String nom, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int miseAprix, int noUtilisateur, int noCategorie, String image) {
 		this.noArticle = noArticle;
 		this.nom = nom;
@@ -35,7 +37,7 @@ public class ArticleVendu {
 		
 	}
 	
-	public ArticleVendu(String nom, String description, Date dateDebutEncheres,  Date dateFinEncheres,
+	public ArticleVendu(String nom, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
 			int miseAprix, int noUtilisateur, int noCategorie, String image) {
 		this.nom = nom;
 		this.description = description;
@@ -73,20 +75,20 @@ public class ArticleVendu {
 		this.description = description;
 	}
 
-	public Date getDateDebutEncheres() {
+	public LocalDateTime getDateDebutEncheres() {
 		return dateDebutEncheres;
 	}
 
-	public void setDateDebutEncheres (Date dateDebutEncheres) {
+	public void setDateDebutEncheres (LocalDateTime dateDebutEncheres) {
 		this.dateDebutEncheres = dateDebutEncheres;
 	}
 	
 
-	public Date getDateFinEncheres() {
+	public LocalDateTime getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 
-	public void setDateFinEncheres(Date dateFinEncheres) {
+	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 	public int getMiseAprix() {

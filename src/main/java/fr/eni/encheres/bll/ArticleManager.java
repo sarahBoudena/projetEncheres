@@ -2,6 +2,7 @@ package fr.eni.encheres.bll;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,13 +35,14 @@ public class ArticleManager {
 		if (article == null) {
 			article = new ArticleManager();
 		}
+		article.initialiserBll();
 		return article;
 	}
 
 	
 	public void insert(ArticleVendu article) throws BLLException{
 		try {
-		VerifArticle(article.getNom(), article.getDescription(), article.getDateDebutEncheres(), article.getDateFinEncheres(), article.getMiseAprix(), article.getNoUtilisateur(), article.getNoCategorie(), article.getEtatVente(), article.getImage());
+		VerifArticle(article);
 		articleDAO.insert(article);
 	} catch(DALException e) {
 		bllException.addException(e);
@@ -49,46 +51,47 @@ public class ArticleManager {
 	}
 	
 	
-	private void VerifArticle(String nom, String description, Date dateDebut, Date dateFin, int miseAPrix,
-								int noUtilisateur, int noCategorie, String etatVente, String image) {
+	private void VerifArticle(ArticleVendu article) throws BLLException {
 		Date dateDuJour = Date.valueOf(LocalDate.now());
 		
 		
 	// Vérif nom de l'article
-		if (nom == null || nom.isEmpty() || nom.isBlank()) {
+		if (article.getNom() == null || article.getNom().isEmpty() || article.getNom().isBlank()) {
 			Exception e = new Exception("Le nom de l'article est obligatoire.");
 			bllException.addException(e);
 		}
 	// Vérif description de l'article
-		if (description == null || description.isEmpty() || description.isBlank()) {
+		if (article.getDescription() == null || article.getDescription().isEmpty() || article.getDescription().isBlank()) {
 			Exception e = new Exception("Veuillez décrire votre article.");
 			bllException.addException(e);
 		}
 	// Verif Date de début de la vente/		
-		if (dateDebut == null || dateDebut.compareTo(dateDuJour)<0) {
-			Exception e = new Exception("Veuillez choisir une date valide.");
+		if (article.getDateDebutEncheres() == null || article.getDateDebutEncheres().compareTo(LocalDateTime.now())<0) {
+			Exception e = new Exception("La date de début de l'enchère ne peut pas être antérieur à la date du jour.");
 			bllException.addException(e);
 		}
-		if(dateFin == null || dateFin.compareTo(dateDebut)<0) {
-			Exception e = new Exception("Veuillez choisir une date valide.");
+		if(article.getDateFinEncheres() == null || article.getDateFinEncheres().compareTo(article.getDateDebutEncheres()) < 0) {
+			Exception e = new Exception("La date de fin de l'enchère ne peut pas être antérieur à la date de début de l'enchère.");
 			bllException.addException(e);
 			}
-		if(miseAPrix < 0) {
-			Exception e = new Exception("Veuillez choisir une date valide.");
+		if(article.getMiseAprix() < 0) {
+			Exception e = new Exception("Le prix de vente ne peut pas être négatif.");
 			bllException.addException(e);
 		}
-		if(noUtilisateur <= 0) {
+		if(article.getNoUtilisateur() <= 0) {
 			Exception e = new Exception("Merci de vous connecter.");
 			bllException.addException(e);
 		}
-		if(noCategorie <= 0) {
+		if(article.getNoCategorie() <= 0) {
 			Exception e = new Exception("Merci de choisir une catégorie.");
 			bllException.addException(e);
 		}
-		if (etatVente == null || etatVente.isEmpty() || etatVente.isBlank()) {
+		if (article.getEtatVente() == null || article.getEtatVente().isEmpty() || article.getEtatVente().isBlank()) {
 			Exception e = new Exception("L'état de l'article est obligatoire.");
 			bllException.addException(e);
 		}
-		
+		if (bllException.getBLLExceptions().size() > 0) {
+			throw bllException;
+		}
 	}
 }

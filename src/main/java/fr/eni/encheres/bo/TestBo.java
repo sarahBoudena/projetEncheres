@@ -3,6 +3,7 @@ package fr.eni.encheres.bo;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class TestBo {
@@ -20,7 +21,7 @@ public class TestBo {
 		System.out.println(id);
 		
 		
-		ArticleVendu JoseArt = new ArticleVendu(1, "Jose", "C'est Jose", Date.valueOf(LocalDate.now()), Date.valueOf(LocalDate.now()), 100, 1, 2, null);
+		ArticleVendu JoseArt = new ArticleVendu(1, "Jose", "C'est Jose", LocalDateTime.now(),LocalDateTime.now(), 100, 1, 2, null);
 		System.out.println(JoseArt.toString());
 	
 	
