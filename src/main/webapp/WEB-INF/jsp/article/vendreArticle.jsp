@@ -18,20 +18,33 @@
 
 <h2>Vendre un article</h2>
 
+		<c:if test="${error != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+			       <c:forEach var="element" items="${error.getBLLExceptions()}">
+				       		<li>${element.getMessage()}</li>
+				       </c:forEach>
+				</ul>
+			</div>
+		</c:if>
+
 	<form action="<%=request.getContextPath()%>/article/vente" method="post">
 		<div class="Container">
 			<div>
 				<label>Article :</label>
-				<input type="text" name="nomArticle" id="name" placeholder="Nom de l'article"  required="required">
+				<input type="text" name="nom" value="${requestScope.nom}" id="name" placeholder="Nom de l'article"  required="required">
 			</div>	
 			<div>
 				<label>Description :</label>
-				<textarea rows="5" cols="40" name="description" id="description" placeholder="Description de l'article mis en vente..."></textarea>
+				<textarea rows="5" cols="40" name="description" id="description" required="required" placeholder="Description de l'article mis en vente...">${requestScope.description}</textarea>
 			</div>
 			<div>
 				<label>Catégorie :</label>
-				<select>
-					<option value="">-- Catégorie --</option>
+				<select name="categorie">
+					<option value="" disabled selected>-- Catégorie --</option>
 					<option value="Informatique">Informatique</option>
 					<option value="Ameublement">Ameublement</option>
 					<option value="Vêtement">Vêtement</option>
@@ -40,15 +53,15 @@
 			</div>
 			<div>
 				<label>Mise à prix :</label>
-				<input type="number" min="0" name="miseAPrix">
+				<input type="number" min="0" name="PrixInitial" value="${requestScope.PrixInitial}">
 			</div>
 			<div>
 				<label>Début de l'enchère :</label>
-				<input type="datetime-local" name="dateDebut">
+				<input type="datetime-local" name="dateDebut" required="required">
 			</div>	
 			<div>
 				<label>Fin de l'enchère :</label>
-				<input type="datetime-local" name="dateFin">
+				<input type="datetime-local" name="dateFin" required="required">
 			</div>	
 			<div>
 				<button type ="submit">Enregistrer</button>

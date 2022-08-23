@@ -3,6 +3,7 @@ package fr.eni.encheres.tests;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,8 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		
 		String nom = "ballon";
 		String description = "C'est un ballon rouge";
-		Date dateDebut = Date.valueOf(LocalDate.now());
-		Date dateFin = Date.valueOf(LocalDate.now());
+		LocalDateTime dateDebut = LocalDateTime.now();
+		LocalDateTime dateFin = LocalDateTime.now();
 		int miseAPrix = 100;
 		int noUser = 3;
 		int noCat = 4;
