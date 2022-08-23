@@ -43,7 +43,7 @@
 			</div>
 			<div>
 				<label>Catégorie :</label>
-				<select name="categorie">
+				<select name="categorie" required="required">
 					<option value="" disabled selected>-- Catégorie --</option>
 					<option value="Informatique">Informatique</option>
 					<option value="Ameublement">Ameublement</option>
@@ -63,6 +63,21 @@
 				<label>Fin de l'enchère :</label>
 				<input type="datetime-local" name="dateFin" required="required">
 			</div>	
+			<fieldset>
+				<legend>Retrait</legend>
+					<div>
+					<label>Rue :</label>
+					<input type="text" value="${user.rue}">
+					</div>
+					<div>
+					<label>Code Postal :</label>
+					<input type="text" value="${user.codePostal}">
+					</div>
+					<div>
+					<label>Ville :</label>
+					<input type="text" value="${user.ville}">
+					</div>
+			</fieldset>
 			<div>
 				<button type ="submit">Enregistrer</button>
 			</div>

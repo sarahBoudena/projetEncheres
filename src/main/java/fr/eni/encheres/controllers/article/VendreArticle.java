@@ -60,6 +60,10 @@ public class VendreArticle extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur user =(Utilisateur) session.getAttribute("user");
 		int NoUtilisateur = user.getNoUtilisateur();
+		String rue = user.getRue();
+		String codePostal = user.getCodePostal();
+		String ville = user.getVille();
+		
 		
 		ArticleVendu article =null;
 		String message="";
@@ -85,6 +89,9 @@ public class VendreArticle extends HttpServlet {
 		request.setAttribute("description", description);
 		request.setAttribute("categorie", categorie);
 		request.setAttribute("PrixInitial", PrixInitial);
+		request.setAttribute("rue", rue);
+		request.setAttribute("codePostal", codePostal);
+		request.setAttribute("ville", ville);
 		
 			
 		try {
@@ -93,14 +100,17 @@ public class VendreArticle extends HttpServlet {
 			
 			int noCat = 0;
 			if (categorie.equals("Informatique")) {
-					noCat=1;
-			}	if (categorie.equals("Ameublement")) {
-					noCat=2;
-				} if (categorie.equals("Vêtement")) {
-					noCat=3;
-					} if (categorie.equals("Sport & Loisir")){
-						noCat=4;
-						}
+				noCat=1;
+			}	
+			if (categorie.equals("Ameublement")) {
+				noCat=2;
+			} 
+			if (categorie.equals("Vêtement")) {
+				noCat=3;
+			}
+			if (categorie.equals("Sport & Loisir")){
+				noCat=4;
+			}
 			
 			article = new ArticleVendu(nom,description,dateDebutComplet,dateFinComplet,miseAPrix,NoUtilisateur,noCat,null);
 			mng.insert(article);
