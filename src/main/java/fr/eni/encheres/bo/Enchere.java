@@ -36,12 +36,12 @@ public class Enchere {
 	public void setIdArticle(int idArticle) {
 		this.idArticle = idArticle;
 	}
-
-	public Date getDateEnchere() {
+	
+	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
 	}
 
-	public void setDateEnchere(Date dateEnchere) {
+	public void setDateEnchere(LocalDateTime dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 
