@@ -92,10 +92,9 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return null;
 	}
 
-	public static void launchProc () throws DALException {
+	public void launchProc () throws DALException {
 		try (Connection cnx = ConnectionProvider.getConnection();
 	            PreparedStatement pstmt = cnx.prepareCall(PROCAUTO)){ 
-			
 			try {
 				cnx.setAutoCommit(false);
 				pstmt.execute();
@@ -105,7 +104,6 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
                 cnx.rollback();
                 throw e;
 			}
-			
 		} catch (SQLException e) {
 			DALException ex = new DALException("Erreur dans la DAL : Erreur lors du lancement de la procédure stockée." + e.getMessage());
             throw ex;

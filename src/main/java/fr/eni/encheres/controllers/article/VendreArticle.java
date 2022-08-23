@@ -99,18 +99,27 @@ public class VendreArticle extends HttpServlet {
 			int miseAPrix = Integer.parseInt(PrixInitial);
 			
 			int noCat = 0;
-			if (categorie.equals("Informatique")) {
-				noCat=1;
-			}	
-			if (categorie.equals("Ameublement")) {
-				noCat=2;
-			} 
-			if (categorie.equals("Vêtement")) {
-				noCat=3;
+			
+			switch(categorie){
+		       case "Informatique": noCat=1; break;
+		       case "Ameublement": noCat=2; break;
+		       case "Vêtement": noCat=3; break;
+		       case "Sport & Loisir": noCat=4; break;
 			}
-			if (categorie.equals("Sport & Loisir")){
-				noCat=4;
-			}
+			System.out.println(noCat);
+//			
+//			if (categorie.equals("Informatique")) {
+//				noCat=1;
+//			}	
+//			if (categorie.equals("Ameublement")) {
+//				noCat=2;
+//			} 
+//			if (categorie.equals("Vêtement")) {
+//				noCat=3;
+//			}
+//			if (categorie.equals("Sport & Loisir")){
+//				noCat=4;
+//			}
 			
 			article = new ArticleVendu(nom,description,dateDebutComplet,dateFinComplet,miseAPrix,NoUtilisateur,noCat,null);
 			mng.insert(article);

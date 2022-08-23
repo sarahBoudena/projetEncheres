@@ -78,17 +78,17 @@ public class TesterUpdate extends HttpServlet {
 //			message = "Erreur lors de la mise à jour de l'utilisateur.";
 //		}
 //		--------------------------------- test de la procédure stockée ---------------------------
-		String message="";
-		try {
-			ArticleDAOJdbcImpl.launchProc();
-			message = "L'utilisateur a bien ete modifie.";
-		}catch(DALException e) {
-			e.printStackTrace();
-			message = "Erreur lors de l'exécution de la procédure";
-		}
-		
-		
-		response.getWriter().append("Test d'insertion dans la BDD : " + message);
+//		String message="";
+//		try {
+//			ArticleDAOJdbcImpl.launchProc();
+//			message = "L'utilisateur a bien ete modifie.";
+//		}catch(DALException e) {
+//			e.printStackTrace();
+//			message = "Erreur lors de l'exécution de la procédure";
+//		}
+//		
+//		
+//		response.getWriter().append("Test d'insertion dans la BDD : " + message);
 
 	
 	}

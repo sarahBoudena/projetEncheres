@@ -13,7 +13,6 @@ import fr.eni.encheres.dal.DAOFactory;
 
 public class ArticleManager {
 	private BLLException bllException = new BLLException();
-	
 	private ArticleDAO articleDAO;
 	public static ArticleManager article;
 	private List<ArticleVendu> listeArticle;
@@ -42,14 +41,22 @@ public class ArticleManager {
 	
 	public void insert(ArticleVendu article) throws BLLException{
 		try {
-		VerifArticle(article);
-		articleDAO.insert(article);
-	} catch(DALException e) {
-		bllException.addException(e);
-		throw bllException;
-	}
+			VerifArticle(article);
+			articleDAO.insert(article);
+		} catch(DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
 	}
 	
+	public void appelProcedureStockee () throws BLLException{
+		try {
+			articleDAO.launchProc();;
+		} catch(DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+	}
 	
 	private void VerifArticle(ArticleVendu article) throws BLLException {
 		Date dateDuJour = Date.valueOf(LocalDate.now());
