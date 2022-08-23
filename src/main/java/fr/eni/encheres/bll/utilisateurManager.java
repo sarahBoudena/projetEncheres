@@ -62,6 +62,7 @@ public class utilisateurManager {
 	
 	public List<String> update (Utilisateur oldUser, Utilisateur newUser) throws BLLException{
 		try {
+			verifUtilisateur(newUser.getPseudo(), newUser.getNom(), newUser.getPrenom(), newUser.getEmail(), newUser.getTelephone(), newUser.getRue(), newUser.getCodePostal(), newUser.getVille(), newUser.getMotDePasse());
 			verifModifAddMessage(oldUser, newUser);
 			if (listeMessageUpdate.size()>0) {
 				daoUser.update(newUser);
@@ -90,7 +91,6 @@ public class utilisateurManager {
 	
 	public Utilisateur selectById(int id) throws BLLException{
 		Utilisateur user = null;
-		
 		return user;
 	}
 
@@ -103,7 +103,7 @@ public class utilisateurManager {
 		
 		//Vérif pseudo caractères alphanumériques
 		Pattern p = Pattern.compile("^[a-zA-Z0-9]*$");
-		if (!email.matches("^[a-zA-Z0-9]*$") || email.isBlank() || email.isEmpty()) {
+		if (!pseudo.matches("^[a-zA-Z0-9]*$")) {
 			Exception e = new Exception("Le pseudo ne peut contenir que des caractères alphanumériques.");
 			bllException.addException(e);
 		}
@@ -172,7 +172,7 @@ public class utilisateurManager {
 
 	private void verifModifAddMessage(Utilisateur oldUser, Utilisateur newUser) {
 //		affiche un message par modification détectée
-		if (!oldUser.getPseudo().equals(newUser.getPseudo())) {
+		if (!oldUser.getPseudo().equals(newUser.getPseudo())) {	
 			listeMessageUpdate.add("votre pseudo a été modifié");
 		}
 		if (!oldUser.getNom().equals(newUser.getNom())) {

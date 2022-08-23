@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class SinscrireServlet
  */
-@WebServlet("/utilisateur/inscription")
+@WebServlet("/inscription")
 public class SinscrireServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
