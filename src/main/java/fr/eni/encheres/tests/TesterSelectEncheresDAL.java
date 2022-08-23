@@ -21,13 +21,13 @@ import fr.eni.encheres.dal.EnchereDAO;
  * Servlet implementation class TesterSelectEncheres
  */
 @WebServlet("/TesterSelectEncheres")
-public class TesterSelectEncheres extends HttpServlet {
+public class TesterSelectEncheresDAL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TesterSelectEncheres() {
+    public TesterSelectEncheresDAL() {
         super();
         // TODO Auto-generated constructor stub
     }
