@@ -1,7 +1,8 @@
 package fr.eni.encheres.tests;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,24 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dal.ConnectionProvider;
-import fr.eni.encheres.dal.DALException;
-import fr.eni.encheres.dal.DAOFactory;
-import fr.eni.encheres.dal.UtilisateurDAO;
-
+import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.EnchereManager;
+import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.ArticleVendu;
 
 /**
- * Servlet implementation class TesterCnxUser
+ * Servlet implementation class TesterSelectEnchereBLL
  */
-@WebServlet("/TesterCnxUser")
-public class TesterCnxUser extends HttpServlet {
+@WebServlet("/TesterSelectEnchereBLL")
+public class TesterSelectEnchereBLL extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TesterCnxUser() {
+    public TesterSelectEnchereBLL() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +35,17 @@ public class TesterCnxUser extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message="";
-		UtilisateurDAO userDAO = DAOFactory.getUtilisateurDAO();
+		EnchereManager mng = EnchereManager.getInstance();
+		List<ArticleVendu> listeEncheres = new ArrayList<ArticleVendu>();
 		try {
-			ConnectionProvider.getConnection();
-//			Utilisateur test1 = userDAO.selectByLogin("tbluth@campus.fr", "Pa$$w0rd");
-			Utilisateur test1 = userDAO.selectById(3);
-			System.out.println(test1.toString());
-			
-			if(test1 == null) {
-				throw new DALException();
-			}
-			else {
-				message = "Connexion utilisateur test1 réussie.";
-			}
-		
-		} catch (DALException | SQLException  e) {
-			message = "Erreur de connexion";
+			listeEncheres = mng.getListeEncheres();
+			message = "La liste a bien été récupérée";
+			System.out.println(listeEncheres);
+		} catch (BLLException e) {
+			message = "Problème lors de la récupération de la liste";
+			e.printStackTrace();
 		}
-		response.getWriter().append("Test de connexion : " + message);
-							
+		response.getWriter().append("Test d'insertion BLL : " + message);
 	}
 
 	/**
@@ -64,4 +55,5 @@ public class TesterCnxUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

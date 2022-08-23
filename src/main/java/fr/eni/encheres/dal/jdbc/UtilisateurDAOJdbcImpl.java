@@ -18,6 +18,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             + "                 code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?\r\n"
             + "                 WHERE no_utilisateur = ?;";
     private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
+    private static final String SELECTUSERBYID ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
     
     @Override
     public Utilisateur selectByLogin(String email, String mdp) throws DALException {
@@ -170,8 +171,50 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     }
     @Override
     public Utilisateur selectById(int id) throws DALException {
-        // TODO Auto-generated method stub
-        return null;
+    	 Utilisateur personneSelectionnee = null;
+         //Ouverture de la connexion + déclaration du prepared statement
+         try(Connection cnx = ConnectionProvider.getConnection();
+             PreparedStatement pstmt = cnx.prepareStatement(SELECTUSERBYID)){
+             //Désactivation du commit automatique en base > sera pris en charge dans le code java
+             try {
+                 cnx.setAutoCommit(false);
+                 //Alimentation prepared statement sur la sélection de l'utilisateur
+                 pstmt.setInt(1, id);
+                 ResultSet res = pstmt.executeQuery();
+                 if(res.next()) {
+                     String pseudo = res.getString("pseudo");
+                     String nom = res.getString("nom");
+                     String prenom = res.getString("prenom");
+                     String mail = res.getString("email");
+                     String telephone = res.getString("telephone");
+                     String rue = res.getString("rue");
+                     String codePostal = res.getString("code_postal");
+                     String ville = res.getString("ville");
+                     int credit = res.getInt("credit");
+                     int admin = res.getInt("administrateur");
+                     boolean administrateur;
+                     if (admin == 0) {
+                         administrateur = false;
+                     }
+                     else {
+                         administrateur = true;
+                     }
+                     personneSelectionnee = new Utilisateur(id, pseudo, nom, prenom, mail, telephone, rue, codePostal, ville, credit, administrateur);
+                     //Validation de l'ajout en base si aucune erreur n'a été rencontrée
+                     cnx.commit();
+                 } else {
+                     throw new SQLException();
+                 }
+             }catch (SQLException e) {
+                 //Si jamais une erreur est catchée lors de l'execution, retour arrière pour récupérer une base propre
+                 cnx.rollback();
+                 throw e;
+             }
+         }catch (SQLException e) {
+             DALException ex = new DALException("Erreur dans la DAL : Utilisateur ou mot de passe incorrect." + e.getMessage());
+             throw ex;
+         }
+         return personneSelectionnee;
     }
 	
 }
