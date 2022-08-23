@@ -20,6 +20,7 @@ import fr.eni.encheres.dal.ConnectionProvider;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
+import fr.eni.encheres.dal.jdbc.ArticleDAOJdbcImpl;
 
 /**
  * Servlet implementation class TesterInsertDAL
@@ -53,29 +54,40 @@ public class TesterUpdate extends HttpServlet {
 //		response.getWriter().append("Test d'insertion dans la BDD : " + message);
 		
 //		---------------test de la BLL --------------------
+//		String message="";
+//		String listeMessage ="";
+//		utilisateurManager mng = utilisateurManager.getInstance();
+//		List<String> listeMessageUpdate = new ArrayList<String>();
+//		try {
+//			Utilisateur userTestOld = new Utilisateur("JDDS", "DUPONDS", "Jean-DavidS", "sxbluth@campus.fr", "0987654321", "rue de la liberte", "44130", "Bouvron", "Pa$$w0rd", 2, false);
+//			userTestOld.setNoUtilisateur(5);
+//			
+//			Utilisateur userTestNew = new Utilisateur("JDD", "DUPON", "Jean-Davi", "jdds@campus.fr", "0987654321", "rue de la libere", "44130", "Bouvron", "Pa$$w0rd", 2, false);
+//			userTestNew.setNoUtilisateur(5);
+//			
+//			listeMessageUpdate = mng.update(userTestOld,userTestNew);
+//			for (String string : listeMessageUpdate) {
+//				listeMessage += (string + "\n" );  
+//				System.out.println(string);
+//			}
+//			
+//			
+//			message = "L'utilisateur a bien ete modifie.";
+//		}catch(BLLException e) {
+//			e.printStackTrace();
+//			message = "Erreur lors de la mise à jour de l'utilisateur.";
+//		}
+//		--------------------------------- test de la procédure stockée ---------------------------
 		String message="";
-		String listeMessage ="";
-		utilisateurManager mng = utilisateurManager.getInstance();
-		List<String> listeMessageUpdate = new ArrayList<String>();
 		try {
-			Utilisateur userTestOld = new Utilisateur("JDDS", "DUPONDS", "Jean-DavidS", "sxbluth@campus.fr", "0987654321", "rue de la liberte", "44130", "Bouvron", "Pa$$w0rd", 2, false);
-			userTestOld.setNoUtilisateur(5);
-			
-			Utilisateur userTestNew = new Utilisateur("JDD", "DUPON", "Jean-Davi", "jdds@campus.fr", "0987654321", "rue de la libere", "44130", "Bouvron", "Pa$$w0rd", 2, false);
-			userTestNew.setNoUtilisateur(5);
-			
-			listeMessageUpdate = mng.update(userTestOld,userTestNew);
-			for (String string : listeMessageUpdate) {
-				listeMessage += (string + "\n" );  
-				System.out.println(string);
-			}
-			
-			
+			ArticleDAOJdbcImpl.launchProc();
 			message = "L'utilisateur a bien ete modifie.";
-		}catch(BLLException e) {
+		}catch(DALException e) {
 			e.printStackTrace();
-			message = "Erreur lors de la mise � jour de l'utilisateur.";
+			message = "Erreur lors de l'exécution de la procédure";
 		}
+		
+		
 		response.getWriter().append("Test d'insertion dans la BDD : " + message);
 
 	

@@ -17,7 +17,8 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
 	private static final String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_enchere, date_fin_enchere, prix_initial, no_utilisateur, no_categorie, etat_vente, image)\r\n"
 			+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+	private static final String PROCAUTO = "{call updateArticle}";
+	
 	@Override
 	public ArticleVendu selectByLogin(String login, String mdp) throws DALException {
 		// TODO Auto-generated method stub
@@ -88,4 +89,23 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		return null;
 	}
 
+	public static void launchProc () throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection();
+	            PreparedStatement pstmt = cnx.prepareCall(PROCAUTO)){ 
+			
+			try {
+				cnx.setAutoCommit(false);
+				pstmt.execute();
+				cnx.commit();
+			} catch(SQLException e) {
+				   //Si jamais une erreur est catchée lors de l'execution, retour arrière pour récupérer une base propre
+                cnx.rollback();
+                throw e;
+			}
+			
+		} catch (SQLException e) {
+			DALException ex = new DALException("Erreur dans la DAL : Erreur lors du lancement de la procédure stockée." + e.getMessage());
+            throw ex;
+		}
+	}
 }
