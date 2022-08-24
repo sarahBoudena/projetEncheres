@@ -82,7 +82,23 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 	}
 
 	@Override
-	public void update(Enchere a) throws DALException {
+	public void update(Enchere enchere) throws DALException {
+		try (Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(UPDATE)){
+			try {
+				cnx.setAutoCommit(false);
+				pstmt.setInt(1, enchere.getIdUser());
+				pstmt.setTimestamp(2, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
+				pstmt.setInt(3, enchere.getMontantEnchere());
+				pstmt.setInt(4, 0);
+			} catch (SQLException e) {
+				
+			}
+		} catch (SQLException e ) {
+			DALException ex = new DALException("Erreur lors de la mise à jour de l'enchère ");
+            e.printStackTrace();
+            throw ex;
+		}
 		
 		
 	}
