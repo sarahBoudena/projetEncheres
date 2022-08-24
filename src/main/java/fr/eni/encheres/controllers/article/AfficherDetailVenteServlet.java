@@ -18,7 +18,7 @@ import fr.eni.encheres.bo.ArticleVendu;
 /**
  * Servlet implementation class AfficherDetailVenteServlet
  */
-@WebServlet("/article/encherir")
+@WebServlet("/article/detail")
 public class AfficherDetailVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
