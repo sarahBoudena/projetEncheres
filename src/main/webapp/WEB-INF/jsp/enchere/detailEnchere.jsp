@@ -16,6 +16,19 @@
 <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	<main>
 		<h2>Détail vente</h2>
+		<c:if test="${error != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+			       <c:forEach var="element" items="${error.getBLLExceptions()}">
+			       		<li>${element.getMessage()}</li>
+			       </c:forEach>
+			    </ul>
+		    </div>
+		</c:if>
+		
 		<div>
 			<ul class = "row list-group-flush">
 								
@@ -41,7 +54,7 @@
 				<li class = "col-6 text-left list-group-item"> Adresse du vendeur</li>
 			
 				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=nomvendeur"> pseudo du vendeur</a></li>
+				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=idvendeur"> pseudo du vendeur</a></li>
 			</ul>
 		</div>
 	</main>

@@ -3,7 +3,7 @@
 <Context>
 	
 	<Resource	
-	name="jdbc/pool_cnx_encheres"
+	name="jdbc/pool_cnx_qsr"
 	type="javax.sql.DataSource"
 	driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 	
@@ -11,9 +11,9 @@
 	username="user_encheres"
 	password="Pa$$w0rd"
 		
-	maxIdle="3"
-	maxTotal="10"
-	maxWaitMillis="15000"
+	maxIdle="30"
+	maxTotal="100"
+	maxWaitMillis="10000"
 		
 	removeAbandoned="true"
 	removeAbandonedTimeout="10"

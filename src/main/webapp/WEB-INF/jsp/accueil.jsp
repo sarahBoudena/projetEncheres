@@ -36,6 +36,16 @@
 	                <li>un autre message....</li>
 	            </ul>
 	        </div>
+	        <c:if test="${success != null}">
+				<div class="d-flex alert-success">
+				    <div class="col-2 p-2">
+				        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/gagnant.png" alt ="icone reussite" >
+				    </div>
+				    <ul class="col-10 list-unstyled p-2">
+			       		<li>${success}</li>
+				    </ul>
+			    </div>
+			</c:if>
 	        <!--filtre-->
 	        <form class="form-filter border mb-3" action="#" method="">
 	            <div class="row">
