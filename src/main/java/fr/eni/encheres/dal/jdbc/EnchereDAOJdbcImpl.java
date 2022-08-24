@@ -149,8 +149,10 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				pstmt.setTimestamp(2, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
 				pstmt.setInt(3, enchere.getMontantEnchere());
 				pstmt.setInt(4, enchere.getIdArticle());
+				cnx.commit();
 			} catch (SQLException e) {
-				
+				cnx.rollback();
+				e.printStackTrace();
 			}
 		} catch (SQLException e ) {
 			DALException ex = new DALException("Erreur lors de la mise à jour de l'enchère ");
