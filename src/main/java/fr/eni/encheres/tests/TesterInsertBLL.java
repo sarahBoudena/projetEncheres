@@ -58,7 +58,7 @@ public class TesterInsertBLL extends HttpServlet {
 		
 		try {
 //			mng.insert(pseudo, nom, prenom, email, tel, rue, cp, ville, mdp);
-////			mng.selectById("josetheking@campus.fr", "JojoLeBoss");
+//			mng.selectById("josetheking@campus.fr", "JojoLeBoss");
 //			message = "Osez José !";
 			
 			mng.insert(jose);

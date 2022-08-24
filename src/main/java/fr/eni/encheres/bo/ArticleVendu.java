@@ -1,8 +1,9 @@
 package fr.eni.encheres.bo;
 
 
-import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -19,6 +20,10 @@ public class ArticleVendu {
 	int noUtilisateur;
 	int noCategorie;
 	private String image;
+	private List<Utilisateur> listeUtilisateur;
+	private List<Enchere> listeEnchere;
+	private List<Categorie> listeCategorie;
+	
 	
 	
 	public ArticleVendu(int noArticle, String nom, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
@@ -33,8 +38,10 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
 		this.image = image;
-		
-		
+		listeUtilisateur = new ArrayList<Utilisateur>();
+		listeEnchere = new ArrayList<Enchere>();
+		listeCategorie = new ArrayList<Categorie>();
+	
 	}
 	
 	public ArticleVendu(String nom, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
@@ -48,6 +55,9 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
 		this.image = image;
+		listeUtilisateur = new ArrayList<Utilisateur>();
+		listeEnchere = new ArrayList<Enchere>();
+		listeCategorie = new ArrayList<Categorie>();
 		
 	}
 
@@ -139,6 +149,42 @@ public class ArticleVendu {
 		this.image = image;
 	}
 
+	public List<Utilisateur> getUtilisateur() {
+		return listeUtilisateur;
+	}
+
+	public void setUtilisateur(List<Utilisateur> utilisateur) {
+		this.listeUtilisateur = utilisateur;
+	}
+
+	public List<Enchere> getEnchere() {
+		return listeEnchere;
+	}
+
+	public void setEnchere(List<Enchere> enchere) {
+		this.listeEnchere = enchere;
+	}
+
+	public List<Categorie> getCategorie() {
+		return listeCategorie;
+	}
+
+	public void setCategorie(List<Categorie> categorie) {
+		this.listeCategorie = categorie;
+	}
+
+	public void addUtilisateur(Utilisateur user) {
+		listeUtilisateur.add(user);
+	}
+	
+	public void addEnchere(Enchere enchere) {
+		listeEnchere.add(enchere);
+	}
+	
+	public void addCategorie (Categorie categorie) {
+		listeCategorie.add(categorie);
+	}
+	
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nom=" + nom + ", description=" + description
