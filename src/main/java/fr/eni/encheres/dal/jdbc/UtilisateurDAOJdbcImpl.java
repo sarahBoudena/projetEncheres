@@ -211,7 +211,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                  throw e;
              }
          }catch (SQLException e) {
-             DALException ex = new DALException("Erreur dans la DAL : Utilisateur ou mot de passe incorrect." + e.getMessage());
+             DALException ex = new DALException("Erreur dans la DAL : Utilisateur inconnu." + e.getMessage());
              throw ex;
          }
          return personneSelectionnee;

@@ -101,7 +101,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 
 	@Override
 	public Enchere selectById(int id) throws DALException {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

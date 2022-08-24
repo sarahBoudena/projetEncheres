@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.ArticleDAO;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
@@ -48,6 +49,19 @@ public class ArticleManager {
 			throw bllException;
 		}
 	}
+	
+	public ArticleVendu selectById(int id) throws BLLException{
+		ArticleVendu article = null;
+		try {
+			article = articleDAO.selectById(id);
+		} catch (DALException e) {
+			Exception ex = new Exception(e.getMessage());
+			bllException.addException(ex);
+			throw bllException;
+		}
+		return article;
+	}
+
 	
 	public void appelProcedureStockee () throws BLLException{
 		try {
