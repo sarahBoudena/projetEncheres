@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.ConnectionProvider;
@@ -44,7 +45,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
                     administrateur = true;
                 }
                 
-//                encheresEnCours.add(
+//              encheresEnCours.add(
                 
 				new ArticleVendu(	res.getInt("a.no_article"),
 									res.getString("a.nom_article"),
@@ -58,7 +59,8 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 									res.getInt("a.no_categorie"),
 									res.getString("a.image")
 									//Enchere si !=null
-									//Utilisateur(vendeur
+									//Utilisateur(vendeur)
+									//Categorie
 									);
 				
 				new Enchere(		res.getInt("e.no_utilisateur"),
@@ -80,6 +82,9 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 									res.getString("u.ville"),
 									res.getInt("u.credit"),
 									administrateur);
+				
+				new Categorie(		res.getInt("c.no_categorie"),
+									res.getString("c.libelle"));
 //				);
 				
 			}
