@@ -16,7 +16,10 @@ import fr.eni.encheres.dal.EnchereDAO;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 	
-	private static String SELECTENCHERESEC = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_enchere, a.date_fin_enchere, a.prix_initial, a.no_categorie, a.no_utilisateur, a.image FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur LEFT JOIN  ENCHERES e ON e.no_article = a.no_article WHERE a.etat_vente = 'EC'";
+	private static String SELECTENCHERESEC = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_enchere, a.date_fin_enchere, a.prix_initial, a.no_categorie, a.no_utilisateur, a.image, "
+			+ "e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere,"
+			+ "u.no_utilisateur, u.pseudo, u.nom, u.prenom, u.email, u.telephone, u.rue, u.code_postal, u.ville, u.credit "
+			+ "FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur LEFT JOIN  ENCHERES e ON e.no_article = a.no_article WHERE a.etat_vente = 'EC'";
 	
 	
 	@Override
@@ -29,17 +32,26 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			ResultSet res = pstmt.executeQuery();
 			
 			while (res.next()) {
-				encheresEnCours.add(new ArticleVendu(res.getInt("no_article"),
-												res.getString("nom_article"),
-												res.getString("description"),
-				LocalDateTime.of((res.getDate("date_debut_enchere").toLocalDate()),
-				(res.getTime("date_debut_enchere").toLocalTime())),
-				LocalDateTime.of((res.getDate("date_fin_enchere").toLocalDate()),
-						(res.getTime("date_fin_enchere").toLocalTime())),
-												res.getInt("prix_initial"),
-												res.getInt("no_utilisateur"),
-												res.getInt("no_categorie"),
-												res.getString("image")));
+				new ArticleVendu(	res.getInt("no_article"),
+									res.getString("nom_article"),
+									res.getString("description"),
+									LocalDateTime.of((res.getDate("date_debut_enchere").toLocalDate()),
+									(res.getTime("date_debut_enchere").toLocalTime())),
+									LocalDateTime.of((res.getDate("date_fin_enchere").toLocalDate()),
+									(res.getTime("date_fin_enchere").toLocalTime())),
+									res.getInt("prix_initial"),
+									res.getInt("no_utilisateur"),
+									res.getInt("no_categorie"),
+									res.getString("image"));
+				
+				new Enchere(	res.getInt("no_utilisateur"),
+								res.getInt("no_article"),
+								LocalDateTime.of((res.getDate("date_enchere").toLocalDate()),
+								(res.getTime("datet_enchere").toLocalTime())),
+								res.getInt("montant_enchere"));
+				
+				
+				
 			}
 		} catch (SQLException e) {
 			DALException ex = new DALException("Erreur dans la DAL : impossible d'afficher les enchères en cours" + e.getMessage());
