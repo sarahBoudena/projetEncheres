@@ -59,7 +59,7 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		
 		ArticleVendu art = article.selectById(2);
 		message = "Select article ok";
-		System.out.println(art.getCategorie().getNoCategorie());
+		System.out.println(art.getCategorie().getLibelle());
 		
 		}catch(BLLException e) {
 			message += "\nErreur lors de l'insertion de l'article.";
