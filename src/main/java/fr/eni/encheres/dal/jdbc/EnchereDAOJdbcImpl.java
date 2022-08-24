@@ -90,7 +90,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				pstmt.setInt(1, enchere.getIdUser());
 				pstmt.setTimestamp(2, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
 				pstmt.setInt(3, enchere.getMontantEnchere());
-				pstmt.setInt(4, 0);
+				pstmt.setInt(4, enchere.getIdArticle());
 			} catch (SQLException e) {
 				
 			}
