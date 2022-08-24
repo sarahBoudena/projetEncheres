@@ -23,7 +23,7 @@
 		
 			
 			<li class = "col-6 text-right list-group-item" >Description :</li>
-			<li class = "col-6 text-left list-group-item"> Description article</li>
+			<li class = "col-6 text-left list-group-item"> ${requestScope.description}</li>
 		
 			<li class = "col-6 text-right list-group-item" >Catégorie :</li>
 			<li class = "col-6 text-left list-group-item"> Libelle categorie</li>
@@ -32,16 +32,17 @@
 			<li class = "col-6 text-left list-group-item"> Meilleure offre et nom de l'utilisateur</li>
 		
 			<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-			<li class = "col-6 text-left list-group-item"> Mise à prix de l'article</li>
+			<li class = "col-6 text-left list-group-item"> ${requestScope.miseAPrix}</li>
 		
 			<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
-			<li class = "col-6 text-left list-group-item">Date de la fin de l'enchère</li>
+			<li class = "col-6 text-left list-group-item">${requestScope.dateFinEnchere}</li>
 		
 			<li class = "col-6 text-right list-group-item" >Retrait :</li>
-			<li class = "col-6 text-left list-group-item"> Adresse du vendeur</li>
+			<li class = "col-6 text-left list-group-item"> ${requestScope.Utilisateur.getRue()}</li>
+			<li class = "col-6 text-left list-group-item"> ${requestScope.Utilisateur.getCodePostal() requestScope.Utilisateur.getVille()}</li>
 		
 			<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-			<li class = "col-6 text-left list-group-item"><a href="#"> pseudo du vendeur</a></li>
+			<li class = "col-6 text-left list-group-item"><a href="#">${requestScope.Utilisateur.getPseudo()}</a></li>
 		</ul>
 		</div>
 	
