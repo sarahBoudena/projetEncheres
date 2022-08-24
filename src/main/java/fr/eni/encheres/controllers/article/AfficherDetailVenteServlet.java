@@ -1,4 +1,4 @@
-package fr.eni.encheres.controllers.enchere;
+package fr.eni.encheres.controllers.article;
 
 import java.io.IOException;
 
@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AfficherDetailVenteServlet
  */
-@WebServlet("/enchere/detail/article")
+@WebServlet("/article/detail")
 public class AfficherDetailVenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

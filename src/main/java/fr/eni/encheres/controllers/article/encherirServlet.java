@@ -69,8 +69,12 @@ public class encherirServlet extends HttpServlet {
 		if (enchere!=null) {
 			
 		} else {
-			LocalDateTime dateDuJour = LocalDateTime.now();
-//			enchere = new Enchere(currentUser.getNoUtilisateur(), article.getNoArticle(),dateDuJour, nouveauMontantEnchere);
+			if(nouveauMontantEnchere < article.getPrixVente()) {
+				request.setAttribute("erreur", "votre enchère est inférieure au prix de vente !");
+				doGet(request, response);
+			}
+			enchere = new Enchere(currentUser.getNoUtilisateur(), article.getNoArticle(),LocalDateTime.now(), nouveauMontantEnchere);
+			
 		}
 		
 	}
