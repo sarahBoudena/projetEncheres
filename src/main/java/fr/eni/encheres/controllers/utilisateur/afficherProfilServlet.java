@@ -1,8 +1,10 @@
 package fr.eni.encheres.controllers.utilisateur;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -52,12 +57,13 @@ public class afficherProfilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("mine", null);
 		RequestDispatcher rd;
-		String mine = request.getParameter("mine")!=null ? request.getParameter("mine"):null;
-		request = createAttribute(request, mine);
+		String mine = request.getParameter("mine")!=null ? (String)request.getParameter("mine"):null;
+		request = createAttribute(request, mine);  /* j'agrémente les attributs de ma requete pour permettre l'affichage par la suite */
 		request.setAttribute("mine", mine);
 		rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/afficherUtilisateur.jsp");
 		rd.forward(request, response);
 	}
+	
 	private HttpServletRequest createAttribute(HttpServletRequest request, String mine) {
 		request.setAttribute("pseudo", null);
 		request.setAttribute("nom", null);
@@ -68,10 +74,10 @@ public class afficherProfilServlet extends HttpServlet {
 		request.setAttribute("codePostal", null);
 		request.setAttribute("ville", null);
 		
-		HttpSession session = request.getSession();
-		Utilisateur user = session.getAttribute("user")!=null ? (Utilisateur) session.getAttribute("user"):null;
-		
+//		---------- si le parametre du lien mine est "true", alors l'utilisateur veut voir son profil ------------
 		if(mine.equals("true")) {
+			HttpSession session = request.getSession();
+			Utilisateur user = session.getAttribute("user")!=null ? (Utilisateur) session.getAttribute("user"):null;
 			request.setAttribute("pseudo", user.getPseudo());
 			request.setAttribute("nom", user.getNom());
 			request.setAttribute("prenom", user.getPrenom());
@@ -81,16 +87,25 @@ public class afficherProfilServlet extends HttpServlet {
 			request.setAttribute("codePostal", user.getCodePostal());
 			request.setAttribute("ville", user.getVille());
 			} else {
-				
-				request.setAttribute("pseudo", user.getPseudo());
-				request.setAttribute("nom", user.getNom());
-				request.setAttribute("prenom", user.getPrenom());
-				request.setAttribute("email", user.getEmail());
-				request.setAttribute("telephone", user.getTelephone());
-				request.setAttribute("rue", user.getRue());
-				request.setAttribute("codePostal", user.getCodePostal());
-				request.setAttribute("ville", user.getVille());
+//		------------ sinon il veut voir le profil du vendeur, et l'ID du vendeur est envoyé à la place de true -----------
+				utilisateurManager userManager = utilisateurManager.getInstance();
+				Utilisateur vendeur = null;
+				try {
+					vendeur = userManager.selectById(Integer.parseInt(mine));
+				} catch (NumberFormatException | BLLException e) {
+					e.printStackTrace();
+				}
+				request.setAttribute("pseudo", vendeur.getPseudo());
+				request.setAttribute("nom", vendeur.getNom());
+				request.setAttribute("prenom", vendeur.getPrenom());
+				request.setAttribute("email", vendeur.getEmail());
+				request.setAttribute("telephone", vendeur.getTelephone());
+				request.setAttribute("rue", vendeur.getRue());
+				request.setAttribute("codePostal", vendeur.getCodePostal());
+				request.setAttribute("ville", vendeur.getVille());
 			}
 		return request;
 	}
+
+
 }

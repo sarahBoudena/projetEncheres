@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.utilisateurManager;
@@ -40,7 +41,7 @@ public class encherirServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/article/detailEnchere.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
         rd.forward(request, response);
 	}
 
@@ -49,50 +50,70 @@ public class encherirServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
+		ArticleManager articleManager = ArticleManager.getInstance();
 		ArticleVendu article = null;
-		int nouveauMontantEnchere = 0;
+		
+		try {
+			article = articleManager.selectById(22);
+		} catch (BLLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		int nouveauMontantEnchere = request.getParameter("montantEnchere")!=null ? Integer.parseInt(request.getParameter("montantEnchere")):null;
 		HttpSession session = request.getSession();
-		Utilisateur currentUser = (Utilisateur)session.getAttribute("user");
+		Utilisateur currentUser = session.getAttribute("user")!= null ? (Utilisateur)session.getAttribute("user"):null;
 		utilisateurManager userManager = utilisateurManager.getInstance();
 		EnchereManager enchereManager = EnchereManager.getInstance();
 		
-		if (nouveauMontantEnchere > currentUser.getCredit()) {
-			request.setAttribute("erreur", "votre crédit est insufisant pour enchérir !");
-			doGet(request, response);
-		}
 		try {
-			if (article.enchereIsNull()) {
-				if (nouveauMontantEnchere < article.getPrixVente()) {
-					request.setAttribute("erreur", "Votre enchère est insufisante !");
-					doGet(request, response);
-				}
-				Enchere enchere = new Enchere(currentUser.getNoUtilisateur(),article.getNoArticle(),LocalDateTime.now(),nouveauMontantEnchere);
-				article.setEnchere(enchere);
-				enchereManager.insert(enchere);
-				currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
-				session.setAttribute("user", currentUser);
-				userManager.update(currentUser, currentUser);
+			if (nouveauMontantEnchere > currentUser.getCredit()) {
+//				request.setAttribute("erreur", "votre crédit est insufisant pour enchérir !");
+				throw new Exception ("votre crédit est insufisant pour enchérir !");
+//				rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
 			} else {
-				Enchere enchere = article.getEnchere();
-				if (nouveauMontantEnchere <= enchere.getMontantEnchere()) {
-					request.setAttribute("erreur", "Votre enchère est insufisante !");
-					doGet(request, response);
-				}
-				Utilisateur oldUser = userManager.selectById(enchere.getIdUser());
-				oldUser.setCredit(oldUser.getCredit()+ enchere.getMontantEnchere());
-				enchere.setMontantEnchere(nouveauMontantEnchere);
-				enchere.setIdUser(currentUser.getNoUtilisateur());
-				enchereManager.update(enchere);
-				userManager.update(oldUser, oldUser);
-				currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
-				session.setAttribute("user", currentUser);
+					if (article.enchereIsNull()) {
+						if (nouveauMontantEnchere < article.getMiseAprix()) {
+//							request.setAttribute("erreur", "Votre enchère est insufisante !");
+							throw new Exception("Votre enchère est insufisante !");
+						} else {
+							Enchere enchere = new Enchere(currentUser.getNoUtilisateur(),article.getNoArticle(),LocalDateTime.now(),nouveauMontantEnchere);
+							article.setEnchere(enchere);
+							enchereManager.insert(enchere);
+							currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
+							session.setAttribute("user", currentUser);
+							userManager.update(currentUser, currentUser);
+						}
+	
+					} else {
+						Enchere enchere = article.getEnchere();
+						if (nouveauMontantEnchere <= enchere.getMontantEnchere()) {
+//							request.setAttribute("erreur", "Votre enchère est insufisante !");
+//							doGet(request, response);
+							throw new Exception("Votre enchère est insufisante !");
+						}
+						Utilisateur oldUser = userManager.selectById(enchere.getIdUser());
+						oldUser.setCredit(oldUser.getCredit()+ enchere.getMontantEnchere());
+						enchere.setMontantEnchere(nouveauMontantEnchere);
+						enchere.setIdUser(currentUser.getNoUtilisateur());
+						enchereManager.update(enchere);
+						userManager.update(oldUser, oldUser);
+						currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
+						session.setAttribute("user", currentUser);
+					}
 			}
-			request.setAttribute("success", "Votre enchère est prise en compte, félicitation !");
-			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-			rd.forward(request, response);
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
+		} catch (Exception e) {
+			request.setAttribute("erreur", e);
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
+			rd.forward(request, response);
 		}
+		
+		
+//		request.setAttribute("success", "Votre enchère est prise en compte, félicitation !");
+//		rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+		
 	}
 
 }
