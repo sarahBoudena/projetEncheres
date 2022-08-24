@@ -14,16 +14,16 @@
 <body>
 
 <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
-
+<main>
 	<h2>Détail vente</h2>
-		<div>
+		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
 		<ul class = "row list-group-flush">
 							
 			<li class = "col-12 text-center list-group-item" >Nom article</li>
 		
 			
 			<li class = "col-6 text-right list-group-item" >Description :</li>
-			<li class = "col-6 text-left list-group-item"> ${requestScope.description}</li>
+			<li class = "col-6 text-left list-group-item"> Description</li>
 		
 			<li class = "col-6 text-right list-group-item" >Catégorie :</li>
 			<li class = "col-6 text-left list-group-item"> Libelle categorie</li>
@@ -32,23 +32,27 @@
 			<li class = "col-6 text-left list-group-item"> Meilleure offre et nom de l'utilisateur</li>
 		
 			<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-			<li class = "col-6 text-left list-group-item"> ${requestScope.miseAPrix}</li>
+			<li class = "col-6 text-left list-group-item"> Mise à prix</li>
 		
 			<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
-			<li class = "col-6 text-left list-group-item">${requestScope.dateFinEnchere}</li>
+			<li class = "col-6 text-left list-group-item">Fin de l'enchère</li>
 		
 			<li class = "col-6 text-right list-group-item" >Retrait :</li>
-			<li class = "col-6 text-left list-group-item"> ${requestScope.Utilisateur.getRue()}</li>
-			<li class = "col-6 text-left list-group-item"> ${requestScope.Utilisateur.getCodePostal() requestScope.Utilisateur.getVille()}</li>
+			<li class = "col-6 text-left list-group-item"> rue vendeur</li>
+			<li class = "col-12 text-center list-group-item"> adresse vendeur</li>
 		
 			<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-			<li class = "col-6 text-left list-group-item"><a href="#">${requestScope.Utilisateur.getPseudo()}</a></li>
+			<li class = "col-6 text-left list-group-item"><a href="#">pseudo vendeur</a></li>
+			
+			<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
+			<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min=""></li>
+			<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
 		</ul>
-		</div>
+		</form>
 	
+<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>   	
 	
-	
-	
+</main>	
 	
 </body>
 </html>

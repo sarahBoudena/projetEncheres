@@ -15,7 +15,7 @@
 <body>
 
 <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
-
+<main>
 <h2>Vendre un article</h2>
 
 		<c:if test="${error != null}">
@@ -88,7 +88,7 @@
 				<button>Annuler</button>
 			</a>
 		</div>
-
+</main>
 	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>   
 </body>
 </html>
