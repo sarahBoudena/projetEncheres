@@ -44,9 +44,16 @@ public class TesterInsertArticleDAL extends HttpServlet {
 		ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 		try {
 			ConnectionProvider.getConnection();
+		//TEST INSERT ARTICLE
 			ArticleVendu articleTest = new ArticleVendu("Article", "Ceci est un nouvel article", LocalDateTime.now(), LocalDateTime.now(), 100, 2, 3, null);
 			articleDAO.insert(articleTest);
 			message = "L'article a bien été inséré.";
+			
+		// Test SELECTBYID Article
+			ArticleVendu articleTest2 = articleDAO.selectById(3);
+			System.out.println(articleTest2.toString());
+			
+			
 		}catch(SQLException | DALException e) {
 			message = "Erreur lors de l'insertion de l'article.";
 		}

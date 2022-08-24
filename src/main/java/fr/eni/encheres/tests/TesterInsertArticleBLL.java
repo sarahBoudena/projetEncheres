@@ -51,8 +51,15 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
 		
 		try {
+	// TEST INSERT ARTICLE
 		article.insert(ballon);
 		message = "Insertion article réussie";
+		
+	// Test SELECTBYID Article
+		
+		ArticleVendu art = article.selectById(2);
+		message = "Select article ok";
+		System.out.println(art.toString());
 		
 		}catch(BLLException e) {
 			message += "\nErreur lors de l'insertion de l'article.";
