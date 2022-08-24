@@ -16,36 +16,48 @@
 <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	<main>
 		<h2>Détail vente</h2>
+		<c:if test="${error != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+			       <c:forEach var="element" items="${error.getBLLExceptions()}">
+			       		<li>${element.getMessage()}</li>
+			       </c:forEach>
+			    </ul>
+		    </div>
+		</c:if>
+		
 		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
 			<ul class = "row list-group-flush">
 							
-				<li class = "col-12 text-center list-group-item" >${article.getNom()}</li>
+				<li class = "col-12 text-center list-group-item" >Nom article</li>
 		
 			
 				<li class = "col-6 text-right list-group-item" >Description :</li>
-				<li class = "col-6 text-left list-group-item"> ${article.getDescription()}</li>
+				<li class = "col-6 text-left list-group-item"> Description</li>
 		
 				<li class = "col-6 text-right list-group-item" >Catégorie :</li>
-				<li class = "col-6 text-left list-group-item">${article.getCategorie().getLibelle()}</li>
+				<li class = "col-6 text-left list-group-item"> Libelle categorie</li>
 		
 				<li class = "col-6 text-right list-group-item" >Meilleure offre :</li>
-				<li class = "col-6 text-left list-group-item"> ${article.getEnchere().getMontantEnchere()} par </li>
+				<li class = "col-6 text-left list-group-item"> Meilleure offre et nom de l'utilisateur</li>
 		
 				<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-				<li class = "col-6 text-left list-group-item"> ${article.getMiseAprix()}</li>
+				<li class = "col-6 text-left list-group-item"> Mise à prix</li>
 		
 				<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
-				<li class = "col-6 text-left list-group-item">${article.getDateFinEncheres()}</li>
+				<li class = "col-6 text-left list-group-item">Fin de l'enchère</li>
 		
 				<li class = "col-6 text-right list-group-item" >Retrait :</li>
-				<li class = "col-6 text-left list-group-item">${article.getUtilisateur().getRue()}</li>
-				<li class = "col-12 text-center list-group-item"> ${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
+				<li class = "col-6 text-left list-group-item"> rue vendeur</li>
+				<li class = "col-12 text-center list-group-item"> adresse vendeur</li>
 		
 				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-				<li class = "col-6 text-left list-group-item"><a href="#">${article.getUtilisateur().getPseudo()}</a></li>
-			
+				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=idvendeur"> pseudo du vendeur</a></li>
 				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
-				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min="" name="montantEnchere"></li>
+				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min=""></li>
 				<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
 			</ul>
 		</form>

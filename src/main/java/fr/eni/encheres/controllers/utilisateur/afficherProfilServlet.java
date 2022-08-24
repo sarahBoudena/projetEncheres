@@ -52,7 +52,7 @@ public class afficherProfilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("mine", null);
 		RequestDispatcher rd;
-		String mine = request.getParameter("mine");
+		String mine = request.getParameter("mine")!=null ? request.getParameter("mine"):null;
 		request = createAttribute(request, mine);
 		request.setAttribute("mine", mine);
 		rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/afficherUtilisateur.jsp");
@@ -80,6 +80,16 @@ public class afficherProfilServlet extends HttpServlet {
 			request.setAttribute("rue", user.getRue());
 			request.setAttribute("codePostal", user.getCodePostal());
 			request.setAttribute("ville", user.getVille());
+			} else {
+				
+				request.setAttribute("pseudo", user.getPseudo());
+				request.setAttribute("nom", user.getNom());
+				request.setAttribute("prenom", user.getPrenom());
+				request.setAttribute("email", user.getEmail());
+				request.setAttribute("telephone", user.getTelephone());
+				request.setAttribute("rue", user.getRue());
+				request.setAttribute("codePostal", user.getCodePostal());
+				request.setAttribute("ville", user.getVille());
 			}
 		return request;
 	}

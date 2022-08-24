@@ -87,14 +87,12 @@ public class encherirServlet extends HttpServlet {
 				currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
 				session.setAttribute("user", currentUser);
 			}
+			request.setAttribute("success", "Votre enchère est prise en compte, félicitation !");
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
 		}
-		
-		
-		
 	}
 
 }
