@@ -78,12 +78,17 @@ public class encherirServlet extends HttpServlet {
 					request.setAttribute("erreur", "Votre enchère est insufisante !");
 					doGet(request, response);
 				}
+				Utilisateur oldUser = userManager.selectById(enchere.getIdUser());
+				oldUser.setCredit(oldUser.getCredit()+ enchere.getMontantEnchere());
 				enchere.setMontantEnchere(nouveauMontantEnchere);
-				
-				
-				
-				
+				enchere.setIdUser(currentUser.getNoUtilisateur());
+				enchereManager.update(enchere);
+				userManager.update(oldUser, oldUser);
+				currentUser.setCredit(currentUser.getCredit()-nouveauMontantEnchere);
+				session.setAttribute("user", currentUser);
 			}
+			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
+			rd.forward(request, response);
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
 		}

@@ -70,7 +70,7 @@ public class ConnecterServlet extends HttpServlet {
 		RequestDispatcher rd;
 		Utilisateur user =null;
 		try {
-			user = mng.selectById(email, password);
+			user = mng.verifEmailMdp(email, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");

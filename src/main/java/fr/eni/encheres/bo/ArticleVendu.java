@@ -54,7 +54,7 @@ public class ArticleVendu {
 	}
 	
 	public ArticleVendu(int noArticle, String nom, String description, LocalDateTime dateDebutEncheres,
-			LocalDateTime dateFinEncheres, int miseAprix, int prixVente, String etatVente, int noUtilisateur,
+			LocalDateTime dateFinEncheres, int miseAprix, int prixVente, int noUtilisateur,
 			int noCategorie, String image, Utilisateur utilisateur, Enchere enchere, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
@@ -64,12 +64,29 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAprix = miseAprix;
 		this.prixVente = prixVente;
-		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 		this.image = image;
 		this.utilisateur = utilisateur;
 		this.enchere = enchere;
+		this.categorie = categorie;
+	}
+	
+	public ArticleVendu(int noArticle, String nom, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, int miseAprix, int prixVente, int noUtilisateur,
+			int noCategorie, String image, Utilisateur utilisateur, Categorie categorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nom = nom;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAprix = miseAprix;
+		this.prixVente = prixVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.image = image;
+		this.utilisateur = utilisateur;
 		this.categorie = categorie;
 	}
 

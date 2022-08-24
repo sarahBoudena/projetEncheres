@@ -13,7 +13,7 @@
 	        <strong>ENI-Encheres</strong>
 	    </a>
 		<c:if test="${!empty user}">
-		    <a class="navbar-brand" href="#" alt="Gérer mon profil" title="Gérer mon profil">
+		    <a class="navbar-brand" href="<%=request.getContextPath()%>/utilisateur/update" alt="Gérer mon profil" title="Gérer mon profil">
 		        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/user.png">
 		        <span class="align-middle text-muted">${user.pseudo}, ${user.credit} crédit(s)</span>
 		    </a>
