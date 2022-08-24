@@ -47,8 +47,9 @@ public class TesterSelectEncheresDAL extends HttpServlet {
 			}
 			message = "La sélection des enchères s'est bien passée.";
 		}catch(SQLException | DALException e){
-			message = "Problème lors de la sélection des enchères.";
+			message = "Problème lors de la sélection des enchères. ";
 			message += e.getMessage();
+			e.printStackTrace();
 		}
 		response.getWriter().append("Test d'insertion dans la BDD : " + message);
 	}

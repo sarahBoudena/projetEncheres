@@ -18,10 +18,7 @@ import fr.eni.encheres.dal.EnchereDAO;
 
 public class EnchereDAOJdbcImpl implements EnchereDAO {
 	
-	private static String SELECTENCHERESEC = "SELECT a.no_article, a.nom_article, a.description, a.date_debut_enchere, a.date_fin_enchere, a.prix_initial, a.no_categorie, a.no_utilisateur, a.image, "
-			+ "e.no_utilisateur, e.no_article, e.date_enchere, e.montant_enchere,"
-			+ "u.no_utilisateur, u.pseudo, u.nom, u.prenom, u.email, u.telephone, u.rue, u.code_postal, u.ville, u.credit "
-			+ "FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur LEFT JOIN  ENCHERES e ON e.no_article = a.no_article WHERE a.etat_vente = 'EC'";
+	private static String SELECTENCHERESEC = "SELECT a.no_article AS a_no_article, a.nom_article AS a_nom_article, a.description AS a_description, a.date_debut_enchere AS a_date_debut_enchere, a.date_fin_enchere AS a_date_fin_enchere, a.prix_initial AS a_prix_initial, a.prix_vente AS a_prix_vente, a.no_utilisateur AS a_no_utilisateur, a.no_categorie AS a_no_categorie, a.etat_vente AS a_etat_vente, a.image AS a_image, e.no_utilisateur AS e_no_utilisateur, e.no_article AS e_no_article, e.date_enchere AS e_date_enchere, e.montant_enchere AS e_montant_enchere, u.no_utilisateur AS u_no_utilisateur, u.pseudo AS u_pseudo, u.nom AS u_nom, u.prenom AS u_prenom, u.email AS u_email, u.telephone AS u_telephone, u.rue AS u_rue, u.code_postal AS u_code_postal, u.ville AS u_ville, u.credit AS u_credit, u.administrateur AS u_administrateur, c.no_categorie AS c_no_categorie, c.libelle AS c_libelle FROM ARTICLES_VENDUS a INNER JOIN UTILISATEURS u ON u.no_utilisateur = a.no_utilisateur LEFT JOIN  ENCHERES e ON e.no_article = a.no_article INNER JOIN CATEGORIES c ON c.no_categorie = a.no_categorie WHERE a.etat_vente = 'EC'";
 	private static final String INSERT = "INSERT INTO ENCHERES(no_utilisateur, no_article, date_enchere, montant_enchere) VALUES (?, ?, ?, ?);";
 	private static final String UPDATE = "UPDATE ENCHERES SET no_utilisateur = ?, date_enchere = ?, montant_enchere = ? WHERE no_article = ?";
 	
@@ -34,59 +31,74 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 			PreparedStatement pstmt = cnx.prepareStatement(SELECTENCHERESEC);){
 			
 			ResultSet res = pstmt.executeQuery();
-			
-			while (res.next()) {
-				 boolean administrateur;
-				 int admin = res.getInt("u.administrateur");
-                if (admin == 0) {
-                    administrateur = false;
-                }
-                else {
-                    administrateur = true;
-                }
-                
-//              encheresEnCours.add(
-                
-				new ArticleVendu(	res.getInt("a.no_article"),
-									res.getString("a.nom_article"),
-									res.getString("a.description"),
-									LocalDateTime.of((res.getDate("a.date_debut_enchere").toLocalDate()),
-									(res.getTime("a.date_debut_enchere").toLocalTime())),
-									LocalDateTime.of((res.getDate("a.date_fin_enchere").toLocalDate()),
-									(res.getTime("a.date_fin_enchere").toLocalTime())),
-									res.getInt("a.prix_initial"),
-									res.getInt("a.no_utilisateur"),
-									res.getInt("a.no_categorie"),
-									res.getString("a.image")
-									//Enchere si !=null
-									//Utilisateur(vendeur)
-									//Categorie
-									);
-				
-				new Enchere(		res.getInt("e.no_utilisateur"),
-									res.getInt("e.no_article"),
-									LocalDateTime.of((res.getDate("e.date_enchere").toLocalDate()),
-									(res.getTime("e.date_enchere").toLocalTime())),
-									res.getInt("e.montant_enchere"));
-				
 
+			while (res.next()) {
 				
-				new Utilisateur(	res.getInt("u.no_utilisateur"),
-									res.getString("u.pseudo"),
-									res.getString("u.nom"),
-									res.getString("u.prenom"),
-									res.getString("u.email"),
-									res.getString("u.telephone"),
-									res.getString("u.rue"),
-									res.getString("u.code_postal"),
-									res.getString("u.ville"),
-									res.getInt("u.credit"),
-									administrateur);
+				int eNoUser = res.getInt("e_no_utilisateur");
 				
-				new Categorie(		res.getInt("c.no_categorie"),
-									res.getString("c.libelle"));
-//				);
-				
+				if (eNoUser == 0) {
+					encheresEnCours.add(
+				    		  new ArticleVendu(	res.getInt("a_no_article"),
+													res.getString("a_nom_article"),
+													res.getString("a_description"),
+													LocalDateTime.of((res.getDate("a_date_debut_enchere").toLocalDate()),
+													(res.getTime("a_date_debut_enchere").toLocalTime())),
+													LocalDateTime.of((res.getDate("a_date_fin_enchere").toLocalDate()),
+													(res.getTime("a_date_fin_enchere").toLocalTime())),
+													res.getInt("a_prix_initial"),
+													res.getInt("a_prix_vente"),
+													res.getInt("a_no_utilisateur"),
+													res.getInt("a_no_categorie"),
+													res.getString("a_image"),
+													new Utilisateur(res.getInt("u_no_utilisateur"),
+																	res.getString("u_pseudo"),
+																	res.getString("u_nom"),
+																	res.getString("u_prenom"),
+																	res.getString("u_email"),
+																	res.getString("u_telephone"),
+																	res.getString("u_rue"),
+																	res.getString("u_code_postal"),
+																	res.getString("u_ville"),
+																	res.getInt("u_credit")),					
+													new Categorie(	res.getInt("c_no_categorie"),
+																	res.getString("c_libelle"))
+							)
+						);
+					
+				}	
+				else {
+					encheresEnCours.add(
+		    		  new ArticleVendu(	res.getInt("a_no_article"),
+											res.getString("a_nom_article"),
+											res.getString("a_description"),
+											LocalDateTime.of((res.getDate("a_date_debut_enchere").toLocalDate()),
+											(res.getTime("a_date_debut_enchere").toLocalTime())),
+											LocalDateTime.of((res.getDate("a_date_fin_enchere").toLocalDate()),
+											(res.getTime("a_date_fin_enchere").toLocalTime())),
+											res.getInt("a_prix_initial"),
+											res.getInt("a_prix_vente"),
+											res.getInt("a_no_utilisateur"),
+											res.getInt("a_no_categorie"),
+											res.getString("a_image"),
+											new Utilisateur(res.getInt("u_no_utilisateur"),
+															res.getString("u_pseudo"),
+															res.getString("u_nom"),
+															res.getString("u_prenom"),
+															res.getString("u_email"),
+															res.getString("u_telephone"),
+															res.getString("u_rue"),
+															res.getString("u_code_postal"),
+															res.getString("u_ville"),
+															res.getInt("u_credit")),
+											new Enchere(	res.getInt("e_no_utilisateur"),
+															res.getInt("e_no_article"),
+															LocalDateTime.of((res.getDate("e_date_enchere").toLocalDate()),
+															(res.getTime("e_date_enchere").toLocalTime())),
+															res.getInt("e_montant_enchere")),
+											new Categorie(	res.getInt("c_no_categorie"),
+															res.getString("c_libelle")))
+					);
+				}
 			}
 		} catch (SQLException e) {
 			DALException ex = new DALException("Erreur dans la DAL : impossible d'afficher les enchères en cours" + e.getMessage());
