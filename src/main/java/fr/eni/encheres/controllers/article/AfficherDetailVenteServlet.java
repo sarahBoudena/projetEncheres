@@ -41,8 +41,14 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 			listeEnchere = mng.getListeEncheres();
 			
 			for(ArticleVendu article : listeEnchere) {
-				article.getNoArticle();
-				article.getNoUtilisateur();
+					request.setAttribute("noArticle", article.getNoArticle());
+					request.setAttribute("noUtilisateur", article.getNoUtilisateur());
+					request.setAttribute("nom", article.getNom());
+					request.setAttribute("description", article.getDescription());
+					request.setAttribute("categorie", article.getCategorie());
+					request.setAttribute("miseAPrix", article.getMiseAprix());
+					request.setAttribute("dateFinEnchere", article.getDateFinEncheres());
+					request.setAttribute("utilisateur", article.getUtilisateur());	
 			}
 			
 			

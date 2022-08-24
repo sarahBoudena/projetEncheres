@@ -29,35 +29,40 @@
 		    </div>
 		</c:if>
 		
-		<div>
+		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
 			<ul class = "row list-group-flush">
-								
+							
 				<li class = "col-12 text-center list-group-item" >Nom article</li>
+		
 			
-				
 				<li class = "col-6 text-right list-group-item" >Description :</li>
-				<li class = "col-6 text-left list-group-item"> Description article</li>
-			
+				<li class = "col-6 text-left list-group-item"> Description</li>
+		
 				<li class = "col-6 text-right list-group-item" >Catégorie :</li>
 				<li class = "col-6 text-left list-group-item"> Libelle categorie</li>
-			
+		
 				<li class = "col-6 text-right list-group-item" >Meilleure offre :</li>
 				<li class = "col-6 text-left list-group-item"> Meilleure offre et nom de l'utilisateur</li>
-			
+		
 				<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-				<li class = "col-6 text-left list-group-item"> Mise à prix de l'article</li>
-			
+				<li class = "col-6 text-left list-group-item"> Mise à prix</li>
+		
 				<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
-				<li class = "col-6 text-left list-group-item">Date de la fin de l'enchère</li>
-			
+				<li class = "col-6 text-left list-group-item">Fin de l'enchère</li>
+		
 				<li class = "col-6 text-right list-group-item" >Retrait :</li>
-				<li class = "col-6 text-left list-group-item"> Adresse du vendeur</li>
-			
+				<li class = "col-6 text-left list-group-item"> rue vendeur</li>
+				<li class = "col-12 text-center list-group-item"> adresse vendeur</li>
+		
 				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
 				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=idvendeur"> pseudo du vendeur</a></li>
+				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
+				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min=""></li>
+				<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
 			</ul>
-		</div>
-	</main>
-	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>   
+		</form>
+		
+	</main>	
+	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>  
 </body>
 </html>
