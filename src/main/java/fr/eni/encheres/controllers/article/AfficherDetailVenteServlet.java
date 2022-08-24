@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.EnchereManager;
+import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
 
 /**
@@ -34,29 +36,21 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		EnchereManager mng = EnchereManager.getInstance();
-		List<ArticleVendu> listeEnchere = new ArrayList<ArticleVendu>();
+		ArticleManager mng = ArticleManager.getInstance();
+		utilisateurManager user = utilisateurManager.getInstance();
+		ArticleVendu article = null;
+		
+//		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
 		
 		try {
-			listeEnchere = mng.getListeEncheres();
+			article = mng.selectById(4);
+			request.setAttribute("article", article);
 			
-			for(ArticleVendu article : listeEnchere) {
-					request.setAttribute("noArticle", article.getNoArticle());
-					request.setAttribute("noUtilisateur", article.getNoUtilisateur());
-					request.setAttribute("nom", article.getNom());
-					request.setAttribute("description", article.getDescription());
-					request.setAttribute("categorie", article.getCategorie());
-					request.setAttribute("miseAPrix", article.getMiseAprix());
-					request.setAttribute("dateFinEnchere", article.getDateFinEncheres());
-					request.setAttribute("utilisateur", article.getUtilisateur());	
-			}
-			
-			
+			System.out.println(article.getCategorie().getLibelle());
 			
 		} catch (BLLException e) {
 			
 		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
 		rd.forward(request, response);

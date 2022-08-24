@@ -52,14 +52,14 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		
 		try {
 	// TEST INSERT ARTICLE
-		article.insert(ballon);
-		message = "Insertion article réussie";
+//		article.insert(ballon);
+//		message = "Insertion article réussie";
 		
 	// Test SELECTBYID Article
 		
 		ArticleVendu art = article.selectById(2);
 		message = "Select article ok";
-		System.out.println(art.toString());
+		System.out.println(art.getCategorie().getNoCategorie());
 		
 		}catch(BLLException e) {
 			message += "\nErreur lors de l'insertion de l'article.";
