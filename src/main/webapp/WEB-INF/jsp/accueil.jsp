@@ -18,7 +18,7 @@
 	   
 	    <!-- fragment JSP header -->
 	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
-
+		<a  href="<%=request.getContextPath()%>/article/encherir">test encherir</a>
 	    <!--main bloc-->
 	    <main>
 	        <!--title-->
