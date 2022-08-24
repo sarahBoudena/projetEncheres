@@ -20,9 +20,9 @@ public class ArticleVendu {
 	int noUtilisateur;
 	int noCategorie;
 	private String image;
-	private List<Utilisateur> listeUtilisateur;
-	private List<Enchere> listeEnchere;
-	private List<Categorie> listeCategorie;
+	private Utilisateur utilisateur;
+	private Enchere enchere;
+	private Categorie categorie;
 	
 	
 	
@@ -38,10 +38,6 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
 		this.image = image;
-		listeUtilisateur = new ArrayList<Utilisateur>();
-		listeEnchere = new ArrayList<Enchere>();
-		listeCategorie = new ArrayList<Categorie>();
-	
 	}
 	
 	public ArticleVendu(String nom, String description, LocalDateTime dateDebutEncheres, LocalDateTime dateFinEncheres,
@@ -55,10 +51,26 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
 		this.image = image;
-		listeUtilisateur = new ArrayList<Utilisateur>();
-		listeEnchere = new ArrayList<Enchere>();
-		listeCategorie = new ArrayList<Categorie>();
-		
+	}
+	
+	public ArticleVendu(int noArticle, String nom, String description, LocalDateTime dateDebutEncheres,
+			LocalDateTime dateFinEncheres, int miseAprix, int prixVente, String etatVente, int noUtilisateur,
+			int noCategorie, String image, Utilisateur utilisateur, Enchere enchere, Categorie categorie) {
+		super();
+		this.noArticle = noArticle;
+		this.nom = nom;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAprix = miseAprix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.image = image;
+		this.utilisateur = utilisateur;
+		this.enchere = enchere;
+		this.categorie = categorie;
 	}
 
 	public int getNoArticle() {
@@ -148,43 +160,35 @@ public class ArticleVendu {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
-	public List<Utilisateur> getUtilisateur() {
-		return listeUtilisateur;
-	}
-
-	public void setUtilisateur(List<Utilisateur> utilisateur) {
-		this.listeUtilisateur = utilisateur;
-	}
-
-	public List<Enchere> getEnchere() {
-		return listeEnchere;
-	}
-
-	public void setEnchere(List<Enchere> enchere) {
-		this.listeEnchere = enchere;
-	}
-
-	public List<Categorie> getCategorie() {
-		return listeCategorie;
-	}
-
-	public void setCategorie(List<Categorie> categorie) {
-		this.listeCategorie = categorie;
-	}
-
-	public void addUtilisateur(Utilisateur user) {
-		listeUtilisateur.add(user);
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
 	}
 	
-	public void addEnchere(Enchere enchere) {
-		listeEnchere.add(enchere);
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public Enchere getEnchere() {
+		return enchere;
 	}
 	
-	public void addCategorie (Categorie categorie) {
-		listeCategorie.add(categorie);
+	public boolean enchereIsNull() {
+		return enchere == null ? true : false;
 	}
 	
+	public void setEnchere(Enchere enchere) {
+		this.enchere = enchere;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
 	@Override
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nom=" + nom + ", description=" + description

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.EnchereDAO;
@@ -41,5 +42,21 @@ public class EnchereManager {
 		return listeEncheres;
 	}
 	
-
+	public void insert (Enchere enchere) throws BLLException {
+		try {
+			enchereDAO.insert(enchere);
+		} catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+	}
+	
+	public void update (Enchere enchere) throws BLLException{
+		try {
+			enchereDAO.update(enchere);
+		} catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+	}
 }
