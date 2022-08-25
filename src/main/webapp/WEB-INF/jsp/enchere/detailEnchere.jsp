@@ -40,36 +40,37 @@
 		</c:if>
 		
 		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
-			<ul class = "row list-group-flush" >
+			<ul class = "row list-group-flush ">
 							
 				<li class = "col-12 text-center list-group-item" style="font-weight:bold">${article.getNom()}</li>
 		
 			
-				<li class = "col-6 text-right list-group-item" >Description :</li>
-				<li class = "col-6 text-left list-group-item"> ${article.getDescription()}</li>
+				<li class = "col-6 text-right list-group-item border-0" >Description :</li>
+				<li class = "col-6 text-left list-group-item border-0"> ${article.getDescription()}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Catégorie :</li>
-				<li class = "col-6 text-left list-group-item">${article.getCategorie().getLibelle()}</li>
+				<li class = "col-6 text-right list-group-item border-0" >Catégorie :</li>
+				<li class = "col-6 text-left list-group-item border-0">${article.getCategorie().getLibelle()}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Meilleure offre :</li>
-				<li class = "col-6 text-left list-group-item">${article.enchere.montantEnchere == null ?"" : article.enchere.montantEnchere} ${article.enchere.montantEnchere != null ? "par " : ""} ${article.enchere.montantEnchere != null ? meilleureOffrePseudo : " - "}</li>
+				<li class = "col-6 text-right list-group-item border-0" >Meilleure offre :</li>
+				<li class = "col-6 text-left list-group-item border-0">${article.enchere.montantEnchere == null ?"" : article.enchere.montantEnchere} ${article.enchere.montantEnchere != null ? "par " : ""} ${article.enchere.montantEnchere != null ? meilleureOffrePseudo : " - "}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-				<li class = "col-6 text-left list-group-item">${article.getPrixInitial()}</li>
+				<li class = "col-6 text-right list-group-item border-0" >Mise à prix :</li>
+				<li class = "col-6 text-left list-group-item border-0">${article.getPrixInitial()}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
-				<li class = "col-6 text-left list-group-item">${dateFinEnchere}</li>
+				<li class = "col-6 text-right list-group-item border-0" >Fin de l'enchère :</li>
+				<li class = "col-6 text-left list-group-item border-0">${dateFinEnchere}</li>
 		
-				<li class = "col-12 text-center list-group-item" style="font-weight:bold" >Retrait :</li>
-				<li class = "col-12 text-center list-group-item">${article.getUtilisateur().getRue()}</li>
-				<li class = "col-6 text-center list-group-item invisible"> <input type = number value = "${article.noArticle}" name="noArticle"> </li>
-				<li class = "col-6 text-left list-group-item">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
+				<li class = "col-12 text-center list-group-item border-0" style="font-weight:bold" >Retrait :</li>
+				<li class = "col-12 text-center list-group-item border-0">${article.getUtilisateur().getRue()}</li>
+				<li class = "col-12 text-center list-group-item border-0">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.noUtilisateur}">${article.getUtilisateur().getPseudo()}</a></li>
-				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
-				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" placeholder="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" min="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" name="montantEnchere"></li>
-				<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
+				<li class = "col-6 text-right list-group-item border-0" >Vendeur :</li>
+				<li class = "col-6 text-left list-group-item border-0"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.noUtilisateur}">${article.getUtilisateur().getPseudo()}</a></li>
+				<li class = "col-6 text-right list-group-item border-0" >Ma prosposition</li>
+				
+				<li class = "col-6 text-left list-group-item border-0"><input type ="number" width="3em" placeholder="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" min="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" name="montantEnchere"></li>
+				<li class = "col-12 text-center list-group-item border-0"><button type="submit">Enregistrer</button>
+				<input class = "invisible noArticle col-12" type = number value = "${article.noArticle}" name="noArticle"> 
 		</ul>
 		</form>
 		
