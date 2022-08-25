@@ -95,7 +95,7 @@ public class EncherirServlet extends HttpServlet {
 						session.setAttribute("user", currentUser);
 					}
 			}
-			request.setAttribute("success", "Votre enchère est prise en compte, félicitation !");
+			request.setAttribute("success", "Votre enchère est prise en compte sur l'article " + article.getNom() +", félicitation !");
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
 		} catch (BLLException e) {
