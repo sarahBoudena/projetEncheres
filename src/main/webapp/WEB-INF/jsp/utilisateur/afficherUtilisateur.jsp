@@ -15,41 +15,41 @@
 	<jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	<main>
 		<c:if test="${requestScope.mine == 'true'}">
-			<h1 class ="text-center" > MON PROFIL</h1>
+			<h1 class ="text-center border-0" > MON PROFIL</h1>
 		</c:if>
 		<c:if test="${requestScope.mine != 'true'}">
-			<h1 class ="text-center"> Profil de : ${requestScope.pseudo} </h1>
+			<h1 class ="text-center "> Profil de : ${requestScope.pseudo} </h1>
 		</c:if>
-		<hr>
+		
 		<div >
 				<ul class = "row list-group-flush">
-					<li class = "col-12 text-center list-group-item" ></li>
+					<li class = "col-12 text-center list-group-item border-0" ></li>
 					<c:if test="${requestScope.mine == 'true'}">
-						<li class = "col-6 text-right list-group-item" >Pseudo :</li>
-						<li class = "col-6 text-left list-group-item"> ${requestScope.pseudo}</li>
+						<li class = "col-6 text-right list-group-item border-0" >Pseudo :</li>
+						<li class = "col-6 text-left list-group-item border-0"> ${requestScope.pseudo}</li>
 					</c:if>
-					<li class = "col-6 text-right list-group-item" >Nom :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.nom}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Nom :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.nom}</li>
 				
-					<li class = "col-6 text-right list-group-item" >Prénom :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.prenom}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Prénom :</li>
+					<li class = "col-6 text-left list-group-item border-0" > ${requestScope.prenom}</li>
 				
-					<li class = "col-6 text-right list-group-item" >Email :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.email}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Email :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.email}</li>
 				
-					<li class = "col-6 text-right list-group-item" >Téléphone :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.telephone}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Téléphone :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.telephone}</li>
 				
-					<li class = "col-6 text-right list-group-item" >Rue :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.rue}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Rue :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.rue}</li>
 				
-					<li class = "col-6 text-right list-group-item" >Code postal :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.codePostal}</li>
+					<li class = "col-6 text-right list-group-item border-0" >Code postal :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.codePostal}</li>
 				
-					<li class = "col-6 text-right list-group-item" >ville :</li>
-					<li class = "col-6 text-left list-group-item"> ${requestScope.ville}</li>
+					<li class = "col-6 text-right list-group-item border-0" >ville :</li>
+					<li class = "col-6 text-left list-group-item border-0"> ${requestScope.ville}</li>
 					
-					<li class = "col-12 text-center list-group-item" ></li>
+					<li class = "col-12 text-center list-group-item border-0" ></li>
 				</ul>
 		</div>
 		<c:if test="${requestScope.mine == 'true'}">

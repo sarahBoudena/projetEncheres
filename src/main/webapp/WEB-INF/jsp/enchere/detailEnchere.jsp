@@ -68,7 +68,7 @@
 				<li class = "col-6 text-left list-group-item border-0"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.noUtilisateur}">${article.getUtilisateur().getPseudo()}</a></li>
 				<li class = "col-6 text-right list-group-item border-0" >Ma prosposition</li>
 				
-				<li class = "col-6 text-left list-group-item border-0"><input type ="number" width="3em" placeholder="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" min="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" name="montantEnchere"></li>
+				<li class = "col-6 text-left list-group-item border-0"><input type ="number" width="3em" value="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" min="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" name="montantEnchere" required="required"></li>
 				<li class = "col-12 text-center list-group-item border-0"><button type="submit">Enregistrer</button>
 				<input class = "invisible noArticle col-12" type = number value = "${article.noArticle}" name="noArticle"> 
 		</ul>

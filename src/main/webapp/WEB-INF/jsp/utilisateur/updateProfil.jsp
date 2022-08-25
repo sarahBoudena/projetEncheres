@@ -57,59 +57,41 @@
 		    </div>
 		</c:if>
 		<form action="<%=request.getContextPath()%>/utilisateur/update" method="post">
-			<div class="Container">
-				<div class="form-group">
-					<label>Pseudo :</label>
-					<input type="text" name="pseudo" id="pseudo" value ="${empty requestScope.pseudo ? sessionScope.user.pseudo : requestScope.pseudo }" required="required">
-	<!-- 			</div>
+			<ul class = "row list-group-flush">
+				<li class = "col-12 text-center list-group-item border-0" ></li>
 				
-				<div class="form-group"> -->
-					<label>Nom :</label>
-					<input type="text" name="nom" id="name" value ="${empty requestScope.nom ? sessionScope.user.nom : requestScope.nom }" required="required">
-				</div>
+				<li class = "col-6 text-right list-group-item border-0" ><label>pseudo </label></li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="pseudo" id="pseudo" value ="${empty requestScope.pseudo ? sessionScope.user.pseudo : requestScope.pseudo }" required="required"></li>
 				
-				<div class="form-group">
-					<label>Prénom :</label>
-					<input type="text" name="prenom" id="firstname" value ="${empty requestScope.prenom ? sessionScope.user.prenom : requestScope.prenom}" required="required">
-	<!-- 			</div>
+				<li class = "col-6 text-right list-group-item border-0" ><label>Nom </label></li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="nom" id="name" value ="${empty requestScope.nom ? sessionScope.user.nom : requestScope.nom }" required="required"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >Prénom </li>
+				<li class = "col-6 text-left list-group-item border-0" > <input type="text" name="prenom" id="firstname" value ="${empty requestScope.prenom ? sessionScope.user.prenom : requestScope.prenom}" required="required"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >Email </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="email" name="email" id="email" value ="${empty requestScope.email ? sessionScope.user.email : requestScope.email}" required="required"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >Téléphone </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="telephone" id="tel" value ="${empty requestScope.telephone ? sessionScope.user.telephone : requestScope.telephone}"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >Rue </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="rue" id="rue" value ="${empty requestScope.rue ? sessionScope.user.rue : requestScope.rue}" required="required"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >Code postal </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="codePostal" id="cp" value ="${empty requestScope.codePostal ? sessionScope.user.codePostal : requestScope.codePostal}" required="required"></li>
+			
+				<li class = "col-6 text-right list-group-item border-0" >ville </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="text" name="ville" id="ville" value ="${empty requestScope.ville ? sessionScope.user.ville : requestScope.ville}" required="required"></li>
 				
-				<div class="form-group"> -->
-					<label>Email :</label>
-					<input type="email" name="email" id="email" value ="${empty requestScope.email ? sessionScope.user.email : requestScope.email}" required="required">
-				</div>
+				<li class = "col-6 text-right list-group-item border-0" >Mot de passe </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" autocomplete="off" ></li>
 				
-				<div class="form-group">
-					<label>Téléphone :</label>
-					<input type="text" name="telephone" id="tel" value ="${empty requestScope.telephone ? sessionScope.user.telephone : requestScope.telephone}">
-	<!-- 			</div>
+				<li class = "col-6 text-right list-group-item border-0" >Confimation </li>
+				<li class = "col-6 text-left list-group-item border-0"> <input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" autocomplete="off"></li>
 				
-				<div class="form-group"> -->
-					<label>Rue :</label>
-					<input type="text" name="rue" id="rue" value ="${empty requestScope.rue ? sessionScope.user.rue : requestScope.rue}" required="required">
-				</div>
-				
-				<div class="form-group">
-					<label>Code postal :</label>
-					<input type="text" name="codePostal" id="cp" value ="${empty requestScope.codePostal ? sessionScope.user.codePostal : requestScope.codePostal}" required="required">
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
-					<label>Ville :</label>
-					<input type="text" name="ville" id="ville" value ="${empty requestScope.ville ? sessionScope.user.ville : requestScope.ville}" required="required">
-				</div>
-				
-				<div class="form-group">
-					<label>Mot de passe :</label>
-					<input type="password" name="mdp1" id="password1" placeholder="Entrez votre mot de passe" autocomplete="off" >
-	<!-- 			</div>
-				
-				<div class="form-group"> -->
-					<label>Confimation :</label>
-					<input type="password" name="mdp2" id="password2" placeholder="Entrez votre mot de passe" autocomplete="off">
-				</div>
-				
-				<button type="submit">Enregistrer</button>
-			</div>	
+				<li class = "col-12 text-center list-group-item border-0" ><button type="submit">Enregistrer</button></li>
+			</ul>
 		</form>
 		<a href="<%=request.getContextPath()%>/utilisateur/delete"><button>Supprimer le profil</button></a>
 	</main>
