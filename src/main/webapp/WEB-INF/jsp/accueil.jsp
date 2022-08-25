@@ -170,7 +170,7 @@
 		                        </ul>
 		                    </div>
 		                    <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
-		                        <img class="small-icon w-25" src="<%=request.getContextPath()%>/medias/img/marteau.png">
+		                        <i class="fa-solid fa-skating fa-fw" src="<%=request.getContextPath()%>/medias/img/marteau.png">Sold</i>
 		                    </a>
 		                </div>
 		            </div>
