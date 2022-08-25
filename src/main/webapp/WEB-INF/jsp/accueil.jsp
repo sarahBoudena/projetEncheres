@@ -121,7 +121,7 @@
 	        </form>
 	
 	        <!--enchères-->
-	        <div class="row justify-content-center border-top card-deck">
+<%-- 	        <div class="row justify-content-center border-top card-deck">
 	            <div class="col-12 col-sm-6 p-2" >
 	                <div class="card">
 	                    <div class="card-header text-center">
@@ -131,45 +131,52 @@
 	                        <div class="col-3 p-2">
 	                            <img class="img-fluid img-thumbnail" src="images/photo.svg" alt="pas de photo" />
 	                        </div>
-	                        <ul class="col-9 list-unstyled p-2">
+
+	                        
 	                            <c:forEach var="element" items="${listeEncheresEC}">
+	                            
+	                            <ul class="col-9 list-unstyled p-2">
 						       		<li>Prix : ${element.miseAprix} point(s)</li>
-						       		<li>Meilleure enchère : ${element.getEnchere()} point(s)</li>
+						       		<li>Meilleure enchère : ${element.enchere.montantEnchere !=null ? element.enchere.montantEnchere : 0} point(s)</li>
+						        	<li>Fin de l'enchère : ${element.getDateFinEncheres()}</li>
+						        	 <li>Vendeur : ${element.getUtilisateur().getPseudo()}</li>
+						        </ul>
 						       </c:forEach>
 	                            
-	                            <li>Prix : 0 point(s)</li>
-	                            <li>Meilleure enchère : 0 point(s)</li>
-	                            <li>Fin de l'enchère : dd-MM-yyyy HH:mm</li>
-	                            <li>Vendeur : xxxxxxxxx</li>
-	                        </ul>
+	                            
 	                    </div>
 	                    <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
 	                        <img class="small-icon" src="images/bid.svg">
 	                    </a>
 	                </div>
-	            </div>
-	            <div class="col-12 col-sm-6 p-2" >
-	                <div class="card">
-	                    <div class="card-header text-center">
-	                        <h4 class="my-0 font-weight-normal">Article 2</h4>
-	                    </div>
-	                    <div class="d-flex">
-	                        <div class="col-3 p-2">
-	                            <img class="img-fluid img-thumbnail" src="images/photo.svg" alt="pas de photo" />
-	                        </div>
-	                        <ul class="col-9 list-unstyled p-2">
-	                            <li>Prix : 0 point(s)</li>
-	                            <li>Meilleure enchère : 0 point(s)</li>
-	                            <li>Fin de l'enchère : dd-MM-yyyy HH:mm</li>
-	                            <li>Vendeur : xxxxxxxxx</li>
-	                        </ul>
-	                    </div>
-	                    <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
-	                        <img class="small-icon" src="images/bid.svg">
-	                    </a>
-	                </div>
-	            </div>
-	            <div class="col-12 col-sm-6 p-2" >
+	            </div> --%>
+	           
+	           
+				<c:forEach var="element" items="${listeEncheresEC}">	           
+		            <div class="col-12 col-sm-6 p-2" >
+		                <div class="card">
+		                    <div class="card-header text-center">
+		                        <h4 class="my-0 font-weight-normal">${element.nom}</h4>
+		                    </div>
+		                    <div class="d-flex">
+		                        <div class="col-3 p-2">
+		                            <img class="img-fluid img-thumbnail" src="images/photo.svg" alt="pas de photo" />
+		                        </div>
+		                        <ul class="col-9 list-unstyled p-2">
+		                            <li>Prix : ${element.miseAprix} point(s)</li>
+						       		<li>Meilleure enchère : ${element.enchere.montantEnchere !=null ? element.enchere.montantEnchere : 0} point(s)</li>
+						        	<li>Fin de l'enchère : ${element.getDateFinEncheres()}</li>
+						        	 <li>Vendeur : ${element.getUtilisateur().getPseudo()}</li>
+		                        </ul>
+		                    </div>
+		                    <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
+		                        <img class="small-icon w-25" src="<%=request.getContextPath()%>/medias/img/marteau.png">
+		                    </a>
+		                </div>
+		            </div>
+		        </c:forEach>
+		            
+<!-- 	            <div class="col-12 col-sm-6 p-2" >
 	                <div class="card">
 	                <div class="card-header text-center">
 	                    <h4 class="my-0 font-weight-normal">Article 3</h4>
@@ -188,7 +195,7 @@
 	                <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
 	                    <img class="small-icon" src="images/bid.svg">
 	                </a>
-	            </div>
+	            </div> -->
 	     </div>
 	    </main>
 	</div>
