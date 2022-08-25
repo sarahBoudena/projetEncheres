@@ -33,17 +33,17 @@
 
 	<form action="<%=request.getContextPath()%>/article/vente" method="post" >
 		
-			<ul class = "row list-group-flush">
+			<ul class = "row list-group-flush" >
 				
-					<li class = "col-6 text-right list-group-item" >Article :</li>
-					<li class = "col-6 text-left list-group-item" ><input type="text" name="nom" value="${requestScope.nom}" id="name" placeholder="Nom de l'article"  required="required"></li>
+					<li class = "col-6 text-right list-group-item border-0" >Article :</li>
+					<li class = "col-6 text-left list-group-item border-0" ><input type="text" name="nom" value="${requestScope.nom}" id="name" placeholder="Nom de l'article"  required="required"></li>
 				
-					<li class = "col-6 text-right list-group-item" >Description :</li>
-					<li class = "col-6 text-left list-group-item" ><textarea rows="5" cols="40" name="description" id="description" required="required" placeholder="Description de l'article mis en vente...">${requestScope.description}</textarea></li>
+					<li class = "col-6 text-right list-group-item border-0" >Description :</li>
+					<li class = "col-6 text-left list-group-item border-0" ><textarea rows="5" cols="40" name="description" id="description" required="required" placeholder="Description de l'article mis en vente...">${requestScope.description}</textarea></li>
 				
 				
-					<li class = "col-6 text-right list-group-item" >Categorie :</li>
-					<li class = "col-6 text-left list-group-item" ><select name="categorie" required="required">
+					<li class = "col-6 text-right list-group-item border-0" >Categorie :</li>
+					<li class = "col-6 text-left list-group-item border-0" ><select name="categorie" required="required">
 						<option value="" disabled selected>-- Catégorie --</option>
 						<option value="Informatique">Informatique</option>
 						<option value="Ameublement">Ameublement</option>
@@ -51,31 +51,31 @@
 						<option value="Sport & Loisir">Sport & Loisir</option>
 					</select></li>
 				
-					<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-					<li class = "col-6 text-left list-group-item" ><input type="number" min="0" name="PrixInitial" value="${requestScope.PrixInitial}"></li>
+					<li class = "col-6 text-right list-group-item border-0" >Mise à prix :</li>
+					<li class = "col-6 text-left list-group-item border-0" ><input type="number" min="0" name="PrixInitial" value="${requestScope.PrixInitial}"></li>
 				
-					<li class = "col-6 text-right list-group-item">Début de l'enchère</li>
-					<li class = "col-6 text-left list-group-item"><input type="datetime-local" name="dateDebut" required="required"></li>
+					<li class = "col-6 text-right list-group-item border-0">Début de l'enchère</li>
+					<li class = "col-6 text-left list-group-item border-0"><input type="datetime-local" name="dateDebut" required="required"></li>
 				
-					<li class = "col-6 text-right list-group-item">Fin de l'enchère</li>
-					<li class = "col-6 text-left list-group-item"><input type="datetime-local" name="dateFin" required="required"></li>
+					<li class = "col-6 text-right list-group-item border-0">Fin de l'enchère</li>
+					<li class = "col-6 text-left list-group-item border-0"><input type="datetime-local" name="dateFin" required="required"></li>
 				
-					<li class = "col-12 text-center list-group-item" style="font-weight:bold">Retrait</li>
+					<li class = "col-12 text-center list-group-item border-0" style="font-weight:bold">Retrait</li>
 					
-					<li class = "col-6 text-right list-group-item">Rue</li>
-					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.rue}"></li>
+					<li class = "col-6 text-right list-group-item border-0">Rue</li>
+					<li class = "col-6 text-left list-group-item border-0"><input type="text" value="${user.rue}"></li>
 						
-					<li class = "col-6 text-right list-group-item">Code Postal</li>
-					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.codePostal}"></li>
+					<li class = "col-6 text-right list-group-item border-0">Code Postal</li>
+					<li class = "col-6 text-left list-group-item border-0"><input type="text" value="${user.codePostal}"></li>
 						
-					<li class = "col-6 text-right list-group-item">Ville</li>
-					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.ville}"></li>
+					<li class = "col-6 text-right list-group-item border-0">Ville</li>
+					<li class = "col-6 text-left list-group-item border-0"><input type="text" value="${user.ville}"></li>
 						
-					<li class = "col-6 text-right list-group-item"><button type ="submit">Enregistrer</button></li>
-					<li class = "col-6 text-left list-group-item" style="list-style: none"><a href="<%=request.getContextPath()%>/accueil" class="accueil">Annuler</a></li>
-	
-	</form>
+					<li class = "col-6 text-right list-group-item border-0"><button type ="submit">Enregistrer</button></li>
+					<li class = "col-6 text-left list-group-item border-0" style="list-style: none"><a href="<%=request.getContextPath()%>/accueil" class="accueil">Annuler</a></li>
 		</ul>
+	</form>
+		
 					
 			
 			

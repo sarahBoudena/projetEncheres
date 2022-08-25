@@ -40,7 +40,7 @@
 		</c:if>
 		
 		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
-			<ul class = "row list-group-flush">
+			<ul class = "row list-group-flush" >
 							
 				<li class = "col-12 text-center list-group-item" style="font-weight:bold">${article.getNom()}</li>
 		
