@@ -44,25 +44,25 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 		ArticleVendu article = null;
 		
 		
-//		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
+		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
 		
 		try {
-			article = mng.selectById(1);
+			article = mng.selectById(noArticle);
 			
 		//FORMAT DATE
-			LocalDateTime dateFin = article.getDateFinEncheres();
+ 			LocalDateTime dateFin = article.getDateFinEncheres();
 			String DATE_FORMATTER= "dd-MM-yyyy HH:mm:ss";	
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 			String dateFinEnchere = dateFin.format(formatter);
 			
 		//MEILLEUR ENCHERE
-			Utilisateur meilleureOffreUser = user.selectById(article.getEnchere().getIdUser());
-			String meilleureOffrePseudo = meilleureOffreUser.getPseudo();
-		
+			if(!article.enchereIsNull()) {
+				Utilisateur meilleureOffreUser = user.selectById(article.getEnchere().getIdUser());
+				String meilleureOffrePseudo = meilleureOffreUser.getPseudo();
+				request.setAttribute("meilleureOffrePseudo", meilleureOffrePseudo);
+			}
 			request.setAttribute("article", article);
 			request.setAttribute("dateFinEnchere", dateFinEnchere);
-			request.setAttribute("meilleureOffrePseudo", meilleureOffrePseudo);
-	
 			
 		} catch (BLLException e) {
 			
