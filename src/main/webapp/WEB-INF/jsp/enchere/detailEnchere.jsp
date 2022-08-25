@@ -28,6 +28,16 @@
 			    </ul>
 		    </div>
 		</c:if>
+		<c:if test="${erreur != null}">
+			<div class="d-flex alert-danger">
+			    <div class="col-3 p-2">
+			        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+			    </div>
+			    <ul class="col-9 list-unstyled p-2">
+			       <li>${erreur.message}</li>
+				</ul>
+		    </div>
+		</c:if>
 		
 		<form action="<%=request.getContextPath()%>/article/encherir" method="post">
 			<ul class = "row list-group-flush">
@@ -54,12 +64,12 @@
 				<li class = "col-6 text-left list-group-item">${article.getUtilisateur().getRue()}</li>
 				<li class = "col-12 text-center list-group-item">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
 		
-				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=idvendeur">${article.getUtilisateur().getPseudo()}</a></li>
+								<li class = "col-6 text-right list-group-item" >Vendeur :</li>
+				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=51"> pseudo du vendeur</a></li>
 				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
-				<li class = "col-6 text-left list-group-item"><input type ="number" min=""></li>
+				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min="" name="montantEnchere"></li>
 				<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
-			</ul>
+		</ul>
 		</form>
 		
 	</main>	

@@ -18,7 +18,7 @@
 	   
 	    <!-- fragment JSP header -->
 	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
-
+		<a  href="<%=request.getContextPath()%>/article/encherir">test encherir</a>
 	    <!--main bloc-->
 	    <main>
 	        <!--title-->
@@ -132,6 +132,11 @@
 	                            <img class="img-fluid img-thumbnail" src="images/photo.svg" alt="pas de photo" />
 	                        </div>
 	                        <ul class="col-9 list-unstyled p-2">
+	                            <c:forEach var="element" items="${listeEncheresEC}">
+						       		<li>Prix : ${element.miseAprix} point(s)</li>
+						       		<li>Meilleure enchère : ${element.getEnchere()} point(s)</li>
+						       </c:forEach>
+	                            
 	                            <li>Prix : 0 point(s)</li>
 	                            <li>Meilleure enchère : 0 point(s)</li>
 	                            <li>Fin de l'enchère : dd-MM-yyyy HH:mm</li>

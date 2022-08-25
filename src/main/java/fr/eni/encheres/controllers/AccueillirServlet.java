@@ -38,12 +38,10 @@ public class AccueillirServlet extends HttpServlet {
 		try {
 			EnchereManager mng = EnchereManager.getInstance();
 			listeEncheresEC = mng.getListeEncheres();
-//			request.setAttribute("listeEncheresEC", listeEncheresEC);
+			request.setAttribute("listeEncheresEC", listeEncheresEC);
 		} catch (BLLException e) {
 			request.setAttribute("error", e);
 		}
-		
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		rd.forward(request, response);
 	}

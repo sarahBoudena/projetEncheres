@@ -36,8 +36,8 @@
 			    </div>
 			    <ul class="col-9 list-unstyled p-2">
 			       <c:forEach var="element" items="${error.getBLLExceptions()}">
-				       		<li>${element.getMessage()}</li>
-				       </c:forEach>
+			       		<li>${element.getMessage()}</li>
+			       </c:forEach>
 				</ul>
 			</div>
 		</c:if>
