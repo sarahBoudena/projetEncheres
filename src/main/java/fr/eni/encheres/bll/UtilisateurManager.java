@@ -12,15 +12,15 @@ import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
 
-public class utilisateurManager {
+public class UtilisateurManager {
 	private BLLException bllException;
 	
 	private UtilisateurDAO daoUser;
-	public static utilisateurManager Utilisateur;
+	public static UtilisateurManager Utilisateur;
 	private List<Utilisateur> listeUser;
 	private List<String> listeMessageUpdate;
 	
-	private utilisateurManager () {
+	private UtilisateurManager () {
 		daoUser = DAOFactory.getUtilisateurDAO() ;
 	}
 	
@@ -30,9 +30,9 @@ public class utilisateurManager {
 		bllException = new BLLException();
 	}
 	
-	public static utilisateurManager getInstance() {
+	public static UtilisateurManager getInstance() {
 		if (Utilisateur == null) {
-			Utilisateur = new utilisateurManager();
+			Utilisateur = new UtilisateurManager();
 		}
 		Utilisateur.initialiserBll();
 		return Utilisateur;

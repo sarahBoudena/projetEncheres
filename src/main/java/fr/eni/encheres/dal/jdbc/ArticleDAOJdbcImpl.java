@@ -44,7 +44,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 				pstmt.setString(2, article.getDescription());
 				pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(article.getDateDebutEncheres()));
 				pstmt.setTimestamp(4, java.sql.Timestamp.valueOf(article.getDateFinEncheres()));
-				pstmt.setInt(5, article.getMiseAprix());
+				pstmt.setInt(5, article.getPrixInitial());
 				pstmt.setInt(6, article.getNoUtilisateur());
 				pstmt.setInt(7,article.getNoCategorie());
 				pstmt.setString(8, article.getEtatVente());
@@ -75,12 +75,10 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	@Override
 	public void update(ArticleVendu a) throws DALException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void delete(int id) throws DALException {
-		// TODO Auto-generated method stub
 		
 	}
 

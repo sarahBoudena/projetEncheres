@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -21,7 +21,7 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class afficherProfilServlet
  */
 @WebServlet("/utilisateur/afficherProfil")
-public class afficherProfilServlet extends HttpServlet {
+public class AfficherProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String pseudo;
     private String nom ;
@@ -46,7 +46,7 @@ public class afficherProfilServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public afficherProfilServlet() {
+    public AfficherProfilServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -73,7 +73,6 @@ public class afficherProfilServlet extends HttpServlet {
 		request.setAttribute("rue", null);
 		request.setAttribute("codePostal", null);
 		request.setAttribute("ville", null);
-		
 //		---------- si le parametre du lien mine est "true", alors l'utilisateur veut voir son profil ------------
 		if(mine.equals("true")) {
 			HttpSession session = request.getSession();
@@ -88,7 +87,7 @@ public class afficherProfilServlet extends HttpServlet {
 			request.setAttribute("ville", user.getVille());
 			} else {
 //		------------ sinon il veut voir le profil du vendeur, et l'ID du vendeur est envoyé à la place de true -----------
-				utilisateurManager userManager = utilisateurManager.getInstance();
+				UtilisateurManager userManager = UtilisateurManager.getInstance();
 				Utilisateur vendeur = null;
 				try {
 					vendeur = userManager.selectById(Integer.parseInt(mine));
@@ -106,6 +105,4 @@ public class afficherProfilServlet extends HttpServlet {
 			}
 		return request;
 	}
-
-
 }

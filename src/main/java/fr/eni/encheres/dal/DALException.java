@@ -16,14 +16,4 @@ public class DALException extends Exception {
 	public DALException(String message, Throwable exception) {
 		super(message, exception);
 	}
-	
-//	Méthode getMessage
-//		@Override
-//		public String getMessage() {
-//			StringBuffer sb = new StringBuffer("Couche DAL - ");
-//			sb.append(super.getMessage()+ "\nNote technique : \n " + this.getCause().getMessage());
-//			
-//			return sb.toString() ;
-//		}
-
 }

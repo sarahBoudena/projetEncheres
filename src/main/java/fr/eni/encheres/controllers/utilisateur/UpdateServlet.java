@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -37,7 +37,6 @@ public class UpdateServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-    
 	@Override
 	public void init() throws ServletException {
 		pseudo = null;
@@ -51,21 +50,18 @@ public class UpdateServlet extends HttpServlet {
 		super.init();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/updateProfil.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		utilisateurManager manager = utilisateurManager.getInstance();
+		UtilisateurManager manager = UtilisateurManager.getInstance();
 		HttpSession session = request.getSession();
 		Utilisateur oldUser = session.getAttribute("user")!=null ? (Utilisateur) session.getAttribute("user"):null;
 		Utilisateur newUser = null;
 		List<String> listeModificationOk = new ArrayList<String>();
-		
 		request = createAttribute(request);
-	    
 	    String motDePasse = "";
 	    try {
 		    if(request.getParameter("mdp2")!=null && !request.getParameter("mdp2").isBlank() && !request.getParameter("mdp2").isEmpty()) {
@@ -106,7 +102,7 @@ public class UpdateServlet extends HttpServlet {
 		if(request.getParameter("pseudo")!=null) {
 			pseudo = request.getParameter("pseudo");
 			request.setAttribute("pseudo", pseudo);
-			}
+		}
 		if(request.getParameter("nom")!=null) {
 			nom = request.getParameter("nom");
 			request.setAttribute("nom", nom);
