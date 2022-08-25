@@ -126,6 +126,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				pstmt.setInt(2, enchere.getIdArticle());
 				pstmt.setTimestamp(3, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
 				pstmt.setInt(4, enchere.getMontantEnchere());
+				pstmt.executeUpdate();
 				cnx.commit();
 			}catch (SQLException e) {
 				//Si jamais une erreur est catchée lors de l'execution, retour arrière pour récupérer une base propre
@@ -149,6 +150,7 @@ public class EnchereDAOJdbcImpl implements EnchereDAO {
 				pstmt.setTimestamp(2, java.sql.Timestamp.valueOf(enchere.getDateEnchere()));
 				pstmt.setInt(3, enchere.getMontantEnchere());
 				pstmt.setInt(4, enchere.getIdArticle());
+				pstmt.executeUpdate();
 				cnx.commit();
 			} catch (SQLException e) {
 				cnx.rollback();

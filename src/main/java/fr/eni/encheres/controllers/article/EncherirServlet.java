@@ -59,17 +59,16 @@ public class EncherirServlet extends HttpServlet {
 		Utilisateur currentUser = session.getAttribute("user")!= null ? (Utilisateur)session.getAttribute("user"):null;
 		UtilisateurManager userManager = UtilisateurManager.getInstance();
 		EnchereManager enchereManager = EnchereManager.getInstance();
-		
+		List<ArticleVendu> listeEncheresEC = new ArrayList<ArticleVendu>();
 		try {
+			listeEncheresEC = enchereManager.getListeEncheres();
+			request.setAttribute("listeEncheresEC", listeEncheresEC);
 			article = articleManager.selectById(Integer.valueOf(request.getParameter("noArticle")));
 			if (nouveauMontantEnchere > currentUser.getCredit()) {
-//				request.setAttribute("erreur", "votre crédit est insufisant pour enchérir !");
 				throw new Exception ("votre enchère pour l'article : " + article.getNom() + " est supérieure à votre crédit " );
-//				rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
 			} else {
 					if (article.enchereIsNull()) {
 						if (nouveauMontantEnchere < article.getPrixInitial()) {
-//							request.setAttribute("erreur", "Votre enchère est insufisante !");
 							throw new Exception("Votre enchère est insufisante sur l'article : "+ article.getNom());
 						} else {
 							Enchere enchere = new Enchere(currentUser.getNoUtilisateur(),article.getNoArticle(),LocalDateTime.now(),nouveauMontantEnchere);
@@ -83,8 +82,6 @@ public class EncherirServlet extends HttpServlet {
 					} else {
 						Enchere enchere = article.getEnchere();
 						if (nouveauMontantEnchere <= enchere.getMontantEnchere()) {
-//							request.setAttribute("erreur", "Votre enchère est insufisante !");
-//							doGet(request, response);
 							throw new Exception("Votre enchère est insufisante sur l'article : "+ article.getNom());
 						}
 						Utilisateur oldUser = userManager.selectById(enchere.getIdUser());

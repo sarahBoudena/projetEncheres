@@ -17,6 +17,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             + "                 pseudo = ?, nom = ? , prenom = ?, email = ?, telephone = ?, rue = ? ,"
             + "                 code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?\r\n"
             + "                 WHERE no_utilisateur = ?;";
+    private static final String UPDATE_SANS_MDP = "UPDATE UTILISATEURS SET \r\n"
+            + "                 pseudo = ?, nom = ? , prenom = ?, email = ?, telephone = ?, rue = ? ,"
+            + "                 code_postal = ?, ville = ?, credit = ?\r\n"
+            + "                 WHERE no_utilisateur = ?;";
     private static final String DELETE = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
     private static final String SELECTUSERBYID ="SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit, administrateur FROM UTILISATEURS WHERE no_utilisateur = ?";
     
@@ -126,7 +130,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
     @Override
     public void update(Utilisateur user) throws DALException {
         try(Connection cnx = ConnectionProvider.getConnection();
-                PreparedStatement pstmt = cnx.prepareStatement(UPDATE)){
+                PreparedStatement pstmt = cnx.prepareStatement(UPDATE_SANS_MDP)){
                 pstmt.setString(1, user.getPseudo());
                 pstmt.setString(2, user.getNom());
                 pstmt.setString(3, user.getPrenom());
@@ -135,9 +139,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
                 pstmt.setString(6, user.getRue());
                 pstmt.setString(7, user.getCodePostal());
                 pstmt.setString(8, user.getVille());
-                pstmt.setString(9, user.getMotDePasse());
-                pstmt.setInt(10, user.getCredit());
-                pstmt.setInt(11, user.getNoUtilisateur());  
+                pstmt.setInt(9, user.getCredit());
+                pstmt.setInt(10, user.getNoUtilisateur());  
                 pstmt.executeUpdate();
             }catch (SQLException e){
             	String message = null;
@@ -147,7 +150,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             	if (e.getMessage().contains("utilisateurs_email_uq")){
             		message = "L'email est déjà utilisé.";
             	}
-            	
+            	e.printStackTrace();
                 DALException ex = new DALException("Erreur lors de la mise à jour du profil : " + message);
                 e.printStackTrace();
                 throw ex;
