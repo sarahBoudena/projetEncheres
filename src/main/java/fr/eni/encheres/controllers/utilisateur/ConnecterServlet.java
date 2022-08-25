@@ -1,6 +1,8 @@
 package fr.eni.encheres.controllers.utilisateur;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -62,13 +66,21 @@ public class ConnecterServlet extends HttpServlet {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		UtilisateurManager mng = UtilisateurManager.getInstance();
+		UtilisateurManager mngUser = UtilisateurManager.getInstance();
 		RequestDispatcher rd;
 		Utilisateur user =null;
 		try {
-			user = mng.verifEmailMdp(email, password);
+			user = mngUser.verifEmailMdp(email, password);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
+			List<ArticleVendu> listeEncheresEC = new ArrayList<ArticleVendu>();
+			try {
+				EnchereManager mng = EnchereManager.getInstance();
+				listeEncheresEC = mng.getListeEncheres();
+				request.setAttribute("listeEncheresEC", listeEncheresEC);
+			} catch (BLLException e) {
+				request.setAttribute("error", e);
+			}
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/connection.jsp");

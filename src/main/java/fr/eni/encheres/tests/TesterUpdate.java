@@ -2,6 +2,7 @@ package fr.eni.encheres.tests;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.ConnectionProvider;
 import fr.eni.encheres.dal.DALException;
@@ -89,7 +92,17 @@ public class TesterUpdate extends HttpServlet {
 //		
 //		
 //		response.getWriter().append("Test d'insertion dans la BDD : " + message);
-
+		String message="";
+		Enchere enchere = new Enchere(52, 28, LocalDateTime.now(), 20);
+		EnchereManager em = EnchereManager.getInstance();
+		try {
+			em.insert(enchere);
+			message = "L'enchere a bien ete cree.";
+		} catch (BLLException e) {
+			message = "Problème lors de la récupération de la liste";
+			e.printStackTrace();
+		}
+		response.getWriter().append("Test d'insertion BLL : " + message);
 	
 	}
 }

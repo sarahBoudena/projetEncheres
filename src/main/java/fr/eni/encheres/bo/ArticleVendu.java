@@ -211,9 +211,11 @@ public class ArticleVendu {
 		return "ArticleVendu [noArticle=" + noArticle + ", nom=" + nom + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAprix="
 				+ prixInitial + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
-				+ noUtilisateur + ", noCategorie=" + noCategorie + ", image=" + image + "]";
+				+ noUtilisateur + ", noCategorie=" + noCategorie + ", image=" + image + ", utilisateur=" + utilisateur
+				+ ", enchere=" + enchere + ", categorie=" + categorie + "]";
 	}
 
+	
 	
 	
 }

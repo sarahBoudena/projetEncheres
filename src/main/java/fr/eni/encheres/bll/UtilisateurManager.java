@@ -16,7 +16,7 @@ public class UtilisateurManager {
 	private BLLException bllException;
 	
 	private UtilisateurDAO daoUser;
-	public static UtilisateurManager Utilisateur;
+	public static UtilisateurManager utilisateur;
 	private List<Utilisateur> listeUser;
 	private List<String> listeMessageUpdate;
 	
@@ -31,11 +31,11 @@ public class UtilisateurManager {
 	}
 	
 	public static UtilisateurManager getInstance() {
-		if (Utilisateur == null) {
-			Utilisateur = new UtilisateurManager();
+		if (utilisateur == null) {
+			utilisateur = new UtilisateurManager();
 		}
-		Utilisateur.initialiserBll();
-		return Utilisateur;
+		utilisateur.initialiserBll();
+		return utilisateur;
 	}
 	
 	public Utilisateur verifEmailMdp(String email, String mdp) throws BLLException{
@@ -73,6 +73,16 @@ public class UtilisateurManager {
 		}
 		return listeMessageUpdate;
 	}
+	
+	public void update (Utilisateur User) throws BLLException{
+		try {
+			daoUser.update(User);
+		}catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+	}
+	
 	
 	public void delete (int id) throws BLLException{
 		try {		

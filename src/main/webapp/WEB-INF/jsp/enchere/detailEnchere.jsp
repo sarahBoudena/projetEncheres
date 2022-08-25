@@ -62,9 +62,10 @@
 		
 				<li class = "col-12 text-center list-group-item" style="font-weight:bold" >Retrait :</li>
 				<li class = "col-12 text-center list-group-item">${article.getUtilisateur().getRue()}</li>
-				<li class = "col-12 text-center list-group-item">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
+				<li class = "col-6 text-center list-group-item invisible"> <input type = number value = "${article.noArticle}" name="noArticle"> </li>
+				<li class = "col-6 text-left list-group-item">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
 		
-								<li class = "col-6 text-right list-group-item" >Vendeur :</li>
+				<li class = "col-6 text-right list-group-item" >Vendeur :</li>
 				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.noUtilisateur}">${article.getUtilisateur().getPseudo()}</a></li>
 				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
 				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" placeholder="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" min="${article.enchere.montantEnchere != null ? article.enchere.montantEnchere+1 : 0}" name="montantEnchere"></li>
