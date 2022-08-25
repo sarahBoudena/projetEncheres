@@ -26,16 +26,21 @@
 		
 		<c:if test="${erreur != null}">
 			<c:forEach var="element" items="${erreur.getBLLExceptions()}">
-					<li>${element.getMessage()}</li>
+				<ul>
+					<li style="text-align:center; color:red; list-style: none">${element.getMessage()}</li>
+				</ul>	
+					<a href="<%=request.getContextPath()%>/utilisateur/update" class="bouttons"><button>Retour</button></a>
 			</c:forEach>	
 		</c:if>
-		<div class="bouttons">
-			<form action="<%=request.getContextPath()%>/utilisateur/delete" method="post">
-			<button type="submit">Oui</button>
-			</form>
-			<a href="<%=request.getContextPath()%>/accueil"><button>Non</button></a>
-		</div>
-	
+		
+		<c:if test="${erreur == null}">
+			<div class="bouttons">
+				<form action="<%=request.getContextPath()%>/utilisateur/delete" method="post">
+				<button type="submit">Oui</button>
+				</form>
+				<a href="<%=request.getContextPath()%>/accueil"><button>Non</button></a>
+			</div>
+		</c:if>
 	</main>
 	<!-- fragment JSP footer -->
   	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>	

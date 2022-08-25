@@ -160,7 +160,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }catch (SQLException e){
-            DALException ex = new DALException("Erreur dans la DAL : Suppression impossible." + e.getMessage());
+            DALException ex = new DALException("La suppression du profil est impossible si une vente ou une enchère est en cours ");
             throw ex;
         }
     }
