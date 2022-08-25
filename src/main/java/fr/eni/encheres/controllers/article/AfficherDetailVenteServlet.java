@@ -43,10 +43,9 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 //		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
 		
 		try {
-			article = mng.selectById(4);
+			article = mng.selectById(2);
 			request.setAttribute("article", article);
 			
-			System.out.println(article.getCategorie().getLibelle());
 			
 		} catch (BLLException e) {
 			

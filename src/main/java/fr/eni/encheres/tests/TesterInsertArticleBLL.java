@@ -48,7 +48,7 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		int noCat = 4;
 		String img = null;
 		
-		ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
+	//	ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
 		
 		try {
 	// TEST INSERT ARTICLE
@@ -66,6 +66,7 @@ public class TesterInsertArticleBLL extends HttpServlet {
 			
 			for (Exception bllex : ((BLLException) e).getBLLExceptions()) {
 				System.out.println(bllex.getMessage());
+				e.printStackTrace();
 			}
 		}
 	
