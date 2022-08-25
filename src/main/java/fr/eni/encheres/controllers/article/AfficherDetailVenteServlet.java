@@ -1,6 +1,8 @@
 package fr.eni.encheres.controllers.article;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.utilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class AfficherDetailVenteServlet
@@ -40,11 +43,28 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 		utilisateurManager user = utilisateurManager.getInstance();
 		ArticleVendu article = null;
 		
+		
 //		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
 		
 		try {
 			article = mng.selectById(2);
+			
+		//FORMAT DATE
+			LocalDateTime dateFin = article.getDateFinEncheres();
+			String DATE_FORMATTER= "dd-MM-yyyy HH:mm:ss";	
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+			String dateFinEnchere = dateFin.format(formatter);
+			
+		//MEILLEUR ENCHERE
+			Utilisateur meilleureOffreUser = user.selectById(article.getEnchere().getIdUser());
+			String meilleureOffrePseudo = meilleureOffreUser.getPseudo();
+		
 			request.setAttribute("article", article);
+			request.setAttribute("dateFinEnchere", dateFinEnchere);
+			request.setAttribute("meilleureOffrePseudo", meilleureOffrePseudo);
+			
+			
+			
 			
 			
 		} catch (BLLException e) {
