@@ -132,7 +132,7 @@
 	        </form>
 	
 	        <!--enchères-->
-      	  <div class="row justify-content-center border-top card-deck">
+      	  <div class="row justify-content-center card-deck">
       		<c:forEach var="element" items="${listeEncheresEC}">	    		
                 <div class="col-6 col-sm-6 p-2" >
                     <div class="card">
@@ -147,7 +147,12 @@
 		                    	<li>Prix : ${element.prixInitial} point(s)</li>
 						       	<li>Meilleure enchère : ${element.enchere.montantEnchere !=null ? element.enchere.montantEnchere : 0} point(s)</li>
 						        <li>Fin de l'enchère : ${element.getDateFinEncheres()}</li>
-						         <li>Vendeur : ${element.getUtilisateur().getPseudo()}</li>
+						        <c:if test="${!empty user}">
+						        	<li>Vendeur : <a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${element.noUtilisateur}">${element.utilisateur.pseudo}</a></li>
+	                       		</c:if>
+	                       		<c:if test="${empty user}">
+	                       			<li>Vendeur : ${element.utilisateur.pseudo}</li>
+	                       		</c:if>
 	                        </ul>
 	                    </div>
 	                    	<c:if test="${!empty user}">
@@ -160,8 +165,6 @@
 	        </c:forEach>
 	        </div>
 	      </main>
-
-
 		<!-- fragment JSP footer -->
    <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>      
 </body>
