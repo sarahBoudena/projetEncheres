@@ -16,7 +16,7 @@
 
 <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 <main>
-<h2>Vendre un article</h2>
+<h2 style="text-align:center">VENDRE UN ARTICLE</h2>
 
 		<c:if test="${error != null}">
 			<div class="d-flex alert-danger">
@@ -31,63 +31,53 @@
 			</div>
 		</c:if>
 
-	<form action="<%=request.getContextPath()%>/article/vente" method="post">
-		<div class="Container">
-			<div>
-				<label>Article :</label>
-				<input type="text" name="nom" value="${requestScope.nom}" id="name" placeholder="Nom de l'article"  required="required">
-			</div>	
-			<div>
-				<label>Description :</label>
-				<textarea rows="5" cols="40" name="description" id="description" required="required" placeholder="Description de l'article mis en vente...">${requestScope.description}</textarea>
-			</div>
-			<div>
-				<label>Catégorie :</label>
-				<select name="categorie" required="required">
-					<option value="" disabled selected>-- Catégorie --</option>
-					<option value="Informatique">Informatique</option>
-					<option value="Ameublement">Ameublement</option>
-					<option value="Vêtement">Vêtement</option>
-					<option value="Sport & Loisir">Sport & Loisir</option>
-				</select>
-			</div>
-			<div>
-				<label>Mise à prix :</label>
-				<input type="number" min="0" name="PrixInitial" value="${requestScope.PrixInitial}">
-			</div>
-			<div>
-				<label>Début de l'enchère :</label>
-				<input type="datetime-local" name="dateDebut" required="required">
-			</div>	
-			<div>
-				<label>Fin de l'enchère :</label>
-				<input type="datetime-local" name="dateFin" required="required">
-			</div>	
-			<fieldset>
-				<legend>Retrait</legend>
-					<div>
-					<label>Rue :</label>
-					<input type="text" value="${user.rue}">
-					</div>
-					<div>
-					<label>Code Postal :</label>
-					<input type="text" value="${user.codePostal}">
-					</div>
-					<div>
-					<label>Ville :</label>
-					<input type="text" value="${user.ville}">
-					</div>
-			</fieldset>
-			<div>
-				<button type ="submit">Enregistrer</button>
-			</div>
-		</div>
+	<form action="<%=request.getContextPath()%>/article/vente" method="post" >
+		
+			<ul class = "row list-group-flush">
+				
+					<li class = "col-6 text-right list-group-item" >Article :</li>
+					<li class = "col-6 text-left list-group-item" ><input type="text" name="nom" value="${requestScope.nom}" id="name" placeholder="Nom de l'article"  required="required"></li>
+				
+					<li class = "col-6 text-right list-group-item" >Description :</li>
+					<li class = "col-6 text-left list-group-item" ><textarea rows="5" cols="40" name="description" id="description" required="required" placeholder="Description de l'article mis en vente...">${requestScope.description}</textarea></li>
+				
+				
+					<li class = "col-6 text-right list-group-item" >Categorie :</li>
+					<li class = "col-6 text-left list-group-item" ><select name="categorie" required="required">
+						<option value="" disabled selected>-- Catégorie --</option>
+						<option value="Informatique">Informatique</option>
+						<option value="Ameublement">Ameublement</option>
+						<option value="Vêtement">Vêtement</option>
+						<option value="Sport & Loisir">Sport & Loisir</option>
+					</select></li>
+				
+					<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
+					<li class = "col-6 text-left list-group-item" ><input type="number" min="0" name="PrixInitial" value="${requestScope.PrixInitial}"></li>
+				
+					<li class = "col-6 text-right list-group-item">Début de l'enchère</li>
+					<li class = "col-6 text-left list-group-item"><input type="datetime-local" name="dateDebut" required="required"></li>
+				
+					<li class = "col-6 text-right list-group-item">Fin de l'enchère</li>
+					<li class = "col-6 text-left list-group-item"><input type="datetime-local" name="dateFin" required="required"></li>
+				
+					<li class = "col-12 text-center list-group-item" style="font-weight:bold">Retrait</li>
+					
+					<li class = "col-6 text-right list-group-item">Rue</li>
+					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.rue}"></li>
+						
+					<li class = "col-6 text-right list-group-item">Code Postal</li>
+					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.codePostal}"></li>
+						
+					<li class = "col-6 text-right list-group-item">Ville</li>
+					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.ville}"></li>
+						
+					<li class = "col-12 text-center list-group-item"><button type ="submit">Enregistrer</button></li>
 	</form>
-		<div>
+		</ul>
 			<a href="<%=request.getContextPath()%>/accueil">
-				<button>Annuler</button>
-			</a>
-		</div>
+				<li class = "col-12 text-center list-group-item"><button>Annuler</button></a></li>
+			
+		
 </main>
 	<jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>   
 </body>
