@@ -127,18 +127,19 @@
 	                </div>
 	            </div>
 	            <button class="btn btn-primary btn-lg btn-block" type="submit">
-	            	<img class="small-icon" src="images/search.svg" alt="Eni Ecole">
+	            	<img class="small-icon" src="images/search.svg" alt="Rechercher">
 	            </button>
 	        </form>
 	
 	        <!--enchères-->
-      		<c:forEach var="element" items="${listeEncheresEC}">	           
-		    	<div class="col-12 col-sm-6 p-2" >
-		        	<div class="card">
-		            	<div class="card-header text-center">
-		                	<h4 class="my-0 font-weight-normal">${element.nom}</h4>
-		                 </div>
-		                 <div class="d-flex">
+	        <div class="row justify-content-center border-top card-deck">
+      		<c:forEach var="element" items="${listeEncheresEC}">	    		
+                <div class="col-6 col-sm-6 p-2" >
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h4 class="my-0 font-weight-normal">${element.nom}</h4>
+                        </div>
+                        <div class="d-flex">
 		                 	<div class="col-3 p-2">
 		                    	<img class="img-fluid img-thumbnail" src="images/photo.svg" alt="pas de photo" />
 		                    </div>
@@ -155,10 +156,12 @@
 			                    </a>
 		                	</c:if>
 	                </div>
-	            </div>
+	            </div> 
 	        </c:forEach>
-	     	</div>
-    	</main>
+	        </div>
+	      </main>
+
+
 		<!-- fragment JSP footer -->
    <jsp:include page="/WEB-INF/fragment/footer.jsp"></jsp:include>      
 </body>
