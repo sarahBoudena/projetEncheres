@@ -149,9 +149,11 @@
 						         <li>Vendeur : ${element.getUtilisateur().getPseudo()}</li>
 	                        </ul>
 	                    </div>
-	                    <a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
-              	          <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/marteau.png"/>
-	                    </a>
+	                    	<c:if test="${!empty user}">
+			                  	<a class="mt-3 btn btn-lg btn-block btn-primary" href="#" title="faire une enchère">
+		              	          <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/marteau.png"/>
+			                    </a>
+		                	</c:if>
 	                </div>
 	            </div>
 	        </c:forEach>
