@@ -1,2 +1,19 @@
 @charset "UTF-8";
 
+.accueil{
+	color: black;
+    border: 2px solid black;
+    padding: 1px;
+    margin: 0px;
+    width: 67px;
+    display: block;
+   	text-align: center;
+}
+
+.accueil:hover{
+	
+	color:inherit;
+	background: inherit;
+	text-decoration:none;
+	cursor: default;
+	}

@@ -133,7 +133,7 @@
 	
 	        <!--enchères-->
       		<c:forEach var="element" items="${listeEncheresEC}">	           
-		    	<div class="col-12 col-sm-6 p-2" >
+		    	<div class="col-12 col-sm-6 p-2">
 		        	<div class="card">
 		            	<div class="card-header text-center">
 		                	<h4 class="my-0 font-weight-normal">${element.nom}</h4>

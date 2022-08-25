@@ -72,11 +72,11 @@
 					<li class = "col-6 text-left list-group-item"><input type="text" value="${user.ville}"></li>
 						
 					<li class = "col-6 text-right list-group-item"><button type ="submit">Enregistrer</button></li>
-					
-					
-					<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/accueil"><button type="reset">Annuler</button></a></li>
+					<li class = "col-6 text-left list-group-item" style="list-style: none"><a href="<%=request.getContextPath()%>/accueil" class="accueil">Annuler</a></li>
+	
 	</form>
 		</ul>
+					
 			
 			
 		
