@@ -21,9 +21,9 @@
 			<h1 class ="text-center"> Profil de : ${requestScope.pseudo} </h1>
 		</c:if>
 		<hr>
-		<div class="Container-fluid ">
+		<div >
 				<ul class = "row list-group-flush">
-					
+					<li class = "col-12 text-center list-group-item" ></li>
 					<c:if test="${requestScope.mine == 'true'}">
 						<li class = "col-6 text-right list-group-item" >Pseudo :</li>
 						<li class = "col-6 text-left list-group-item"> ${requestScope.pseudo}</li>
@@ -48,6 +48,8 @@
 				
 					<li class = "col-6 text-right list-group-item" >ville :</li>
 					<li class = "col-6 text-left list-group-item"> ${requestScope.ville}</li>
+					
+					<li class = "col-12 text-center list-group-item" ></li>
 				</ul>
 		</div>
 		<c:if test="${requestScope.mine == 'true'}">
