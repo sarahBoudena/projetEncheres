@@ -136,7 +136,7 @@
 	                            <c:forEach var="element" items="${listeEncheresEC}">
 	                            
 	                            <ul class="col-9 list-unstyled p-2">
-						       		<li>Prix : ${element.miseAprix} point(s)</li>
+						       		<li>Prix : ${element.prixInitial} point(s)</li>
 						       		<li>Meilleure enchère : ${element.enchere.montantEnchere !=null ? element.enchere.montantEnchere : 0} point(s)</li>
 						        	<li>Fin de l'enchère : ${element.getDateFinEncheres()}</li>
 						        	 <li>Vendeur : ${element.getUtilisateur().getPseudo()}</li>

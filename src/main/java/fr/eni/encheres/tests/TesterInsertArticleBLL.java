@@ -48,24 +48,25 @@ public class TesterInsertArticleBLL extends HttpServlet {
 		int noCat = 4;
 		String img = null;
 		
-		ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
+	//	ArticleVendu ballon = new ArticleVendu (nom, description, dateDebut, dateFin, miseAPrix, noUser, noCat, img);
 		
 		try {
 	// TEST INSERT ARTICLE
-		article.insert(ballon);
-		message = "Insertion article réussie";
+//		article.insert(ballon);
+//		message = "Insertion article réussie";
 		
 	// Test SELECTBYID Article
 		
 		ArticleVendu art = article.selectById(2);
 		message = "Select article ok";
-		System.out.println(art.toString());
+		System.out.println(art.getCategorie().getLibelle());
 		
 		}catch(BLLException e) {
 			message += "\nErreur lors de l'insertion de l'article.";
 			
 			for (Exception bllex : ((BLLException) e).getBLLExceptions()) {
 				System.out.println(bllex.getMessage());
+				e.printStackTrace();
 			}
 		}
 	

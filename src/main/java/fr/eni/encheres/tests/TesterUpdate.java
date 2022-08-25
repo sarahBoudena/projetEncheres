@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.ConnectionProvider;
 import fr.eni.encheres.dal.DALException;

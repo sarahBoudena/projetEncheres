@@ -23,13 +23,13 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class VendreArticle
  */
 @WebServlet("/article/vente")
-public class VendreArticle extends HttpServlet {
+public class VendreArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VendreArticle() {
+    public VendreArticleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -93,9 +93,7 @@ public class VendreArticle extends HttpServlet {
 		try {
 			ArticleManager mng = ArticleManager.getInstance();
 			int miseAPrix = Integer.parseInt(PrixInitial);
-			
 			int noCat = 0;
-			
 			switch(categorie){
 		       case "Informatique": noCat=1; break;
 		       case "Ameublement": noCat=2; break;
@@ -105,16 +103,12 @@ public class VendreArticle extends HttpServlet {
 			article = new ArticleVendu(nom,description,dateDebutComplet,dateFinComplet,miseAPrix,NoUtilisateur,noCat,null);
 			mng.insert(article);
 			message = "Création de l'article réussie";
-			
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
-			
 		}catch (BLLException e) {	
 			request.setAttribute("error", e);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/article/vendreArticle.jsp");
 		    rd.forward(request, response);
 		}
-		
 	}
-
 }

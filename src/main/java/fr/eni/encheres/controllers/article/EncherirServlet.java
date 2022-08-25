@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.EnchereManager;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
@@ -26,13 +26,13 @@ import fr.eni.encheres.bo.Utilisateur;
  * Servlet implementation class encherirServlet
  */
 @WebServlet("/article/encherir")
-public class encherirServlet extends HttpServlet {
+public class EncherirServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public encherirServlet() {
+    public EncherirServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -63,7 +63,7 @@ public class encherirServlet extends HttpServlet {
 		int nouveauMontantEnchere = request.getParameter("montantEnchere")!=null ? Integer.parseInt(request.getParameter("montantEnchere")):null;
 		HttpSession session = request.getSession();
 		Utilisateur currentUser = session.getAttribute("user")!= null ? (Utilisateur)session.getAttribute("user"):null;
-		utilisateurManager userManager = utilisateurManager.getInstance();
+		UtilisateurManager userManager = UtilisateurManager.getInstance();
 		EnchereManager enchereManager = EnchereManager.getInstance();
 		
 		try {
@@ -73,7 +73,7 @@ public class encherirServlet extends HttpServlet {
 //				rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
 			} else {
 					if (article.enchereIsNull()) {
-						if (nouveauMontantEnchere < article.getMiseAprix()) {
+						if (nouveauMontantEnchere < article.getPrixInitial()) {
 //							request.setAttribute("erreur", "Votre enchère est insufisante !");
 							throw new Exception("Votre enchère est insufisante !");
 						} else {

@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>Connection</title>
 </head>
-<body>
+<body style="text-align:center">
 	<!-- fragment JSP header -->
 	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
 	<main>		

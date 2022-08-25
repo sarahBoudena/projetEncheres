@@ -1,6 +1,8 @@
 package fr.eni.encheres.controllers.article;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.EnchereManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet implementation class AfficherDetailVenteServlet
@@ -34,29 +39,34 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		EnchereManager mng = EnchereManager.getInstance();
-		List<ArticleVendu> listeEnchere = new ArrayList<ArticleVendu>();
+		ArticleManager mng = ArticleManager.getInstance();
+		UtilisateurManager user = UtilisateurManager.getInstance();
+		ArticleVendu article = null;
+		
+		
+//		int noArticle = Integer.parseInt(request.getParameter("noArticle"));	
 		
 		try {
-			listeEnchere = mng.getListeEncheres();
+			article = mng.selectById(1);
 			
-			for(ArticleVendu article : listeEnchere) {
-					request.setAttribute("noArticle", article.getNoArticle());
-					request.setAttribute("noUtilisateur", article.getNoUtilisateur());
-					request.setAttribute("nom", article.getNom());
-					request.setAttribute("description", article.getDescription());
-					request.setAttribute("categorie", article.getCategorie());
-					request.setAttribute("miseAPrix", article.getMiseAprix());
-					request.setAttribute("dateFinEnchere", article.getDateFinEncheres());
-					request.setAttribute("utilisateur", article.getUtilisateur());	
-			}
+		//FORMAT DATE
+			LocalDateTime dateFin = article.getDateFinEncheres();
+			String DATE_FORMATTER= "dd-MM-yyyy HH:mm:ss";	
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
+			String dateFinEnchere = dateFin.format(formatter);
 			
-			
+		//MEILLEUR ENCHERE
+			Utilisateur meilleureOffreUser = user.selectById(article.getEnchere().getIdUser());
+			String meilleureOffrePseudo = meilleureOffreUser.getPseudo();
+		
+			request.setAttribute("article", article);
+			request.setAttribute("dateFinEnchere", dateFinEnchere);
+			request.setAttribute("meilleureOffrePseudo", meilleureOffrePseudo);
+	
 			
 		} catch (BLLException e) {
 			
 		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp");
 		rd.forward(request, response);
