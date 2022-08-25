@@ -23,24 +23,9 @@ import fr.eni.encheres.bo.Utilisateur;
 @WebServlet("/utilisateur/afficherProfil")
 public class AfficherProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String pseudo;
-    private String nom ;
-    private String prenom ;
-    private String email ;
-    private String telephone;
-    private String rue;
-    private String codePostal;
-    private String ville;
+
     
 	public void init() throws ServletException {
-		pseudo = null;
-		nom =null;
-		prenom = null;
-		email = null;
-		telephone = null;
-		rue = null;
-		codePostal = null;
-		ville = null;
 		super.init();
 	}   
     /**

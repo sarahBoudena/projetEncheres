@@ -74,6 +74,16 @@ public class UtilisateurManager {
 		return listeMessageUpdate;
 	}
 	
+	public void update (Utilisateur User) throws BLLException{
+		try {
+			daoUser.update(User);
+		}catch (DALException e) {
+			bllException.addException(e);
+			throw bllException;
+		}
+	}
+	
+	
 	public void delete (int id) throws BLLException{
 		try {		
 			daoUser.delete(id);

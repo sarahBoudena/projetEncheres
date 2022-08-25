@@ -18,7 +18,6 @@
 	   
 	    <!-- fragment JSP header -->
 	    <jsp:include page="/WEB-INF/fragment/header.jsp"></jsp:include>
-		<a  href="<%=request.getContextPath()%>/article/encherir">test encherir</a>
 	    <!--main bloc-->
 	    <main>
 	        <!--title-->
@@ -26,16 +25,28 @@
 	            <h1>Enchères</h1>
 	        </div>
 	        <!--erreur-->
-	        <div class="d-flex alert-danger">
-	            <div class="col-3 p-2">
-	                <img class="small-icon" src="images/error.svg">
-	            </div>
-	        
-	            <ul class="col-9 list-unstyled p-2">
-	                <li>un message d'erreur éventuellement !</li>
-	                <li>un autre message....</li>
-	            </ul>
-	        </div>
+	        <c:if test="${error != null}">
+				<div class="d-flex alert-danger">
+				    <div class="col-3 p-2">
+				        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+				    </div>
+				    <ul class="col-9 list-unstyled p-2">
+				       <c:forEach var="element" items="${error.getBLLExceptions()}">
+				       		<li>${element.getMessage()}</li>
+				       </c:forEach>
+				    </ul>
+			    </div>
+			</c:if>
+			<c:if test="${erreur != null}">
+				<div class="d-flex alert-danger">
+				    <div class="col-3 p-2">
+				        <img class="small-icon" src="<%=request.getContextPath()%>/medias/img/erreur.png" alt ="icone erreur" >
+				    </div>
+				    <ul class="col-9 list-unstyled p-2">
+				       <li>${erreur.message}</li>
+					</ul>
+			    </div>
+			</c:if>
 	        <c:if test="${success != null}">
 				<div class="d-flex alert-success">
 				    <div class="col-2 p-2">
