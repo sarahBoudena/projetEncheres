@@ -42,7 +42,7 @@ public class ArticleManager {
 	
 	public void insert(ArticleVendu article) throws BLLException{
 		try {
-			VerifArticle(article);
+			verifArticle(article);
 			articleDAO.insert(article);
 		} catch(DALException e) {
 			bllException.addException(e);
@@ -72,7 +72,7 @@ public class ArticleManager {
 		}
 	}
 	
-	private void VerifArticle(ArticleVendu article) throws BLLException {
+	private void verifArticle(ArticleVendu article) throws BLLException {
 		Date dateDuJour = Date.valueOf(LocalDate.now());
 		
 		
@@ -95,7 +95,7 @@ public class ArticleManager {
 			Exception e = new Exception("La date de fin de l'enchère ne peut pas être antérieur à la date de début de l'enchère.");
 			bllException.addException(e);
 			}
-		if(article.getMiseAprix() < 0) {
+		if(article.getPrixInitial() < 0) {
 			Exception e = new Exception("Le prix de vente ne peut pas être négatif.");
 			bllException.addException(e);
 		}

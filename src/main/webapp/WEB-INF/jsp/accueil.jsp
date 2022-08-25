@@ -133,7 +133,7 @@
 	                        </div>
 	                        <ul class="col-9 list-unstyled p-2">
 	                            <c:forEach var="element" items="${listeEncheresEC}">
-						       		<li>Prix : ${element.miseAprix} point(s)</li>
+						       		<li>Prix : ${element.prixInitial} point(s)</li>
 						       		<li>Meilleure enchère : ${element.getEnchere()} point(s)</li>
 						       </c:forEach>
 	                            

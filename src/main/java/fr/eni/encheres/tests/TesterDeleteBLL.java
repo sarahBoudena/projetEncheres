@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -32,7 +32,7 @@ public class TesterDeleteBLL extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message="";
 		String message2="";
-		utilisateurManager user = utilisateurManager.getInstance();
+		UtilisateurManager user = UtilisateurManager.getInstance();
 		int id =0;
 		
 	try {

@@ -14,7 +14,7 @@ public class ArticleVendu {
 	private String description;
 	private LocalDateTime dateDebutEncheres;
 	private LocalDateTime dateFinEncheres;
-	private int miseAprix;
+	private int prixInitial;
 	private int prixVente;
 	private String etatVente;
 	int noUtilisateur;
@@ -33,7 +33,7 @@ public class ArticleVendu {
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
+		this.prixInitial = miseAprix;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
@@ -46,7 +46,7 @@ public class ArticleVendu {
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
+		this.prixInitial = miseAprix;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 		this.etatVente = "CR";
@@ -62,7 +62,7 @@ public class ArticleVendu {
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
+		this.prixInitial = miseAprix;
 		this.prixVente = prixVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
@@ -81,7 +81,7 @@ public class ArticleVendu {
 		this.description = description;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.miseAprix = miseAprix;
+		this.prixInitial = miseAprix;
 		this.prixVente = prixVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
@@ -130,12 +130,12 @@ public class ArticleVendu {
 	public void setDateFinEncheres(LocalDateTime dateFinEncheres) {
 		this.dateFinEncheres = dateFinEncheres;
 	}
-	public int getMiseAprix() {
-		return miseAprix;
+	public int getPrixInitial() {
+		return prixInitial;
 	}
 
-	public void setMiseAprix(int miseAprix) {
-		this.miseAprix = miseAprix;
+	public void setPrixInitial(int miseAprix) {
+		this.prixInitial = miseAprix;
 	}
 
 	public int getPrixVente() {
@@ -210,7 +210,7 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nom=" + nom + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAprix="
-				+ miseAprix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
+				+ prixInitial + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
 				+ noUtilisateur + ", noCategorie=" + noCategorie + ", image=" + image + "]";
 	}
 

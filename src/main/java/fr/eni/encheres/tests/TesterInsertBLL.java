@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -33,7 +33,7 @@ public class TesterInsertBLL extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String message="";
-		utilisateurManager mng = utilisateurManager.getInstance();
+		UtilisateurManager mng = UtilisateurManager.getInstance();
 		String pseudo = "JoseTheKing";
 		String nom = "Bachelier";
 		String prenom = "José";

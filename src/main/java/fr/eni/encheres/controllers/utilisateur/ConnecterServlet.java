@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -21,13 +21,11 @@ import fr.eni.encheres.bo.Utilisateur;
 @WebServlet("/login")
 public class ConnecterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ConnecterServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -53,7 +51,6 @@ public class ConnecterServlet extends HttpServlet {
 		
 		String email = request.getParameter("email")!=null ?request.getParameter("email"):null ;
 		String password = request.getParameter("password")!=null ? (String)request.getParameter("password"):null ;
-				
 		//		gestion de la case se souvenir par cookie : 
 		Cookie cookie = new Cookie("identite", email);
 		if (request.getParameter("memoriser")!=null) {
@@ -65,8 +62,7 @@ public class ConnecterServlet extends HttpServlet {
 			cookie.setMaxAge(0);
 			response.addCookie(cookie);
 		}
-		
-		utilisateurManager mng = utilisateurManager.getInstance();
+		UtilisateurManager mng = UtilisateurManager.getInstance();
 		RequestDispatcher rd;
 		Utilisateur user =null;
 		try {
@@ -74,14 +70,10 @@ public class ConnecterServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
-
 		} catch (BLLException e) {
 			rd =request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/connection.jsp");
 			request.setAttribute("error", e);
 		}
-		
 		rd.forward(request, response);
-		
 	}
-
 }

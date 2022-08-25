@@ -39,20 +39,16 @@ public class AfficherDetailVenteServlet extends HttpServlet {
 		
 		try {
 			listeEnchere = mng.getListeEncheres();
-			
 			for(ArticleVendu article : listeEnchere) {
 					request.setAttribute("noArticle", article.getNoArticle());
 					request.setAttribute("noUtilisateur", article.getNoUtilisateur());
 					request.setAttribute("nom", article.getNom());
 					request.setAttribute("description", article.getDescription());
 					request.setAttribute("categorie", article.getCategorie());
-					request.setAttribute("miseAPrix", article.getMiseAprix());
+					request.setAttribute("miseAPrix", article.getPrixInitial());
 					request.setAttribute("dateFinEnchere", article.getDateFinEncheres());
 					request.setAttribute("utilisateur", article.getUtilisateur());	
 			}
-			
-			
-			
 		} catch (BLLException e) {
 			
 		}

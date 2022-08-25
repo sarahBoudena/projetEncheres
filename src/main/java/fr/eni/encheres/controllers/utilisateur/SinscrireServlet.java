@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.utilisateurManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -44,7 +44,6 @@ public class SinscrireServlet extends HttpServlet {
 		//Réinitialisation des erreurs
 		request.setAttribute("error", null);
 		request.setAttribute("erreur", null);		
-				
 		//Récupération des données du formulaire
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -59,7 +58,6 @@ public class SinscrireServlet extends HttpServlet {
 		String message = "";
 		Utilisateur user = null;
 		RequestDispatcher rd;
-		
 		//Stockage en paramètre des données saisies
 		request.setAttribute("pseudo", pseudo);
 		request.setAttribute("nom", nom);
@@ -69,19 +67,17 @@ public class SinscrireServlet extends HttpServlet {
 		request.setAttribute("rue", rue);
 		request.setAttribute("cp", cp);
 		request.setAttribute("ville", ville);
-		
 		try {
 			//Vérification du mdp + création de l'objet Utilisateur
 			if (mdp1.equals(mdp2)) {
 				user = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp1, 100, false);
 				//Utilisation du manager		
-				utilisateurManager mng = utilisateurManager.getInstance();
+				UtilisateurManager mng = UtilisateurManager.getInstance();
 				mng.insert(user);
 				HttpSession session = request.getSession();
 				session.setAttribute("user", user);
 				rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 				rd.forward(request, response);
-				
 			}else {
 				message = "Les deux mots de passe sont différents.";
 				request.setAttribute("erreur", message);
@@ -93,5 +89,4 @@ public class SinscrireServlet extends HttpServlet {
 		    rd.forward(request, response);
 		}
 	}
-
 }
