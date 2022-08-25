@@ -52,10 +52,10 @@
 				<li class = "col-6 text-left list-group-item">${article.getCategorie().getLibelle()}</li>
 		
 				<li class = "col-6 text-right list-group-item" >Meilleure offre :</li>
-				<li class = "col-6 text-left list-group-item">${article.getEnchere().getMontantEnchere()} par ${meilleureOffreUser}</li>
+				<li class = "col-6 text-left list-group-item">${article.getEnchere().getMontantEnchere()} par ${meilleureOffrePseudo}</li>
 		
 				<li class = "col-6 text-right list-group-item" >Mise à prix :</li>
-				<li class = "col-6 text-left list-group-item">${article.getMiseAprix()}</li>
+				<li class = "col-6 text-left list-group-item">${article.getPrixInitial()}</li>
 		
 				<li class = "col-6 text-right list-group-item" >Fin de l'enchère :</li>
 				<li class = "col-6 text-left list-group-item">${dateFinEnchere}</li>
@@ -65,7 +65,7 @@
 				<li class = "col-12 text-center list-group-item">${article.getUtilisateur().getCodePostal()} ${article.getUtilisateur().getVille()}</li>
 		
 								<li class = "col-6 text-right list-group-item" >Vendeur :</li>
-				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.getEnchere().getIdUser()}"></a></li>
+				<li class = "col-6 text-left list-group-item"><a href="<%=request.getContextPath()%>/utilisateur/afficherProfil?mine=${article.noUtilisateur}">${article.getUtilisateur().getPseudo()}</a></li>
 				<li class = "col-6 text-right list-group-item" >Ma prosposition</li>
 				<li class = "col-6 text-left list-group-item"><input type ="number" width="3em" min="" name="montantEnchere"></li>
 				<li class = "col-12 text-center list-group-item"><button type="submit">Enregistrer</button>
