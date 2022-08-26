@@ -61,8 +61,6 @@ public class EncherirServlet extends HttpServlet {
 		EnchereManager enchereManager = EnchereManager.getInstance();
 		List<ArticleVendu> listeEncheresEC = new ArrayList<ArticleVendu>();
 		try {
-			listeEncheresEC = enchereManager.getListeEncheres();
-			request.setAttribute("listeEncheresEC", listeEncheresEC);
 			article = articleManager.selectById(Integer.valueOf(request.getParameter("noArticle")));
 			if (nouveauMontantEnchere > currentUser.getCredit()) {
 				throw new Exception ("votre enchère pour l'article : " + article.getNom() + " est supérieure à votre crédit " );
@@ -96,6 +94,8 @@ public class EncherirServlet extends HttpServlet {
 					}
 			}
 			request.setAttribute("success", "Votre enchère est prise en compte sur l'article " + article.getNom() +", félicitation !");
+			listeEncheresEC = enchereManager.getListeEncheres();
+			request.setAttribute("listeEncheresEC", listeEncheresEC);
 			rd = request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp");
 			rd.forward(request, response);
 		} catch (BLLException e) {
